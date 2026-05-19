@@ -1,0 +1,233 @@
+table: SAC.CLIENTES
+domain: clientes
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+columns:
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO_CLIENTE
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO_SUMINISTRO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO_FACTURACION
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DEPTO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ZONA
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MUNICIPIO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: BARRIO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_PERSONA
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CICLO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TARIFA
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: GRUPO_CU
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CLASE_SERVICIO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTRATO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_CREACION
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SALDO_ACTUAL
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_CLIENTE
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SEGMENTO_MERCADO
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_SERVICIO
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- left_table: SAC.MEDIDORES
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion confirmada de medidor a cliente
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion confirmada de cliente a municipio
+- left_table: SAC.CLIENTES
+  left_column: ESTADO_CLIENTE
+  right_table: SAC.MULTITABLA
+  right_column: CODIGO_NUM
+  description: Estado cliente parametrizado por codigo numerico en multitabla
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_ESTADO'
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion de cliente a catalogo municipal
+  fixed_filter: ''
+approved_parametric_mappings:
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_CLIENTE
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_ESTADO'
+- source_table: SAC.CLIENTES
+  source_column: BARRIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'BARRIOS'
+- source_table: SAC.CLIENTES
+  source_column: CICLO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CICLOS'
+- source_table: SAC.CLIENTES
+  source_column: DEPTO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'DEPTOS'
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_FACTURACION
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'FAC_ESTADO'
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_SUMINISTRO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_SUMINISTRO'
+- source_table: SAC.CLIENTES
+  source_column: ESTRATO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'ESTRATOS'
+- source_table: SAC.CLIENTES
+  source_column: ESTRATO_CRITERIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'ESTRA_CRITERIO'
+- source_table: SAC.CLIENTES
+  source_column: SEGMENTO_MERCADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_SEGMENTOS'
+- source_table: SAC.CLIENTES
+  source_column: TARIFA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TARIFAS'
+- source_table: SAC.CLIENTES
+  source_column: TIPO_RECIBO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_RECIBO'
+- source_table: SAC.CLIENTES
+  source_column: TIPO_SERVICIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_SERVICIO'

@@ -1,0 +1,19 @@
+﻿ambiguities:
+  - phrase: activos
+    entity_candidates:
+      - SAC.CLIENTES.ESTADO_CLIENTE
+      - SAC.MEDIDORES.ESTADO
+    approved_resolution: ""
+    confidence: 0.0
+    requires_confirmation: true
+    observed_resolutions:
+      clientes: 0
+      medidores: 0
+  - phrase: retirados
+    entity_candidates:
+      - SAC.MEDIDORES.ESTADO
+    approved_resolution: medidores
+    confidence: 1.0
+    requires_confirmation: false
+    observed_resolutions:
+      medidores: 0

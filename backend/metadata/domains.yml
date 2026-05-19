@@ -1,0 +1,18 @@
+domains:
+- name: clientes
+  description: ''
+  keywords: []
+- name: medidores
+  description: ''
+  keywords:
+  - medidor
+  - medidores
+  - contador
+  - contadores
+  - equipo de medida
+  - medicion
+  - serial
+  - numero medidor
+- name: procesos
+  description: ''
+  keywords: []

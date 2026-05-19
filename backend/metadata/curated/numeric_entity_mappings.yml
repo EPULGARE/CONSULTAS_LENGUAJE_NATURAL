@@ -1,0 +1,58 @@
+numeric_entity_mappings:
+  - entity: procesos
+    source_table: SAC.PROCESOS
+    default_code_column: PROCESO
+    code_type: string
+    business_terms:
+      - proceso
+      - procesos
+      - tramite
+      - tramites
+      - pqr
+    examples:
+      - procesos 4106
+      - proceso 4601
+      - tramite 4106
+      - codigo 4106 de procesos
+    forbidden_columns_for_entity_code:
+      - CODIGO_CUENTA
+      - NUMERO_PROCESO
+      - TIPO_TRAMITE
+    explicit_column_terms:
+      - source_column: CODIGO_CUENTA
+        code_type: number
+        terms:
+          - codigo cuenta
+    description_lookup:
+      enabled: true
+      use_approved_parametric_mapping_only: true
+      source_column: PROCESO
+      preferred_description_column: SAC.MULTITABLA.DESCRIPCION
+      required_fixed_filter: PED_SOLSRV_PRO
+    behavior:
+      filter_by_code_when_user_provides_code: true
+      show_description_when_user_asks_description: true
+      default_select_code_and_description_if_grouping_by_entity: true
+
+  - entity: clientes
+    source_table: SAC.CLIENTES
+    default_code_column: CLIENTE_ID
+    code_type: number
+    business_terms:
+      - cliente
+      - clientes
+      - usuario
+      - usuarios
+    forbidden_columns_for_entity_code:
+      - CODIGO_CUENTA
+      - CONSECUTIVO
+    description_lookup:
+      enabled: false
+      use_approved_parametric_mapping_only: true
+      source_column: CLIENTE_ID
+      preferred_description_column: ""
+      required_fixed_filter: ""
+    behavior:
+      filter_by_code_when_user_provides_code: true
+      show_description_when_user_asks_description: false
+      default_select_code_and_description_if_grouping_by_entity: false

@@ -1,0 +1,11 @@
+relationships:
+- left_table: SAC.MEDIDORES
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion confirmada de medidor a cliente
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion confirmada de cliente a municipio

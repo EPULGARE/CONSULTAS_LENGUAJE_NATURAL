@@ -1,0 +1,496 @@
+generated_at_utc: '2026-05-14T22:19:41.562664+00:00'
+schema: SAC
+tables:
+- full_name: SAC.PROCESOS
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain_suggested: 'TODO: asignar dominio'
+  synonyms: []
+  columns:
+  - name: NUMERO_PROCESO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: PROCESO
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 4
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_CUENTA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: SOLICITANTE
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_SOL
+    data_type: DATE
+    nullable: N
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_FIN
+    data_type: DATE
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: MEDIO_SOL
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CEDULA_SOL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_SOL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: OBSERVACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1000
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTADO
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: IMPUTABLE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: USER_SISTEMA
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 80
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_SISTEMA
+    data_type: DATE
+    nullable: N
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_DOCUMENTO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 30
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_VENCIMIENTO
+    data_type: DATE
+    nullable: N
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DIRECCION_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 200
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_DOCUMENTO_FIN
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 30
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLASIFICACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_FIN_SISTEMA
+    data_type: DATE
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: USER_FIN_SISTEMA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 80
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_RESPUESTA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_NOTIFICACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CONSECUTIVO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: SUB_ESTADO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DOCUMENTO_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: PERSONA_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DIRECCION_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_TRAMITE
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: MUNICIPIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DEPTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DEPENDENCIA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 10
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_CELULAR
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_CONTACTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: BARRIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLIENTE_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_PQR
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CORREO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 140
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: IND_ACTCLIENTE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_PREDIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: SERVICIO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: VALOR_CLASIFICACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 100
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_FACTURA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 14
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_ADMINISTRATIVO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 4
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_FIN_INICIAL
+    data_type: DATE
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: EXPEDICION_CEDULA_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLASE_SOLICITANTE
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: MEDIO_NOTIFICACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DOCUMENTO_TIPO_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 5
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: OFICINA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTADO_FIN_INICIAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_FACTURA_CAR
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 14
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: LLAMADA_ID
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: INFORMACION_ADICIONAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: INTERFAZ_FIN
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 10
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DIAS_RESPUESTA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: VIGENCIA_EXT
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_PERSONA_SOL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: APELLIDO1_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: APELLIDO2_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE1_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE2_SOL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_CIERRE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_PRGRUPO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: IMP_EQUIPO_RESPONSABLE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 10
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_RESPUESTA_ACEPTA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CEDULA_SOL_NUM
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  primary_keys:
+  - constraint_name: C_PRO_NPRO_PK
+    columns:
+    - NUMERO_PROCESO
+  foreign_keys: []

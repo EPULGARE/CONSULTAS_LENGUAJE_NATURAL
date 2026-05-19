@@ -1,0 +1,12 @@
+source_file: D:\OneDrive - Grupo EPM\Codigos phtyton A DESPLEGAR\Generacion SQL SAC\backend\metadata\generated\multitabla.yml
+generated_at: '2026-05-12T23:05:28.061216+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.MULTITABLA
+  approved: true
+  allowed_for_query: true
+  domain: clientes
+  business_description: ''
+  columns: []
+  relationships: []

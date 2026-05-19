@@ -1,0 +1,296 @@
+tables:
+  SAC.PROCESOS:
+    table_comment: Tabla para el registro de los procesos de la empresa
+    columns:
+      APELLIDO1_SOL:
+        comment: Primer apellido del solicitante del proceso
+        detected_parametric_hint: null
+        confidence: low
+      APELLIDO2_SOL:
+        comment: Segundo apellido del solicitante del proceso
+        detected_parametric_hint: null
+        confidence: low
+      BARRIO:
+        comment: "C\xF3digo del barrio del solicitante del proceso [BARRIOS]"
+        detected_parametric_hint: BARRIOS
+        confidence: low
+      CEDULA_SOL:
+        comment: "N\xFAmero de identificaci\xF3n del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      CEDULA_SOL_NUM:
+        comment: ''
+        detected_parametric_hint: null
+        confidence: low
+      CLASE_SOLICITANTE:
+        comment: Clase de solicitante del proceso. Aplica cuando el solicitante es
+          1-Cliente [TIPO_PERSONOTIF]
+        detected_parametric_hint: TIPO_PERSONOTIF
+        confidence: low
+      CLASIFICACION:
+        comment: "Clasificaci\xF3n del proceso [V_CLAPR]"
+        detected_parametric_hint: V_CLAPR
+        confidence: low
+      CLIENTE_ID:
+        comment: "Identificador \xFAnico del cliente en el sistema"
+        detected_parametric_hint: null
+        confidence: low
+      CODIGO_CUENTA:
+        comment: Identificacion unica del cliente en el sistema relacionado con el
+          proceso
+        detected_parametric_hint: null
+        confidence: low
+      CONSECUTIVO:
+        comment: "Consecutivo de facturaci\xF3n del cliente al momento de la creaci\xF3\
+          n del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      CORREO:
+        comment: "Correo electr\xF3nico del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      DEPENDENCIA:
+        comment: Dependencia del usuario del sistema quien crea el proceso [DEPEN]
+        detected_parametric_hint: DEPEN
+        confidence: low
+      DEPTO:
+        comment: "C\xF3digo del departamento [DEPTOS]"
+        detected_parametric_hint: DEPTOS
+        confidence: low
+      DIAS_RESPUESTA:
+        comment: "Cantidad de d\xEDas h\xE1biles entre la fecha de solicitud del proceso\
+          \ y la fecha de finalizaci\xF3n legal"
+        detected_parametric_hint: null
+        confidence: low
+      DIRECCION_ID:
+        comment: "Identificador \xFAnico de la direcci\xF3n relacionada con el proceso"
+        detected_parametric_hint: null
+        confidence: low
+      DIRECCION_SOL:
+        comment: "Direcci\xF3n f\xEDsica del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      DOCUMENTO_ID:
+        comment: "Identificador \xFAnico del documento relacionado con el proceso"
+        detected_parametric_hint: null
+        confidence: low
+      DOCUMENTO_TIPO_SOL:
+        comment: "Tipo de documento de identificaci\xF3n del solicitante [PRSTPD]"
+        detected_parametric_hint: PRSTPD
+        confidence: low
+      ESTADO:
+        comment: Estado del proceso [PRO_ESTADO]
+        detected_parametric_hint: PRO_ESTADO
+        confidence: low
+      ESTADO_FIN_INICIAL:
+        comment: Estado de respuesta o cierre inicial del proceso [PRO_ESTADO]. Este
+          estado no es modificado cuando el proceso se reabre
+        detected_parametric_hint: PRO_ESTADO
+        confidence: low
+      EXPEDICION_CEDULA_SOL:
+        comment: "Municipio de expedici\xF3n del documento de identificaci\xF3n del\
+          \ solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_FIN:
+        comment: "Fecha de finalizaci\xF3n del proceso (al pasar a estado F)"
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_FIN_INICIAL:
+        comment: "Fecha de respuesta, finalizaci\xF3n o cancelaci\xF3n inicial del\
+          \ proceso. Esta fecha no es modificada cuando el proceso se reabre"
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_FIN_SISTEMA:
+        comment: "Fecha de finalizaci\xF3n o cancelaci\xF3n del proceso (al pasar\
+          \ a estado F o C)"
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_SISTEMA:
+        comment: "Fecha sistema de creaci\xF3n del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_SOL:
+        comment: Fecha de solicitud del proceso
+        detected_parametric_hint: null
+        confidence: low
+      FECHA_VENCIMIENTO:
+        comment: Fecha de vencimiento del proceso
+        detected_parametric_hint: null
+        confidence: low
+      IMPUTABLE:
+        comment: Imputabilidad del proceso [SINOX]
+        detected_parametric_hint: SINOX
+        confidence: low
+      IMP_EQUIPO_RESPONSABLE:
+        comment: "C\xF3digo del equipo responsable de la imputabilidad del proceso\
+          \ [PRO_IMP_EQUIPO_RESPON]"
+        detected_parametric_hint: PRO_IMP_EQUIPO_RESPON
+        confidence: low
+      IND_ACTCLIENTE:
+        comment: "Indicador de actualizaci\xF3n de la informaci\xF3n de contacto en\
+          \ la tabla CLIENTES"
+        detected_parametric_hint: CLIENTES
+        confidence: low
+      INFORMACION_ADICIONAL:
+        comment: "Informaci\xF3n adicional a la direcci\xF3n del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      INTERFAZ_FIN:
+        comment: Identificador de la interfaz externa que finaliza el proceso en SAC
+        detected_parametric_hint: null
+        confidence: low
+      LLAMADA_ID:
+        comment: "Identificador \xFAnico de la llamada recibida"
+        detected_parametric_hint: null
+        confidence: low
+      MEDIO_NOTIFICACION:
+        comment: "Medio por el cual el solicitante autoriza el env\xEDo de la respuesta\
+          \ del proceso [PRO_MEDIONOTIF]"
+        detected_parametric_hint: PRO_MEDIONOTIF
+        confidence: low
+      MEDIO_SOL:
+        comment: Medio de solicitud del proceso [PRO_MEDIOSOL]
+        detected_parametric_hint: PRO_MEDIOSOL
+        confidence: low
+      MUNICIPIO:
+        comment: "C\xF3digo del municipio del solicitante [V_MUNDANE]"
+        detected_parametric_hint: V_MUNDANE
+        confidence: low
+      NOMBRE1_SOL:
+        comment: Primer nombre del solicitante del proceso
+        detected_parametric_hint: null
+        confidence: low
+      NOMBRE2_SOL:
+        comment: Segundo nombre del solicitante del proceso
+        detected_parametric_hint: null
+        confidence: low
+      NOMBRE_SOL:
+        comment: Nombre del solicitante del proceso
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_DOCUMENTO:
+        comment: "N\xFAmero de documento externo o de radicaci\xF3n del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_DOCUMENTO_FIN:
+        comment: "N\xFAmero de documento externo o de radicaci\xF3n de la respuesta\
+          \ del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_FACTURA:
+        comment: "N\xFAmero de la factura asociada al proceso"
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_FACTURA_CAR:
+        comment: ''
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_PQR:
+        comment: "N\xFAmero de proceso (PQR) base origen del nuevo proceso"
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_PRGRUPO:
+        comment: "N\xFAmero agrupador para procesos creados masivamente"
+        detected_parametric_hint: null
+        confidence: low
+      NUMERO_PROCESO:
+        comment: "Identificador \xFAnico del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      OBSERVACION:
+        comment: Observaciones generales del proceso
+        detected_parametric_hint: null
+        confidence: low
+      OFICINA:
+        comment: Oficina del usuario del sistema quien crea el proceso [OFICINAS]
+        detected_parametric_hint: OFICINAS
+        confidence: low
+      PERSONA_ID:
+        comment: "Identificador \xFAnico de la persona relacionada con el proceso"
+        detected_parametric_hint: null
+        confidence: low
+      PROCESO:
+        comment: "C\xF3digo de referencia del proceso [PED_SOLSRV_PRO]"
+        detected_parametric_hint: PED_SOLSRV_PRO
+        confidence: low
+      SERVICIO:
+        comment: Tipo de Servicio al cual corresponde el proceso creado [SUI_SERVICIO]
+        detected_parametric_hint: SUI_SERVICIO
+        confidence: low
+      SOLICITANTE:
+        comment: Tipo de solicitante [PRO_SOLICITA]
+        detected_parametric_hint: PRO_SOLICITA
+        confidence: low
+      SUB_ESTADO:
+        comment: "Estado resultante del proceso despu\xE9s de ejecutar una acci\xF3\
+          n [PRO_ESTADO]"
+        detected_parametric_hint: PRO_ESTADO
+        confidence: low
+      TELEFONO_CELULAR:
+        comment: "N\xFAmero del celular del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      TELEFONO_CONTACTO:
+        comment: "Tel\xE9fono de contacto del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      TELEFONO_PREDIO:
+        comment: "Tel\xE9fono del predio relacionado con el c\xF3digo del cliente"
+        detected_parametric_hint: null
+        confidence: low
+      TELEFONO_SOL:
+        comment: "Tel\xE9fono del solicitante del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      TIPO:
+        comment: Tipo de proceso [PRO_TIPO]
+        detected_parametric_hint: PRO_TIPO
+        confidence: low
+      TIPO_ADMINISTRATIVO:
+        comment: "Tipo de proceso administrativo que se ha aplicado al proceso (PQR,\
+          \ recuperaci\xF3n energ\xEDa, etc) [PRO_TIPO_ADMON]"
+        detected_parametric_hint: PRO_TIPO_ADMON
+        confidence: low
+      TIPO_CIERRE:
+        comment: Indicador para definir el tipo de cierre del proceso
+        detected_parametric_hint: null
+        confidence: low
+      TIPO_NOTIFICACION:
+        comment: "Tipo de notificaci\xF3n [PRO_TIPONOTIF]"
+        detected_parametric_hint: PRO_TIPONOTIF
+        confidence: low
+      TIPO_PERSONA_SOL:
+        comment: Tipo de persona del solicitante del proceso [PRSNAT]
+        detected_parametric_hint: PRSNAT
+        confidence: low
+      TIPO_RESPUESTA:
+        comment: Tipo de respuesta [PRO_TIPORTA]
+        detected_parametric_hint: PRO_TIPORTA
+        confidence: low
+      TIPO_RESPUESTA_ACEPTA:
+        comment: "Indicador de aceptaci\xF3n de omisi\xF3n de validaci\xF3n de tipo\
+          \ respuesta por tener permiso especial"
+        detected_parametric_hint: null
+        confidence: low
+      TIPO_TRAMITE:
+        comment: "Tipo de tr\xE1mite seg\xFAn SUI [SUI_TIPOTRAMITE]"
+        detected_parametric_hint: SUI_TIPOTRAMITE
+        confidence: low
+      USER_FIN_SISTEMA:
+        comment: Usuario del sistema que finaliza o cancela el proceso
+        detected_parametric_hint: null
+        confidence: low
+      USER_SISTEMA:
+        comment: Usuario del sistema que crea el proceso
+        detected_parametric_hint: null
+        confidence: low
+      VALOR_CLASIFICACION:
+        comment: "Valor asignado a la clasificaci\xF3n del proceso"
+        detected_parametric_hint: null
+        confidence: low
+      VIGENCIA_EXT:
+        comment: "Indicador para definir la activaci\xF3n de la vigencia extendida\
+          \ de un proceso por condiciones especiales"
+        detected_parametric_hint: null
+        confidence: low

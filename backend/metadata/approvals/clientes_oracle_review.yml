@@ -1,0 +1,614 @@
+source_file: D:\OneDrive - Grupo EPM\Codigos phtyton A DESPLEGAR\Generacion SQL SAC\backend\metadata\generated\clientes_oracle_catalog.yml
+generated_at: '2026-05-08T21:26:51.176033+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.CLIENTES
+  approved: true
+  allowed_for_query: true
+  domain: clientes
+  business_description: ''
+  columns:
+  - name: CLIENTE_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DV_CLIENTE_ID
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NOMBRE
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: SOUNDEX_NOMBRE
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_CLIENTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_SUMINISTRO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_FACTURACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DIRECCION
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: SOUNDEX_DIR
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ZONA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: BARRIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POBLADO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AREA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INFORMACION_ADICIONAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TELEFONO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TIENE_DIR_POSTAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FICHA_CATASTRAL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: NIT
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: APELLIDO1
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: APELLIDO2
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NOMBRE1
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NOMBRE2
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_PERSONA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_ENTIDAD
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: RUTA_LECTURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TARIFA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CU
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SERVICIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIDA_TENSION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_MEDIDORES
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_UTILIZACION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CARGA_CONTRATADA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CARGA_INSTALADA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CARGA_ADICIONAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_ADICIONAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_REFERENCIA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CARGA_AFORADA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_DIAS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: EXENTO_INTERESES
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_SALDO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: EXENTO_SUSPENSION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_CRITICA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_FACTURACION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANTIDAD_CASAS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_VENCIMIENTO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_BLOQUEO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CORR_CREDITOS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CORR_PAGOS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CREACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ACCION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_LECTURA_ANT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_LECTURA_ACT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FACTURACION_ANT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FACTURACION_ACT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIGUEDAD_SALDO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ACTUAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INTERESES_MES
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INTERESES_ACUMULADOS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_SIE
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CIU
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_SIC
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MODO_RECAUDO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INSTALADOR_ID
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MOTIVO_RECHAZO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_FORMULARIO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PUNTO_SUSPENSION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CORREO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TELEFONO_CELULAR
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TELEFONO_CONTACTO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: FACTOR_IMPUESTO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: RESPONSABLE
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CLIENTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MATRICULA_INMOBILIARIA
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: GPS
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: CENTRO_POB
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INF_ADICIONAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANT_CONTADORES
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLAVE_EXENCION_INT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INDICADOR_SALDO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ULT_ACCION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PENULT_LECTURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ULTIMA_LECTURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PENULT_FACT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ULTIMA_FACT
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_ELECTRIC
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GPS_LATITUD
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: GPS_LONGITUD
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: CLIENTE_ID_REF
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CALIFICACION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DOCUMENTO_TIPO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_GRUPO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: AUTORIZA_DATOS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_RECIBO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SEGMENTO_MERCADO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_DOCUMENTO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TIPO_SERVICIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONDICION_PREDIO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_FACTURACION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: RUTA_REPARTO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_INFO_PREDIAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GPS_ALTITUD
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: CONDICION_ESPECIAL
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PUNTAJE_SISBEN
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO_CRITERIO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PERSONA_ID
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: MENSAJERIA_INSTANTANEA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID_AGRUPA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO_LECTURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ZONA_LECTURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: RUTA_LECTURA_ALTERNA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLI_PROTEGIDO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLI_PROTEGIDO_DET
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_EXTERNO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships:
+  - approved: false
+    references_table: SAC.MUNICIPIOS
+    column_mappings:
+    - source_column: DEPTO
+      target_column: DEPTO
+    - source_column: MUNICIPIO
+      target_column: MUNICIPIO
+  - approved: false
+    references_table: GEN.PERSONAS
+    column_mappings:
+    - source_column: PERSONA_ID
+      target_column: PERSONA_ID

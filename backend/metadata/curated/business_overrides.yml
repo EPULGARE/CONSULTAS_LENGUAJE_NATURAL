@@ -1,0 +1,236 @@
+manual_tables:
+- schema: SAC
+  name: MULTITABLA
+  description: Catalogo manual aprobado para codigos funcionales
+  domain: clientes
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: TABLA
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CAR
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_NUM
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DESCRIPCION
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: MUNICIPIOS
+  description: Catalogo manual aprobado de municipios
+  domain: clientes
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: DEPTO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DESCRIPCION
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MERCADO
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DIPOLA
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+manual_relationships:
+- left_table: SAC.CLIENTES
+  left_column: ESTADO_CLIENTE
+  right_table: SAC.MULTITABLA
+  right_column: CODIGO_NUM
+  description: Estado cliente parametrizado por codigo numerico en multitabla
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_ESTADO'
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion de cliente a catalogo municipal
+  fixed_filter: ''
+approved_parametric_mappings:
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_CLIENTE
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_ESTADO'
+- source_table: SAC.CLIENTES
+  source_column: BARRIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'BARRIOS'
+- source_table: SAC.CLIENTES
+  source_column: CICLO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CICLOS'
+- source_table: SAC.CLIENTES
+  source_column: DEPTO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'DEPTOS'
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_FACTURACION
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'FAC_ESTADO'
+- source_table: SAC.CLIENTES
+  source_column: ESTADO_SUMINISTRO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_SUMINISTRO'
+- source_table: SAC.CLIENTES
+  source_column: ESTRATO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'ESTRATOS'
+- source_table: SAC.CLIENTES
+  source_column: ESTRATO_CRITERIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'ESTRA_CRITERIO'
+- source_table: SAC.CLIENTES
+  source_column: SEGMENTO_MERCADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLI_SEGMENTOS'
+- source_table: SAC.CLIENTES
+  source_column: TARIFA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TARIFAS'
+- source_table: SAC.CLIENTES
+  source_column: TIPO_RECIBO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_RECIBO'
+- source_table: SAC.CLIENTES
+  source_column: TIPO_SERVICIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_SERVICIO'
+- source_table: SAC.PROCESOS
+  source_column: PROCESO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PED_SOLSRV_PRO'
+- source_table: SAC.PROCESOS
+  source_column: DEPENDENCIA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'DEPEN'
+- source_table: SAC.PROCESOS
+  source_column: ESTADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: ESTADO_FIN_INICIAL
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: IMP_EQUIPO_RESPONSABLE
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_IMP_EQUIPO_RESPON'
+- source_table: SAC.PROCESOS
+  source_column: MEDIO_NOTIFICACION
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_MEDIONOTIF'
+- source_table: SAC.PROCESOS
+  source_column: MEDIO_SOL
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_MEDIOSOL'
+- source_table: SAC.PROCESOS
+  source_column: OFICINA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'OFICINAS'
+- source_table: SAC.PROCESOS
+  source_column: SUB_ESTADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: TIPO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_TIPO'
+- source_table: SAC.PROCESOS
+  source_column: TIPO_ADMINISTRATIVO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_TIPO_ADMON'
+static_value_mappings:
+- table: SAC.MEDIDORES
+  column: ESTADO
+  values:
+    I:
+      label: Instalado
+      synonyms:
+      - activo
+      - instalada
+      - instalado
+      - en servicio
+    R:
+      label: Retirado
+      synonyms:
+      - inactivo
+      - retirada
+      - retirado
+      - fuera de servicio

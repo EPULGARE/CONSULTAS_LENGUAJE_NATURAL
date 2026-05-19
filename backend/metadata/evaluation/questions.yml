@@ -1,0 +1,89 @@
+﻿questions:
+  - id: "clientes_por_estado"
+    domain: "clientes"
+    question: "Conteo de clientes por estado cliente con descripcion"
+    expected_tables:
+      - "SAC.CLIENTES"
+      - "SAC.MULTITABLA"
+    forbidden_tables: []
+    expected_columns:
+      - "DESCRIPCION"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "SAC.MULTITABLA.TABLA = 'CLI_ESTADO'"
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Debe usar descripcion de multitabla para estado cliente."
+    approved: true
+
+  - id: "clientes_por_municipio"
+    domain: "clientes"
+    question: "Cantidad de clientes por municipio"
+    expected_tables:
+      - "SAC.CLIENTES"
+      - "SAC.MUNICIPIOS"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "MUNICIPIOS.DESCRIPCION"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Agregacion por municipio."
+    approved: true
+
+  - id: "clientes_por_estrato"
+    domain: "clientes"
+    question: "Clientes por estrato"
+    expected_tables:
+      - "SAC.CLIENTES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "ESTRATO"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Agregacion por estrato."
+    approved: true
+
+  - id: "clientes_por_tipo_servicio"
+    domain: "clientes"
+    question: "Clientes por tipo servicio"
+    expected_tables:
+      - "SAC.CLIENTES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "TIPO_SERVICIO"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Agregacion por tipo de servicio."
+    approved: true
+
+  - id: "clientes_por_estado_facturacion"
+    domain: "clientes"
+    question: "Clientes por estado de facturacion"
+    expected_tables:
+      - "SAC.CLIENTES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "ESTADO_FACTURACION"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+      - "GROUP BY"
+      - "ESTADO_FACTURACION"
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Agregacion por estado de facturacion."
+    approved: true

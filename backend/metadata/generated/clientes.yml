@@ -1,0 +1,851 @@
+generated_at_utc: '2026-05-14T17:01:06.745185+00:00'
+schema: SAC
+tables:
+- full_name: SAC.CLIENTES
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain_suggested: 'TODO: asignar dominio'
+  synonyms: []
+  columns:
+  - name: CLIENTE_ID
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DV_CLIENTE_ID
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 100
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: SOUNDEX_NOMBRE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 12
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTADO_CLIENTE
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTADO_SUMINISTRO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTADO_FACTURACION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DIRECCION
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 80
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: SOUNDEX_DIR
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 15
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DEPTO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ZONA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: MUNICIPIO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: BARRIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CENTRO_POBLADO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_AREA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: INFORMACION_ADICIONAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIENE_DIR_POSTAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FICHA_CATASTRAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 56
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NIT
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: APELLIDO1
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: APELLIDO2
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE1
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NOMBRE2
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_PERSONA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_ENTIDAD
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 6
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CICLO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: RUTA_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 11
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TARIFA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GRUPO_CU
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLASE_SERVICIO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTRATO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: MEDIDA_TENSION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: NRO_MEDIDORES
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FACTOR_UTILIZACION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 7
+    data_scale: 4
+    business_description: 'TODO: describir uso de negocio'
+  - name: CARGA_CONTRATADA
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 4
+    business_description: 'TODO: describir uso de negocio'
+  - name: CARGA_INSTALADA
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 4
+    business_description: 'TODO: describir uso de negocio'
+  - name: CARGA_ADICIONAL
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 9
+    data_scale: 3
+    business_description: 'TODO: describir uso de negocio'
+  - name: FACTOR_ADICIONAL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 7
+    data_scale: 4
+    business_description: 'TODO: describir uso de negocio'
+  - name: FACTOR_REFERENCIA
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 7
+    business_description: 'TODO: describir uso de negocio'
+  - name: CARGA_AFORADA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_DIAS
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: EXENTO_INTERESES
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: IND_SALDO
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: EXENTO_SUSPENSION
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: IND_CRITICA
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: IND_FACTURACION
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CANTIDAD_CASAS
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_VENCIMIENTO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_BLOQUEO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CONSECUTIVO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CORR_CREDITOS
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CORR_PAGOS
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_CREACION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_ACCION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_LECTURA_ANT
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_LECTURA_ACT
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_FACTURACION_ANT
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_FACTURACION_ACT
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ANTIGUEDAD_SALDO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: SALDO_ACTUAL
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: INTERESES_MES
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 12
+    data_scale: 2
+    business_description: 'TODO: describir uso de negocio'
+  - name: INTERESES_ACUMULADOS
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 12
+    data_scale: 2
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_SIE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_CIU
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_SIC
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 12
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: MODO_RECAUDO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: INSTALADOR_ID
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 25
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: MOTIVO_RECHAZO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: NRO_FORMULARIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 6
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: PUNTO_SUSPENSION
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CORREO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 140
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_CELULAR
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TELEFONO_CONTACTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FACTOR_IMPUESTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 7
+    data_scale: 4
+    business_description: 'TODO: describir uso de negocio'
+  - name: RESPONSABLE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 80
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_CLIENTE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: MATRICULA_INMOBILIARIA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 10
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: GPS
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 80
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CENTRO_POB
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: INF_ADICIONAL
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 50
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CANT_CONTADORES
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLAVE_EXENCION_INT
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: INDICADOR_SALDO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_ULT_ACCION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_PENULT_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_ULTIMA_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_PENULT_FACT
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_ULTIMA_FACT
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_ELECTRIC
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GPS_LATITUD
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 7
+    business_description: 'TODO: describir uso de negocio'
+  - name: GPS_LONGITUD
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 7
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLIENTE_ID_REF
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CALIFICACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: DOCUMENTO_TIPO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 5
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_GRUPO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: AUTORIZA_DATOS
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_RECIBO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: SEGMENTO_MERCADO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: NUMERO_DOCUMENTO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 12
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_SERVICIO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CONDICION_PREDIO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_FACTURACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: RUTA_REPARTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 11
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_INFO_PREDIAL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GPS_ALTITUD
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 6
+    data_scale: 2
+    business_description: 'TODO: describir uso de negocio'
+  - name: CONDICION_ESPECIAL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: PUNTAJE_SISBEN
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 6
+    data_scale: 2
+    business_description: 'TODO: describir uso de negocio'
+  - name: ESTRATO_CRITERIO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: PERSONA_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: MENSAJERIA_INSTANTANEA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 15
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLIENTE_ID_AGRUPA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CICLO_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ZONA_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: RUTA_LECTURA_ALTERNA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 11
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLI_PROTEGIDO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 5
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLI_PROTEGIDO_DET
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CLIENTE_EXTERNO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 15
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  primary_keys:
+  - constraint_name: C_CLIENTES_CLID_PK
+    columns:
+    - CLIENTE_ID
+  foreign_keys:
+  - constraint_name: C_CLIENTES_MUNICIPIOS_DMPIO_FK
+    references_table: SAC.MUNICIPIOS
+    column_mappings:
+    - source_column: DEPTO
+      target_column: DEPTO
+    - source_column: MUNICIPIO
+      target_column: MUNICIPIO
+  - constraint_name: C_CLI_PRS_PRSID_FK
+    references_table: GEN.PERSONAS
+    column_mappings:
+    - source_column: PERSONA_ID
+      target_column: PERSONA_ID

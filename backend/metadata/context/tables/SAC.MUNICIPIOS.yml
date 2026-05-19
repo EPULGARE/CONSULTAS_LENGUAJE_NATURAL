@@ -1,0 +1,53 @@
+table: SAC.MUNICIPIOS
+domain: clientes
+business_description: Catalogo manual aprobado de municipios
+display_column: DESCRIPCION
+columns:
+- name: DEPTO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MUNICIPIO
+  type: NUMBER
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DESCRIPCION
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MERCADO
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DIPOLA
+  type: VARCHAR2
+  business_description: ''
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion confirmada de cliente a municipio
+- left_table: SAC.CLIENTES
+  left_column: MUNICIPIO
+  right_table: SAC.MUNICIPIOS
+  right_column: MUNICIPIO
+  description: Relacion de cliente a catalogo municipal
+  fixed_filter: ''
+approved_parametric_mappings: []

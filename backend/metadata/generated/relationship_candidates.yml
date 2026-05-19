@@ -1,0 +1,67 @@
+candidate_relationships:
+- from_table: SAC.MEDIDORES
+  from_column: CLIENTE_ID
+  to_table: SAC.CLIENTES
+  to_column: CLIENTE_ID
+  source: sql_generation_blocked
+  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores
+    retirados
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLIENTES
+  from_column: MUNICIPIO
+  to_table: SAC.MUNICIPIOS
+  to_column: MUNICIPIO
+  source: sql_generation_blocked
+  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores
+    retirados
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLIENTES
+  from_column: CLIENTE_ID
+  to_table: SAC.PROCESOS
+  to_column: CODIGO_CUENTA
+  source: sql_generation_blocked
+  first_seen_question: Cuantos medidores instalados tienen un proceso de Conexion
+    del Servicio
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []

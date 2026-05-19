@@ -1,0 +1,439 @@
+source_file: D:\OneDrive - Grupo EPM\Codigos phtyton A DESPLEGAR\Generacion SQL SAC\backend\metadata\generated\medidores.yml
+generated_at: '2026-05-12T20:17:01.646532+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.MEDIDORES
+  approved: true
+  allowed_for_query: true
+  domain: medidores
+  business_description: ''
+  columns:
+  - name: MEDIDOR_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CONEXION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MARCA_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MODELO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ENTEROS
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DECIMALES
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_MULTIPLICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: REL_CORRIENTE_MIN
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: REL_CORRIENTE_MAX
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_FASES
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_HILOS
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TENSION_NOMINAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FRECUENCIA_NOMINAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSTANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: UNIDAD_CONSTANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD_REACTIVA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_NUEVO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PROPIEDAD_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPENDENCIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FUNCIONAMIENTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_INTERNO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PRI_INSTALA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ULT_INSTALA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: LOCALIZACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FORMA_COBRO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GPS_LATITUD
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: GPS_LONGITUD
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: MODELO_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: RESPONSABLE_ASIGNADO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ID_CTRL_INDIVIDUAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MODELO_MEDIDOR_T
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD_EXT
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FABRICANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TECNOLOGIA_MEDIDOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SENTIDO_MEDICION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_REGISTRADOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: COMPONENTES
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PROVEEDOR_REPRESENTANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CTE_NOMINAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_IMP_ACTIVA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_EXP_ACTIVA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ENT_OPERACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CALIBRACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_RETIRO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_MEMORIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CAPACIDAD_MEMORIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: STMA_ALMACENA_MEMORIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CAMBIO_BATERIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SW_LECTURA_LOCAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SW_LECTURA_REMOTA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESQUEMAS_SEGURIDAD
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PUERTOS_COMUNICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_CCAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_EMISION_CCAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ENTE_EMISOR_CCAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SERIE_MODEM
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MARCA_MODEM
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IP
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PUERTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: APN
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IMEI
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DIRECCION_PUERTO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: NRO_TELEFONICO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: OPERADOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_COMUNICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_REP_DATOS
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_EXP_REACTIVA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_IMP_REACTIVA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_MULTI_RETIRO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DOCUMENTO_SOPORTE
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: NORMA_NTC
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: OTRA_NORMA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ORGANISMO_ACREDITADOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PRUEBAS_RUTINA_CNO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ADVERTENCIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_LIQ_INTERNO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_AUTENTICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AUTENTICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships:
+  - approved: false
+    references_table: SAC.CLIENTES
+    column_mappings:
+    - source_column: CLIENTE_ID
+      target_column: CLIENTE_ID
+  - approved: false
+    references_table: SAC.MED_MODELOS
+    column_mappings:
+    - source_column: MODELO_MEDIDOR
+      target_column: MODELO_MEDIDOR
+    - source_column: MARCA_MEDIDOR
+      target_column: MARCA_MEDIDOR

@@ -1,0 +1,142 @@
+questions:
+  - id: "cuantos_medidores_por_municipio"
+    domain: "medidores"
+    question: "Cuantos medidores hay por municipio"
+    expected_tables:
+      - "SAC.MEDIDORES"
+      - "SAC.CLIENTES"
+      - "SAC.MUNICIPIOS"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "MUNICIPIOS.DESCRIPCION"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+      - "SAC.MEDIDORES"
+      - "SAC.CLIENTES"
+      - "SAC.MUNICIPIOS"
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Debe usar cadena MEDIDORES -> CLIENTES -> MUNICIPIOS."
+    approved: true
+
+  - id: "medidores_activos"
+    domain: "medidores"
+    question: "Cuantos medidores activos hay"
+    clarification_answer: "medidores"
+    expected_tables:
+      - "SAC.MEDIDORES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns: []
+    forbidden_columns: []
+    expected_sql_contains:
+      - "ESTADO = 'I'"
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+      - "MULTITABLA"
+    notes: "Activo/instalado debe mapear a ESTADO='I'."
+    approved: true
+
+  - id: "medidores_retirados"
+    domain: "medidores"
+    question: "Cuantos medidores retirados hay"
+    expected_tables:
+      - "SAC.MEDIDORES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns: []
+    forbidden_columns: []
+    expected_sql_contains:
+      - "ESTADO = 'R'"
+      - "COUNT("
+    forbidden_sql_contains:
+      - "SELECT *"
+      - "MULTITABLA"
+    notes: "Retirado/inactivo debe mapear a ESTADO='R'."
+    approved: true
+
+  - id: "medidores_por_estado"
+    domain: "medidores"
+    question: "Cuantos medidores hay por estado"
+    clarification_answer: "medidores"
+    expected_tables:
+      - "SAC.MEDIDORES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "ESTADO"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+      - "GROUP BY"
+    forbidden_sql_contains:
+      - "SELECT *"
+      - "MULTITABLA"
+    notes: "Puede usar CASE para etiquetas I/R; no MULTITABLA."
+    approved: true
+
+  - id: "medidores_por_tipo"
+    domain: "medidores"
+    question: "Cuantos medidores hay por tipo de medidor"
+    expected_tables:
+      - "SAC.MEDIDORES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "TIPO_MEDIDOR"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+      - "GROUP BY"
+      - "TIPO_MEDIDOR"
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Agregacion por tipo de medidor."
+    approved: true
+
+  - id: "medidores_por_cliente"
+    domain: "medidores"
+    question: "Cuantos medidores tiene cada cliente"
+    expected_tables:
+      - "SAC.MEDIDORES"
+      - "SAC.CLIENTES"
+    forbidden_tables:
+      - "SAC.MULTITABLA"
+    expected_columns:
+      - "CLIENTE_ID"
+    forbidden_columns: []
+    expected_sql_contains:
+      - "COUNT("
+      - "GROUP BY"
+      - "CLIENTE_ID"
+    forbidden_sql_contains:
+      - "SELECT *"
+    notes: "Conteo de medidores por cliente; puede usar JOIN MEDIDORES-CLIENTES."
+    approved: true
+
+  - id: "usuarios_armenia_activos_mas_dos_medidores_retirados"
+    domain: "medidores"
+    question: "cantidad de usuarios de armenia activos con mas de dos medidores retirados"
+    clarification_answer: "clientes"
+    expected_tables:
+      - "SAC.MEDIDORES"
+      - "SAC.CLIENTES"
+      - "SAC.MUNICIPIOS"
+      - "SAC.MULTITABLA"
+    forbidden_tables: []
+    expected_columns: []
+    forbidden_columns: []
+    expected_sql_contains:
+      - "HAVING"
+      - "COUNT"
+      - "CLI_ESTADO"
+      - "Armenia"
+      - "MED.ESTADO = 'R'"
+    forbidden_sql:
+      - "COUNT(DISTINCT C.CLIENTE_ID) GROUP BY C.CLIENTE_ID"
+    forbidden_sql_contains: []
+    notes: "Cardinalidad con aclaracion resuelta a cliente activo; debe usar doble agregacion y mapping aprobado."
+    approved: true

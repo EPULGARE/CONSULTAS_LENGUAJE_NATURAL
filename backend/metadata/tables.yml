@@ -1,0 +1,809 @@
+tables:
+- schema: SAC
+  name: CLIENTES
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: clientes
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_CLIENTE
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_SUMINISTRO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_FACTURACION
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPTO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ZONA
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: BARRIO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_PERSONA
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TARIFA
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CU
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SERVICIO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CREACION
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ACTUAL
+    type: NUMBER
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CLIENTE
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SEGMENTO_MERCADO
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SERVICIO
+    type: VARCHAR2
+    description: ''
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: MEDIDORES
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: medidores
+  synonyms:
+  - medidor
+  - medidores
+  - contador
+  - contadores
+  - equipo de medida
+  - medicion
+  - serial
+  - numero medidor
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: MEDIDOR_ID
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_MEDIDOR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CONEXION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_MEDIDOR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MARCA_MEDIDOR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MODELO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ENTEROS
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DECIMALES
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_MULTIPLICACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: REL_CORRIENTE_MIN
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: REL_CORRIENTE_MAX
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_FASES
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_HILOS
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TENSION_NOMINAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FRECUENCIA_NOMINAL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSTANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: UNIDAD_CONSTANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD_REACTIVA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_NUEVO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PROPIEDAD_MEDIDOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPENDENCIA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FUNCIONAMIENTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_INTERNO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PRI_INSTALA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ULT_INSTALA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: LOCALIZACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FORMA_COBRO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MODELO_MEDIDOR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: RESPONSABLE_ASIGNADO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ID_CTRL_INDIVIDUAL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MODELO_MEDIDOR_T
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_EXACTITUD_EXT
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FABRICANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TECNOLOGIA_MEDIDOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SENTIDO_MEDICION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_REGISTRADOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: COMPONENTES
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PROVEEDOR_REPRESENTANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CTE_NOMINAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_IMP_ACTIVA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_EXP_ACTIVA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_ENT_OPERACION
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CALIBRACION
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_RETIRO
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_MEMORIA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CAPACIDAD_MEMORIA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: STMA_ALMACENA_MEMORIA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_CAMBIO_BATERIA
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SW_LECTURA_LOCAL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SW_LECTURA_REMOTA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESQUEMAS_SEGURIDAD
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PUERTOS_COMUNICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_CCAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_EMISION_CCAL
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ENTE_EMISOR_CCAL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SERIE_MODEM
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MARCA_MODEM
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IP
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PUERTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: APN
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IMEI
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NRO_TELEFONICO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: OPERADOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_COMUNICACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_REP_DATOS
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_EXP_REACTIVA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CANAL_IMP_REACTIVA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_MULTI_RETIRO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NORMA_NTC
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: OTRA_NORMA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ORGANISMO_ACREDITADOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PRUEBAS_RUTINA_CNO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ADVERTENCIA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTOR_LIQ_INTERNO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_AUTENTICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AUTENTICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: MULTITABLA
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: clientes
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns: []
+- schema: SAC
+  name: PROCESOS
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: procesos
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: NUMERO_PROCESO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: PROCESO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CUENTA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SOLICITANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SOL
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_SOL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CEDULA_SOL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: OBSERVACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IMPUTABLE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: USER_SISTEMA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_VENCIMIENTO
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASIFICACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN_SISTEMA
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: USER_FIN_SISTEMA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_RESPUESTA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_NOTIFICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SUB_ESTADO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_TRAMITE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPENDENCIA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: BARRIO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PQR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_ACTCLIENTE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SERVICIO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: VALOR_CLASIFICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_ADMINISTRATIVO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN_INICIAL
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: EXPEDICION_CEDULA_SOL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SOLICITANTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_NOTIFICACION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: OFICINA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_FIN_INICIAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA_CAR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: LLAMADA_ID
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: INFORMACION_ADICIONAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: INTERFAZ_FIN
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DIAS_RESPUESTA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: VIGENCIA_EXT
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_PERSONA_SOL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: APELLIDO1_SOL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: APELLIDO2_SOL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CIERRE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PRGRUPO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IMP_EQUIPO_RESPONSABLE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_RESPUESTA_ACEPTA
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CEDULA_SOL_NUM
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true

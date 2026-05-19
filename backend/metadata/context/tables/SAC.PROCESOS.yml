@@ -1,0 +1,467 @@
+table: SAC.PROCESOS
+domain: procesos
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+columns:
+- name: NUMERO_PROCESO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Identificador \xFAnico del proceso"
+- name: TIPO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tipo de proceso [PRO_TIPO]
+- name: PROCESO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "C\xF3digo de referencia del proceso [PED_SOLSRV_PRO]"
+- name: CODIGO_CUENTA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Identificacion unica del cliente en el sistema relacionado con
+    el proceso
+- name: SOLICITANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tipo de solicitante [PRO_SOLICITA]
+- name: FECHA_SOL
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de solicitud del proceso
+- name: FECHA_FIN
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Fecha de finalizaci\xF3n del proceso (al pasar a estado F)"
+- name: MEDIO_SOL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Medio de solicitud del proceso [PRO_MEDIOSOL]
+- name: CEDULA_SOL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "N\xFAmero de identificaci\xF3n del solicitante del proceso"
+- name: OBSERVACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Observaciones generales del proceso
+- name: ESTADO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Estado del proceso [PRO_ESTADO]
+- name: IMPUTABLE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Imputabilidad del proceso [SINOX]
+- name: USER_SISTEMA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Usuario del sistema que crea el proceso
+- name: FECHA_SISTEMA
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Fecha sistema de creaci\xF3n del proceso"
+- name: FECHA_VENCIMIENTO
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de vencimiento del proceso
+- name: CLASIFICACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Clasificaci\xF3n del proceso [V_CLAPR]"
+- name: FECHA_FIN_SISTEMA
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Fecha de finalizaci\xF3n o cancelaci\xF3n del proceso (al pasar\
+    \ a estado F o C)"
+- name: USER_FIN_SISTEMA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Usuario del sistema que finaliza o cancela el proceso
+- name: TIPO_RESPUESTA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tipo de respuesta [PRO_TIPORTA]
+- name: TIPO_NOTIFICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Tipo de notificaci\xF3n [PRO_TIPONOTIF]"
+- name: CONSECUTIVO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Consecutivo de facturaci\xF3n del cliente al momento de la\
+    \ creaci\xF3n del proceso"
+- name: SUB_ESTADO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Estado resultante del proceso despu\xE9s de ejecutar una acci\xF3\
+    n [PRO_ESTADO]"
+- name: TIPO_TRAMITE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Tipo de tr\xE1mite seg\xFAn SUI [SUI_TIPOTRAMITE]"
+- name: MUNICIPIO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "C\xF3digo del municipio del solicitante [V_MUNDANE]"
+- name: DEPTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "C\xF3digo del departamento [DEPTOS]"
+- name: DEPENDENCIA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Dependencia del usuario del sistema quien crea el proceso [DEPEN]
+- name: BARRIO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "C\xF3digo del barrio del solicitante del proceso [BARRIOS]"
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Identificador \xFAnico del cliente en el sistema"
+- name: NUMERO_PQR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "N\xFAmero de proceso (PQR) base origen del nuevo proceso"
+- name: IND_ACTCLIENTE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Indicador de actualizaci\xF3n de la informaci\xF3n de contacto\
+    \ en la tabla CLIENTES"
+- name: SERVICIO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tipo de Servicio al cual corresponde el proceso creado [SUI_SERVICIO]
+- name: VALOR_CLASIFICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Valor asignado a la clasificaci\xF3n del proceso"
+- name: NUMERO_FACTURA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "N\xFAmero de la factura asociada al proceso"
+- name: TIPO_ADMINISTRATIVO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Tipo de proceso administrativo que se ha aplicado al proceso\
+    \ (PQR, recuperaci\xF3n energ\xEDa, etc) [PRO_TIPO_ADMON]"
+- name: FECHA_FIN_INICIAL
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Fecha de respuesta, finalizaci\xF3n o cancelaci\xF3n inicial\
+    \ del proceso. Esta fecha no es modificada cuando el proceso se reabre"
+- name: EXPEDICION_CEDULA_SOL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Municipio de expedici\xF3n del documento de identificaci\xF3\
+    n del solicitante del proceso"
+- name: CLASE_SOLICITANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Clase de solicitante del proceso. Aplica cuando el solicitante
+    es 1-Cliente [TIPO_PERSONOTIF]
+- name: MEDIO_NOTIFICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Medio por el cual el solicitante autoriza el env\xEDo de la\
+    \ respuesta del proceso [PRO_MEDIONOTIF]"
+- name: OFICINA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Oficina del usuario del sistema quien crea el proceso [OFICINAS]
+- name: ESTADO_FIN_INICIAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Estado de respuesta o cierre inicial del proceso [PRO_ESTADO].
+    Este estado no es modificado cuando el proceso se reabre
+- name: NUMERO_FACTURA_CAR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: LLAMADA_ID
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Identificador \xFAnico de la llamada recibida"
+- name: INFORMACION_ADICIONAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Informaci\xF3n adicional a la direcci\xF3n del solicitante\
+    \ del proceso"
+- name: INTERFAZ_FIN
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Identificador de la interfaz externa que finaliza el proceso
+    en SAC
+- name: DIAS_RESPUESTA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Cantidad de d\xEDas h\xE1biles entre la fecha de solicitud\
+    \ del proceso y la fecha de finalizaci\xF3n legal"
+- name: VIGENCIA_EXT
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Indicador para definir la activaci\xF3n de la vigencia extendida\
+    \ de un proceso por condiciones especiales"
+- name: TIPO_PERSONA_SOL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tipo de persona del solicitante del proceso [PRSNAT]
+- name: APELLIDO1_SOL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Primer apellido del solicitante del proceso
+- name: APELLIDO2_SOL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Segundo apellido del solicitante del proceso
+- name: TIPO_CIERRE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Indicador para definir el tipo de cierre del proceso
+- name: NUMERO_PRGRUPO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "N\xFAmero agrupador para procesos creados masivamente"
+- name: IMP_EQUIPO_RESPONSABLE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "C\xF3digo del equipo responsable de la imputabilidad del proceso\
+    \ [PRO_IMP_EQUIPO_RESPON]"
+- name: TIPO_RESPUESTA_ACEPTA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Indicador de aceptaci\xF3n de omisi\xF3n de validaci\xF3n de\
+    \ tipo respuesta por tener permiso especial"
+- name: CEDULA_SOL_NUM
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships: []
+approved_parametric_mappings:
+- source_table: SAC.PROCESOS
+  source_column: PROCESO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PED_SOLSRV_PRO'
+- source_table: SAC.PROCESOS
+  source_column: DEPENDENCIA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'DEPEN'
+- source_table: SAC.PROCESOS
+  source_column: ESTADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: ESTADO_FIN_INICIAL
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: IMP_EQUIPO_RESPONSABLE
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_IMP_EQUIPO_RESPON'
+- source_table: SAC.PROCESOS
+  source_column: MEDIO_NOTIFICACION
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_MEDIONOTIF'
+- source_table: SAC.PROCESOS
+  source_column: MEDIO_SOL
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_MEDIOSOL'
+- source_table: SAC.PROCESOS
+  source_column: OFICINA
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'OFICINAS'
+- source_table: SAC.PROCESOS
+  source_column: SUB_ESTADO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_ESTADO'
+- source_table: SAC.PROCESOS
+  source_column: TIPO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_TIPO'
+- source_table: SAC.PROCESOS
+  source_column: TIPO_ADMINISTRATIVO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PRO_TIPO_ADMON'

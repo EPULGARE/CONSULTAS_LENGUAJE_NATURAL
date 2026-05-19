@@ -1,0 +1,19 @@
+lookup_value_normalization:
+  - source_table: SAC.PROCESOS
+    source_column: ESTADO
+    fixed_filter_value: PRO_ESTADO
+    canonical_values:
+      Tramite:
+        synonyms:
+          - en tramite
+          - en trámite
+          - tramite
+          - trámite
+      Finalizado:
+        synonyms:
+          - finalizado
+          - finalizados
+          - terminado
+          - terminados
+          - cerrado
+          - cerrados

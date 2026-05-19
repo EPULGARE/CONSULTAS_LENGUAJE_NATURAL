@@ -1,0 +1,357 @@
+source_file: D:\OneDrive - Grupo EPM\Codigos phtyton A DESPLEGAR\Generacion SQL SAC\backend\metadata\generated\procesos.yml
+generated_at: '2026-05-14T22:19:41.714477+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.PROCESOS
+  approved: true
+  allowed_for_query: true
+  domain: procesos
+  business_description: ''
+  columns:
+  - name: NUMERO_PROCESO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: PROCESO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CUENTA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SOLICITANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CEDULA_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NOMBRE_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TELEFONO_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: OBSERVACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IMPUTABLE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: USER_SISTEMA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_DOCUMENTO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: FECHA_VENCIMIENTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DIRECCION_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: NUMERO_DOCUMENTO_FIN
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: CLASIFICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN_SISTEMA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: USER_FIN_SISTEMA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_RESPUESTA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_NOTIFICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SUB_ESTADO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DOCUMENTO_ID
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: PERSONA_ID
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: DIRECCION_ID
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TIPO_TRAMITE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DEPENDENCIA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TELEFONO_CELULAR
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TELEFONO_CONTACTO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: BARRIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PQR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CORREO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: IND_ACTCLIENTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TELEFONO_PREDIO
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: SERVICIO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: VALOR_CLASIFICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_ADMINISTRATIVO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FIN_INICIAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: EXPEDICION_CEDULA_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SOLICITANTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIO_NOTIFICACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DOCUMENTO_TIPO_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: OFICINA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO_FIN_INICIAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA_CAR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: LLAMADA_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INFORMACION_ADICIONAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: INTERFAZ_FIN
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DIAS_RESPUESTA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: VIGENCIA_EXT
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_PERSONA_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: APELLIDO1_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: APELLIDO2_SOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NOMBRE1_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: NOMBRE2_SOL
+    approved: false
+    business_description: ''
+    sensitive: true
+    allowed_for_select: false
+  - name: TIPO_CIERRE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PRGRUPO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IMP_EQUIPO_RESPONSABLE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_RESPUESTA_ACEPTA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CEDULA_SOL_NUM
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships: []

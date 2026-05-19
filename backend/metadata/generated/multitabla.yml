@@ -1,0 +1,10 @@
+generated_at_utc: '2026-05-12T23:05:27.999924+00:00'
+schema: SAC
+tables:
+- full_name: SAC.MULTITABLA
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain_suggested: 'TODO: asignar dominio'
+  synonyms: []
+  columns: []
+  primary_keys: []
+  foreign_keys: []

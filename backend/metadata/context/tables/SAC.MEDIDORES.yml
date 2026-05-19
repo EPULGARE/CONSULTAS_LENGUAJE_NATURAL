@@ -1,0 +1,564 @@
+table: SAC.MEDIDORES
+domain: medidores
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+columns:
+- name: MEDIDOR_ID
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_MEDIDOR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_CONEXION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NUMERO_MEDIDOR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MARCA_MEDIDOR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MODELO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ENTEROS
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DECIMALES
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FACTOR_MULTIPLICACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: REL_CORRIENTE_MIN
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: REL_CORRIENTE_MAX
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NRO_FASES
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NRO_HILOS
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TENSION_NOMINAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FRECUENCIA_NOMINAL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CONSTANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: UNIDAD_CONSTANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CLASE_EXACTITUD
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CLASE_EXACTITUD_REACTIVA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_NUEVO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PROPIEDAD_MEDIDOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DEPENDENCIA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FUNCIONAMIENTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO_INTERNO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_PRI_INSTALA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_ULT_INSTALA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: LOCALIZACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FORMA_COBRO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MODELO_MEDIDOR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: RESPONSABLE_ASIGNADO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ID_CTRL_INDIVIDUAL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MODELO_MEDIDOR_T
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CLASE_EXACTITUD_EXT
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FABRICANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TECNOLOGIA_MEDIDOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SENTIDO_MEDICION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_REGISTRADOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: COMPONENTES
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PROVEEDOR_REPRESENTANTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CTE_NOMINAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CANAL_IMP_ACTIVA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CANAL_EXP_ACTIVA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_ENT_OPERACION
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_CALIBRACION
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_RETIRO
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_MEMORIA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CAPACIDAD_MEMORIA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: STMA_ALMACENA_MEMORIA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_CAMBIO_BATERIA
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SW_LECTURA_LOCAL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SW_LECTURA_REMOTA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESQUEMAS_SEGURIDAD
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PUERTOS_COMUNICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NUMERO_CCAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_EMISION_CCAL
+  type: DATE
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ENTE_EMISOR_CCAL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SERIE_MODEM
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MARCA_MODEM
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: IP
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PUERTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: APN
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: IMEI
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NRO_TELEFONICO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: OPERADOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: MEDIO_COMUNICACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_REP_DATOS
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CANAL_EXP_REACTIVA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CANAL_IMP_REACTIVA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FACTOR_MULTI_RETIRO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NORMA_NTC
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: OTRA_NORMA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ORGANISMO_ACREDITADOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PRUEBAS_RUTINA_CNO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ADVERTENCIA
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FACTOR_LIQ_INTERNO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_AUTENTICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_AUTENTICACION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- left_table: SAC.MEDIDORES
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion confirmada de medidor a cliente
+approved_parametric_mappings: []

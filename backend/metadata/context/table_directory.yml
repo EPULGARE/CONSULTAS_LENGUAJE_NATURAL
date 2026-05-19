@@ -1,0 +1,44 @@
+tables:
+- table: SAC.CLIENTES
+  domain: clientes
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.CLIENTES.yml
+- table: SAC.MEDIDORES
+  domain: medidores
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords:
+  - medidor
+  - medidores
+  - contador
+  - contadores
+  - equipo de medida
+  - medicion
+  - serial
+  - numero medidor
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.MEDIDORES.yml
+- table: SAC.MULTITABLA
+  domain: clientes
+  short_description: Catalogo manual aprobado para codigos funcionales
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.MULTITABLA.yml
+- table: SAC.MUNICIPIOS
+  domain: clientes
+  short_description: Catalogo manual aprobado de municipios
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.MUNICIPIOS.yml
+- table: SAC.PROCESOS
+  domain: procesos
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.PROCESOS.yml

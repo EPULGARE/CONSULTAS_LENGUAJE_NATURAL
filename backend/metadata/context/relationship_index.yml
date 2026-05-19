@@ -1,0 +1,38 @@
+relationships:
+- from_table: SAC.MEDIDORES
+  from_column: CLIENTE_ID
+  to_table: SAC.CLIENTES
+  to_column: CLIENTE_ID
+  description: Relacion confirmada de medidor a cliente
+  approved: true
+  join_type: inner
+  domains:
+  - clientes
+  - medidores
+- from_table: SAC.CLIENTES
+  from_column: MUNICIPIO
+  to_table: SAC.MUNICIPIOS
+  to_column: MUNICIPIO
+  description: Relacion confirmada de cliente a municipio
+  approved: true
+  join_type: inner
+  domains:
+  - clientes
+- from_table: SAC.CLIENTES
+  from_column: ESTADO_CLIENTE
+  to_table: SAC.MULTITABLA
+  to_column: CODIGO_NUM
+  description: Estado cliente parametrizado por codigo numerico en multitabla
+  approved: true
+  join_type: inner
+  domains:
+  - clientes
+- from_table: SAC.CLIENTES
+  from_column: MUNICIPIO
+  to_table: SAC.MUNICIPIOS
+  to_column: MUNICIPIO
+  description: Relacion de cliente a catalogo municipal
+  approved: true
+  join_type: inner
+  domains:
+  - clientes

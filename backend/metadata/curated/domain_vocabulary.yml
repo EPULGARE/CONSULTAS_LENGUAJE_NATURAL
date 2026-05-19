@@ -1,0 +1,36 @@
+﻿domains:
+  clientes:
+    canonical_terms:
+      - cliente
+      - clientes
+    synonyms:
+      - usuario
+      - usuarios
+      - abonado
+      - suscriptor
+    related_terms:
+      - estado cliente
+      - estrato
+      - municipio
+      - tarifa
+      - saldo
+    tables:
+      - SAC.CLIENTES
+      - SAC.MULTITABLA
+  medidores:
+    canonical_terms:
+      - medidor
+      - medidores
+      - contador
+      - contadores
+    synonyms:
+      - equipo de medida
+      - medicion
+      - serial
+      - numero medidor
+    related_terms:
+      - marca medidor
+      - modelo medidor
+      - estado medidor
+    tables:
+      - SAC.MEDIDORES
