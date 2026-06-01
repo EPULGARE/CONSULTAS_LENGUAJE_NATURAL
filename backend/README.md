@@ -13,3 +13,16 @@ El sistema no inventa metadata. No se promueve nada automaticamente.
 `py scripts/discover_multitabla_mappings.py --schema SAC --tables MEDIDORES --output metadata/generated/multitabla_mapping_suggestions.yml --overwrite`
 
 Este flujo solo genera sugerencias `approved: false` a partir de comentarios Oracle y contraste contra `SAC.MULTITABLA`. No modifica `business_overrides.yml` ni aprueba mappings automaticamente.
+
+## Recuperar contexto en una nueva sesion de Codex
+Cuando se pierda el chat anterior, ejecuta desde `backend/`:
+
+`py -m scripts.show_all_project_info`
+
+Luego pega la salida completa en el nuevo chat de Codex. El comando lee `AGENTS.md` y los documentos de recuperacion en `docs/` para resumir:
+- proposito del proyecto
+- arquitectura y flujo principal
+- modulos y archivos clave
+- estado actual, riesgos y TODOs
+- comandos utiles
+- notas recientes de recuperacion
