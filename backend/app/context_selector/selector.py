@@ -56,7 +56,11 @@ class SemanticContextSelector:
             : settings.max_tables_in_sql_context
         ]
         if not local_selected:
-            local_selected = [entry.table for _, entry in ranked[: settings.max_tables_in_sql_context]]
+            local_selected = [
+                entry.table
+                for _, entry in ranked
+                if entry.table in domain_tables
+            ][: settings.max_tables_in_sql_context]
 
         local_selected = self._enforce_cross_domain_rules(question, local_selected, all_directory)
         local_expanded, local_table_paths, local_join_edges = self.relationship_graph.expand_tables_with_join_path(
@@ -244,12 +248,13 @@ class SemanticContextSelector:
 
     def _enforce_cross_domain_rules(self, question: str, local_selected: list[str], directory: list[DirectoryEntry]) -> list[str]:
         q = f" {question.lower()} "
-        city_tokens = {" ciudad ", " municipio ", " localidad ", " población ", " poblacion ", " armenia ", " quindio "}
+        city_tokens = {" ciudad ", " municipio ", " localidad ", " poblaciÃƒÆ’Ã‚Â³n ", " poblacion ", " armenia ", " quindio "}
         user_tokens = {" usuario ", " usuarios ", " cliente ", " clientes ", " abonado ", " abonados "}
         medidor_tokens = {" medidor ", " medidores ", " contador ", " contadores "}
         has_city_intent = any(token in q for token in city_tokens)
         has_user_intent = any(token in q for token in user_tokens)
         has_medidor_intent = any(token in q for token in medidor_tokens)
+        has_proceso_intent = any(token in q for token in (" proceso ", " procesos ", " tramite ", " tramites ", " pqr ", " pqrs "))
 
         municipalities = next((d.table for d in directory if d.table.upper().endswith(".MUNICIPIOS")), None)
         clientes = next((d.table for d in directory if d.table.upper().endswith(".CLIENTES")), None)
@@ -265,7 +270,7 @@ class SemanticContextSelector:
             local_selected.append(municipalities)
         if has_city_intent and clientes and clientes not in local_selected:
             local_selected.append(clientes)
-        if has_user_intent and clientes and clientes not in local_selected:
+        if has_user_intent and not has_proceso_intent and clientes and clientes not in local_selected:
             local_selected.append(clientes)
         if has_medidor_intent and medidores and medidores not in local_selected:
             local_selected.append(medidores)
@@ -295,8 +300,23 @@ class SemanticContextSelector:
                 and (asks_estado_suministro or asks_estado_facturacion)
             ):
                 continue
-            source_tokens = [t for t in mapping.source_column.lower().split("_") if t]
-            if any(token in q for token in source_tokens):
+            source_phrase = mapping.source_column.lower().replace("_", " ")
+            source_tokens = [
+                t
+                for t in mapping.source_column.lower().split("_")
+                if t and t not in {"cliente", "clientes", "usuario", "usuarios"}
+            ]
+            padded_q = f" {q.replace('_', ' ')} "
+            phrase_hit = f" {source_phrase} " in padded_q
+            token_hit = any(f" {token} " in padded_q for token in source_tokens)
+            if (
+                mapping.source_table.upper() == "SAC.PROCESOS"
+                and mapping.source_column.upper() == "PROCESO"
+                and "cliente_id" in q
+                and not any(term in q for term in ("descripcion", "descripción", "factibilidad", "tipo de proceso"))
+            ):
+                continue
+            if phrase_hit or token_hit:
                 if mapping.source_table in by_table:
                     selected_by_table[mapping.source_table] = by_table[mapping.source_table]
                 if mapping.lookup_table in by_table:
@@ -438,7 +458,8 @@ class SemanticContextSelector:
             normalized_synonyms = [s.lower().strip() for s in col.synonyms]
             exact_syn_hit = any(s == q or f" {s} " in f" {q} " for s in normalized_synonyms if s)
             syn_hit = any(s in q for s in normalized_synonyms if s)
-            desc_hit = any(token in col.business_description.lower() for token in q.split())
+            desc_tokens = [token for token in q.replace("_", " ").split() if len(token) > 3 and token not in {"para", "por", "con", "del", "los", "las", "una", "uno", "que"}]
+            desc_hit = any(token in col.business_description.lower() for token in desc_tokens)
             rel_hit = col.name.upper() in relationship_cols
             map_hit = col.name.upper() in mapping_cols
             semantic_estado_suministro_hit = (

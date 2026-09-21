@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 from pathlib import Path
@@ -21,13 +21,46 @@ def _write_yaml(path: Path, payload: dict[str, Any]) -> None:
         yaml.safe_dump(payload, handle, sort_keys=False, allow_unicode=False)
 
 
+
+def _apply_table_overrides(tables: list[dict[str, Any]], overrides: dict[str, Any]) -> list[dict[str, Any]]:
+    table_overrides = overrides.get("tables", {}) if isinstance(overrides.get("tables"), dict) else {}
+    enriched: list[dict[str, Any]] = []
+    for table in tables:
+        full_name = f"{table.get('schema')}.{table.get('name')}"
+        override = table_overrides.get(full_name, {}) if isinstance(table_overrides.get(full_name, {}), dict) else {}
+        if not override:
+            enriched.append(table)
+            continue
+
+        updated = dict(table)
+        if "business_description" in override:
+            updated["description"] = override.get("business_description") or updated.get("description", "")
+        for key in ("synonyms", "example_questions", "default_filters"):
+            if key in override:
+                updated[key] = override.get(key) or []
+        if "domain" in override:
+            updated["domain"] = override.get("domain") or updated.get("domain", "")
+        if "allowed_for_query" in override:
+            updated["allowed_for_query"] = bool(override.get("allowed_for_query"))
+
+        column_overrides = override.get("columns", {}) if isinstance(override.get("columns"), dict) else {}
+        updated_columns = []
+        for column in updated.get("columns", []):
+            col = dict(column)
+            col_override = column_overrides.get(col.get("name", ""), {})
+            if isinstance(col_override, dict) and "business_description" in col_override:
+                col["description"] = col_override.get("business_description") or col.get("description", "")
+            updated_columns.append(col)
+        updated["columns"] = updated_columns
+        enriched.append(updated)
+    return enriched
 def build_context(metadata_root: Path) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     tables_data = _load_yaml(metadata_root / "tables.yml")
     relationships_data = _load_yaml(metadata_root / "relationships.yml")
     overrides = _load_yaml(metadata_root / "curated" / "business_overrides.yml")
     comments = _load_yaml(metadata_root / "generated" / "oracle_comments.yml")
 
-    tables = list(tables_data.get("tables", [])) + list(overrides.get("manual_tables", []))
+    tables = _apply_table_overrides(list(tables_data.get("tables", [])) + list(overrides.get("manual_tables", [])), overrides)
     relationships = list(relationships_data.get("relationships", [])) + list(overrides.get("manual_relationships", []))
     mappings = list(overrides.get("approved_parametric_mappings", []))
 
@@ -88,10 +121,15 @@ def build_context(metadata_root: Path) -> tuple[dict[str, Any], dict[str, dict[s
                 }
             )
 
+        display_column = str(table.get("display_column", "") or "")
+        if not display_column and any(str(col.get("name", "")).upper() == "DESCRIPCION" for col in table.get("columns", [])):
+            display_column = "DESCRIPCION"
+
         contexts[full_name] = {
             "table": full_name,
             "domain": domain,
             "business_description": description,
+            "display_column": display_column,
             "columns": columns,
             "relationships": rels_for_table,
             "approved_parametric_mappings": maps_for_table,
@@ -106,7 +144,7 @@ def build_relationship_index(metadata_root: Path) -> dict[str, Any]:
     relationships_data = _load_yaml(metadata_root / "relationships.yml")
     overrides = _load_yaml(metadata_root / "curated" / "business_overrides.yml")
 
-    tables = list(tables_data.get("tables", [])) + list(overrides.get("manual_tables", []))
+    tables = _apply_table_overrides(list(tables_data.get("tables", [])) + list(overrides.get("manual_tables", [])), overrides)
     relationships = list(relationships_data.get("relationships", [])) + list(overrides.get("manual_relationships", []))
     domain_by_table: dict[str, str] = {}
     for table in tables:

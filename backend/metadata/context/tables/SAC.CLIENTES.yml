@@ -1,6 +1,7 @@
 table: SAC.CLIENTES
 domain: clientes
 business_description: 'TODO: describir tabla en lenguaje de negocio'
+display_column: ''
 columns:
 - name: CLIENTE_ID
   type: NUMBER
@@ -136,6 +137,11 @@ columns:
   synonyms: []
   comments_auxiliary: ''
 relationships:
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion aprobada de detalle de factura a cliente
 - left_table: SAC.MEDIDORES
   left_column: CLIENTE_ID
   right_table: SAC.CLIENTES
@@ -231,3 +237,9 @@ approved_parametric_mappings:
   lookup_key: CODIGO_CAR
   lookup_description: DESCRIPCION
   fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_SERVICIO'
+- source_table: SAC.CLIENTES
+  source_column: CLASE_SERVICIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLASE_SERVICIO'

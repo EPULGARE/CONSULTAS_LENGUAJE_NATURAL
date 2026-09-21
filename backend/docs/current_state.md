@@ -86,3 +86,64 @@ This local history is shallow, so functional chronology had to be reconstructed 
 ## Approximate Confidence Statement
 Confidence is high on the architectural reconstruction and module responsibilities.
 Confidence is medium on historical sequencing, because the git history available locally is minimal.
+
+## Frontend MVP
+`frontend/` now contains a minimal Next.js + React + TypeScript app for the first web MVP. It is intentionally a thin UI layer over the existing governed backend and does not modify SQL generation, SQL validation, metadata, mappings, relationship approvals, or execution policy.
+
+Local startup:
+- `cd frontend`
+- `npm install`
+- `npm run dev`
+
+Configuration:
+- default backend URL is `NEXT_PUBLIC_API_BASE_URL=http://localhost:8000`
+- `.env.local.example` documents the expected local variable
+
+Runtime behavior:
+- the browser submits chat messages to either `/api/query-preview` or `/api/query`
+- Next.js proxies preview requests to FastAPI `POST /query/preview`
+- Next.js proxies execution requests to FastAPI `POST /query`
+- the UI renders SQL, result rows, `row_count`, retrieved tables, warnings, dry-run/execution status, resolved mappings and clarification prompts
+- the UI does not decide whether execution is safe; it only displays `execution_skipped` and `execution_skip_reason` from the backend
+
+Important assumption:
+- the backend remains the source of truth for all Text-to-SQL behavior and governance
+
+## MVP Validation Notes - 2026-06-02
+- Backend health check passed on `http://127.0.0.1:8000/health`.
+- Frontend health check passed on `http://127.0.0.1:3000`.
+- Local `.env` config keeps `QUERY_ALLOW_EXECUTION=false` and `QUERY_DRY_RUN_DEFAULT=true`.
+- SQLite conversation state was stabilized for local development. The storage now uses in-memory journaling and can recover from a corrupt configured file by quarantining it or creating a recovered alternate SQLite file when the original cannot be renamed.
+- Backend focused tests passed 54/54 for `tests/test_query_endpoint.py`, `tests/test_sql_validator.py` and `tests/test_oracle_executor.py`.
+- `py -m scripts.project_readiness_check` passed with OK=20, WARNING=0, ERROR=0.
+- The MVP web was revalidated through `frontend /api/query-preview -> FastAPI /query/preview` using the real `.env` SQLite backend, and returned validated SQL with `execution_skipped=true`.
+- In `POST /query/preview`, Oracle execution is intentionally skipped, so real result rows cannot be validated until execution is enabled through backend configuration.
+- Frontend `npm run build` passed and `npm audit` reported 0 vulnerabilities.
+
+## Controlled Oracle Execution Validation - 2026-06-02
+- `/query` was validated with temporary process-only overrides: `QUERY_ALLOW_EXECUTION=true` and `QUERY_DRY_RUN_DEFAULT=false`.
+- The permanent `.env` configuration was not changed and remains safe: `QUERY_ALLOW_EXECUTION=false`, `QUERY_DRY_RUN_DEFAULT=true`.
+- A simple aggregate business query executed successfully against Oracle and returned one result row with `execution_skipped=false`, `execution_skip_reason=null`, validated SQL, retrieved tables and no warnings.
+- A no-results query executed successfully and returned `rows=[]`, `row_count=0`, `execution_skipped=false`.
+- An ambiguous query still skipped execution and returned `requires_user_confirmation=true` with a `conversation_id`.
+- An invalid too-short request returned HTTP 422 before reaching SQL generation.
+- `/query/preview` still forced dry-run while execution was temporarily enabled, returning `execution_skipped=true` and `execution_skip_reason=dry_run=true`.
+- Manual attempts to induce unsafe SQL through natural language did not reach the validator as unsafe SQL; the generator stayed constrained to catalog-backed SELECT output. Validator blocking remains covered by automated validator tests.
+
+## Frontend Execution Mode Validation - 2026-06-02
+- The frontend now offers two modes: `Vista previa` and `Ejecutar consulta`.
+- `Vista previa` calls `/api/query-preview` and always receives dry-run behavior from FastAPI `POST /query/preview`.
+- `Ejecutar consulta` calls `/api/query`, which forwards to FastAPI `POST /query`; real execution still happens only if the backend process allows it.
+- With the backend in safe mode, `/api/query` returned `execution_skipped=true` and `execution_skip_reason=QUERY_ALLOW_EXECUTION=false`.
+- With temporary backend execution enabled, `/api/query` returned Oracle rows with `execution_skipped=false`.
+- With temporary execution enabled, `/api/query-preview` still returned `execution_skipped=true` and `execution_skip_reason=dry_run=true`.
+- Ambiguous requests in execution mode still return a clarification with `execution_skip_reason=requires_user_confirmation`.
+
+## MVP Demo Closure - 2026-06-02
+- The MVP web is ready for internal demo in safe mode.
+- `README.md` documents backend startup, frontend startup, preview mode, controlled execution mode and final validations.
+- `docs/demo_guide.md` provides a short demo script for simple, result-bearing, no-result, ambiguous and safe-mode execution cases.
+- Final backend command `py -m pytest tests\test_query_endpoint.py tests\test_sql_validator.py tests\test_oracle_executor.py` passed 54/54.
+- Final readiness command `py -m scripts.project_readiness_check` passed OK=20, WARNING=0, ERROR=0.
+- Final frontend command `npm run build` passed.
+- Real execution remains disabled by default through `.env`; demo execution requires explicit temporary process-level overrides.

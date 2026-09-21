@@ -43,7 +43,7 @@ def _extract_top_n(question: str) -> int | None:
 def _extract_cardinality_threshold(question: str) -> int | None:
     patterns = (
         r"\bmas de\s+(\d+)\b",
-        r"\bmás de\s+(\d+)\b",
+        r"\bmÃ¡s de\s+(\d+)\b",
         r"\bmenos de\s+(\d+)\b",
         r"\bigual a\s+(\d+)\b",
         r"\bexactamente\s+(\d+)\b",
@@ -55,7 +55,7 @@ def _extract_cardinality_threshold(question: str) -> int | None:
     for word, value in _NUMBER_WORDS.items():
         word_patterns = (
             rf"\bmas de\s+{word}\b",
-            rf"\bmás de\s+{word}\b",
+            rf"\bmÃ¡s de\s+{word}\b",
             rf"\bmenos de\s+{word}\b",
             rf"\bigual a\s+{word}\b",
             rf"\bexactamente\s+{word}\b",
@@ -68,13 +68,16 @@ def _extract_cardinality_threshold(question: str) -> int | None:
 def detect_query_pattern(question: str) -> DetectedQueryPattern | None:
     q = f" {question.lower()} "
 
+    if re.search(r"\bnumero\s+de\s+proceso\b|\bnúmero\s+de\s+proceso\b|\bnro\s+de\s+proceso\b", q):
+        return None
+
     has_user_entity = any(token in q for token in (" usuario ", " usuarios ", " cliente ", " clientes "))
     has_meter_entity = any(token in q for token in (" medidor ", " medidores ", " contador ", " contadores "))
-    has_count_intent = any(token in q for token in (" cantidad ", " cuantos ", " cuánto ", " cuantos ", " numero ", " número "))
+    has_count_intent = any(token in q for token in (" cantidad ", " cuantos ", " cuÃ¡nto ", " cuantos ", " numero ", " nÃºmero "))
     has_ranking_intent = any(token in q for token in (" top ", " ranking ", " mayor cantidad "))
 
     operator = ""
-    if " mas de " in q or " más de " in q:
+    if " mas de " in q or " mÃ¡s de " in q:
         operator = ">"
     elif " menos de " in q:
         operator = "<"
@@ -113,13 +116,13 @@ def detect_query_pattern(question: str) -> DetectedQueryPattern | None:
     if has_count_intent and " por " in q:
         return attach_skeleton(DetectedQueryPattern(type="grouped_aggregation"))
 
-    if any(token in q for token in (" municipio ", " ciudad ", " armenia ", " calarca ", " calarcá ")):
+    if any(token in q for token in (" municipio ", " ciudad ", " armenia ", " calarca ", " calarcÃ¡ ")):
         return attach_skeleton(DetectedQueryPattern(type="municipality_filter"))
 
     if any(token in q for token in (" estado cliente ", " clientes activos ", " cliente activo ", " estado de cliente ")):
         return attach_skeleton(DetectedQueryPattern(type="parametric_status_filter"))
 
-    if any(token in q for token in (" descripcion ", " descripción ", " nombre de ", " significado ")):
+    if any(token in q for token in (" descripcion ", " descripciÃ³n ", " nombre de ", " significado ")):
         return attach_skeleton(DetectedQueryPattern(type="descriptive_lookup"))
 
     return None

@@ -178,7 +178,7 @@ class SemanticRetriever:
 
         if self._should_prefer_medidores_static_estado(question, selected):
             selected = [t for t in selected if t.full_name.upper() != "SAC.MULTITABLA"]
-        allowed_names = set(selected_by_name.keys())
+        allowed_names = {table.full_name for table in selected}
         if self._should_prefer_medidores_static_estado(question, selected):
             allowed_names = {name for name in allowed_names if name.upper() != "SAC.MULTITABLA"}
         rels = [

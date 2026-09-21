@@ -1,0 +1,99 @@
+table: SAC.CLI_FAC_DETALLE
+domain: facturas
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+display_column: ''
+columns:
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CONSECUTIVO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_CONCEPTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: VALOR_CONCEPTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: IND_PAGO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CANTIDAD
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SALDO_ANTERIOR
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NUMERO_PROCESO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: SALDO_ACTUAL
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CONS_NRO_FAC
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CODIGO_CONCEPTO
+  right_table: SAC.CODCA
+  right_column: CODIGO_CONCEPTO
+  description: Relacion aprobada de detalle de factura a catalogo de conceptos
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion aprobada de detalle de factura a cliente
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: NUMERO_PROCESO
+  right_table: SAC.PROCESOS
+  right_column: NUMERO_PROCESO
+  description: Relacion aprobada de detalle de factura a procesos por numero de proceso
+approved_parametric_mappings: []

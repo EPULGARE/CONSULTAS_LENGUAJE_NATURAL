@@ -6,6 +6,27 @@ tables:
   business_terms: []
   allowed_for_query: true
   context_path: metadata/context/tables/SAC.CLIENTES.yml
+- table: SAC.CLI_FACTURAS
+  domain: facturas
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.CLI_FACTURAS.yml
+- table: SAC.CLI_FAC_DETALLE
+  domain: facturas
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.CLI_FAC_DETALLE.yml
+- table: SAC.CODCA
+  domain: facturas
+  short_description: 'TODO: describir tabla en lenguaje de negocio'
+  keywords: []
+  business_terms: []
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.CODCA.yml
 - table: SAC.MEDIDORES
   domain: medidores
   short_description: 'TODO: describir tabla en lenguaje de negocio'
@@ -37,8 +58,21 @@ tables:
   context_path: metadata/context/tables/SAC.MUNICIPIOS.yml
 - table: SAC.PROCESOS
   domain: procesos
-  short_description: 'TODO: describir tabla en lenguaje de negocio'
-  keywords: []
-  business_terms: []
+  short_description: Procesos, tramites, solicitudes y PQR asociados a clientes.
+  keywords:
+  - proceso
+  - procesos
+  - tramite
+  - tramites
+  - pqr
+  - solicitud
+  - solicitudes
+  - procesos realizados
+  - proceso realizado
+  - numero de proceso
+  business_terms:
+  - numero de proceso y proceso realizado por cliente_id
+  - procesos realizados por el cliente_id 142518
+  - numero de proceso por cliente
   allowed_for_query: true
   context_path: metadata/context/tables/SAC.PROCESOS.yml

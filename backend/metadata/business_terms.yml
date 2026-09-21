@@ -1,39 +1,39 @@
 business_terms:
-  - canonical_term: estado cliente activo
-    applies_to_domains:
-      - clientes
-    source_table: SAC.CLIENTES
-    source_column: ESTADO_CLIENTE
-    canonical_value: Activo
-    synonyms:
-      - activo
-      - activos
-    entity_terms:
-      - cliente
-      - clientes
-      - abonado
-      - abonados
-    operational_verbs:
-      - consumen
-      - facturan
-      - usan
-      - generan
-      - reportan
-  - canonical_term: estado cliente activo
-    applies_to_domains:
-      - clientes
-    source_table: SAC.CLIENTES
-    source_column: ESTADO_CLIENTE
-    canonical_value: Activo
-    synonyms:
-      - vigente
-      - vigentes
-    entity_terms:
-      - usuario
-      - usuarios
-    operational_verbs:
-      - consumen
-      - facturan
-      - usan
-      - generan
-      - reportan
+- canonical_term: estado cliente activo
+  applies_to_domains:
+  - clientes
+  source_table: SAC.CLIENTES
+  source_column: ESTADO_CLIENTE
+  canonical_value: Activo
+  synonyms:
+  - activo
+  - activos
+  entity_terms:
+  - cliente
+  - clientes
+  - abonado
+  - abonados
+  operational_verbs:
+  - consumen
+  - facturan
+  - usan
+  - generan
+  - reportan
+- canonical_term: estado cliente activo
+  applies_to_domains:
+  - clientes
+  source_table: SAC.CLIENTES
+  source_column: ESTADO_CLIENTE
+  canonical_value: Activo
+  synonyms:
+  - vigente
+  - vigentes
+  entity_terms:
+  - usuario
+  - usuarios
+  operational_verbs:
+  - consumen
+  - facturan
+  - usan
+  - generan
+  - reportan

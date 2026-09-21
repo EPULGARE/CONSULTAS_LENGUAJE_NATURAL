@@ -46,6 +46,17 @@ numeric_entity_mappings:
     forbidden_columns_for_entity_code:
       - CODIGO_CUENTA
       - CONSECUTIVO
+    explicit_column_terms:
+      - source_column: MEDIDA_TENSION
+        code_type: number
+        terms:
+          - medida tension
+          - nivel tension
+      - source_column: CLASE_SERVICIO
+        code_type: number
+        terms:
+          - clase servicio
+          - clase de servicio
     description_lookup:
       enabled: false
       use_approved_parametric_mapping_only: true

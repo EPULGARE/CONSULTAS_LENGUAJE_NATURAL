@@ -579,14 +579,20 @@ class SemanticNormalizer:
     ) -> bool:
         for explicit_rule in entity_mapping.explicit_column_terms:
             for term in explicit_rule.terms:
-                match = re.search(rf"\b{re.escape(normalize_text(term))}\s+([a-z0-9_-]+)\b", normalized_question)
+                match = re.search(
+                    rf"\b{re.escape(normalize_text(term))}\s+"
+                    rf"(?:(diferente\s+a|distinto\s+a|diferente\s+de|distinto\s+de|<>|!=|igual\s+a|=)\s+)?"
+                    rf"([a-z0-9_-]*\d[a-z0-9_-]*)\b",
+                    normalized_question,
+                )
                 if not match:
                     continue
+                operator = self._resolve_numeric_operator(match.group(1) or "")
                 resolved = ResolvedNumericFilter(
                     source_table=entity_mapping.source_table,
                     source_column=explicit_rule.source_column.upper(),
-                    operator="=",
-                    value=match.group(1),
+                    operator=operator,
+                    value=match.group(2),
                     value_type=explicit_rule.code_type,
                     entity=entity_mapping.entity,
                     matched_text=match.group(0),
@@ -604,6 +610,13 @@ class SemanticNormalizer:
                 )
                 return True
         return False
+
+    @staticmethod
+    def _resolve_numeric_operator(raw_operator: str) -> str:
+        normalized = normalize_text(raw_operator)
+        if normalized in {"diferente a", "distinto a", "diferente de", "distinto de", "<>", "!="}:
+            return "<>"
+        return "="
 
     def _resolve_default_numeric_entity_code(
         self,

@@ -807,3 +807,208 @@ tables:
     description: 'TODO: describir uso de negocio'
     sensitive: false
     allowed_for_select: true
+- schema: SAC
+  name: CLI_FAC_DETALLE
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: facturas
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CONCEPTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: VALOR_CONCEPTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_PAGO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CANTIDAD
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ANTERIOR
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PROCESO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ACTUAL
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CONS_NRO_FAC
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: CLI_FACTURAS
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: facturas
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ETIQUETA_FE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TEXTO_SPOOL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ID_MAPEO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: CODCA
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: facturas
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: CODIGO_CONCEPTO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: DESCRIPCION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: UNIDAD
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTURAC_MANUAL
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_DESACTIVACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: NIVEL_AMORTIZACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_AMORTIZACION
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SALDO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_INTERESES
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CONTABLE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CONTADOR
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_RECIBO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ORDEN_RECIBO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_RECAUDO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AJUSTE
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: COMENTARIOS
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AJUSTE_CONSUMO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_AJUSTE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true

@@ -11,10 +11,11 @@ from app.conversation_state.storage_providers.base import ConversationStoragePro
 
 
 class SQLiteConversationStorage(ConversationStorageProvider):
-    def __init__(self, *, db_path: Path, ttl_minutes: int = 30) -> None:
+    def __init__(self, *, db_path: Path, ttl_minutes: int = 30, recover_corrupt: bool = True) -> None:
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._ttl = timedelta(minutes=max(ttl_minutes, 1))
+        self._recover_corrupt = recover_corrupt
         self._lock = RLock()
         self._ensure_schema()
 
@@ -115,11 +116,24 @@ class SQLiteConversationStorage(ConversationStorageProvider):
 
     def _connect(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.db_path, timeout=30, check_same_thread=False)
+        conn.execute("PRAGMA journal_mode=MEMORY")
+        conn.execute("PRAGMA synchronous=NORMAL")
         conn.row_factory = sqlite3.Row
         return conn
 
     def _ensure_schema(self) -> None:
+        try:
+            self._create_schema()
+        except sqlite3.DatabaseError:
+            if not self._recover_corrupt or not self.db_path.exists():
+                raise
+            if not self._quarantine_database_files():
+                self.db_path = self._build_recovered_database_path()
+            self._create_schema()
+
+    def _create_schema(self) -> None:
         with self._lock, self._connect() as conn:
+            conn.execute("PRAGMA quick_check")
             conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS conversation_state (
@@ -138,6 +152,30 @@ class SQLiteConversationStorage(ConversationStorageProvider):
                 "CREATE INDEX IF NOT EXISTS idx_conversation_state_updated_at ON conversation_state(updated_at)"
             )
             conn.commit()
+
+    def _quarantine_database_files(self) -> bool:
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S%f")
+        targets = [
+            self.db_path,
+            self.db_path.with_name(f"{self.db_path.name}-journal"),
+            self.db_path.with_name(f"{self.db_path.name}-wal"),
+            self.db_path.with_name(f"{self.db_path.name}-shm"),
+        ]
+        for target in targets:
+            if not target.exists():
+                continue
+            backup = target.with_name(f"{target.name}.corrupt.{timestamp}")
+            try:
+                target.replace(backup)
+            except PermissionError:
+                return False
+        return True
+
+    def _build_recovered_database_path(self) -> Path:
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S%f")
+        suffix = self.db_path.suffix or ".sqlite3"
+        stem = self.db_path.stem if self.db_path.suffix else self.db_path.name
+        return self.db_path.with_name(f"{stem}.recovered.{timestamp}{suffix}")
 
     def _compute_expires_at(self, updated_at: datetime) -> datetime:
         return updated_at + self._ttl

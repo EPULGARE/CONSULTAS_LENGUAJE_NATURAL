@@ -1,6 +1,7 @@
 table: SAC.MEDIDORES
 domain: medidores
 business_description: 'TODO: describir tabla en lenguaje de negocio'
+display_column: ''
 columns:
 - name: MEDIDOR_ID
   type: NUMBER

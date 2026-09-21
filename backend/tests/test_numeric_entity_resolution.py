@@ -87,6 +87,18 @@ def test_clientes_12345_resolves_to_cliente_id():
     assert item.value_type == "number"
 
 
+def test_clientes_medida_tension_and_clase_servicio_resolve_governed_numeric_filters():
+    normalizer = SemanticNormalizer()
+    result = normalizer.normalize("clientes activos con medida tension 3 y clase de servicio diferente a 90")
+
+    filters = {
+        (item.source_table, item.source_column, item.operator, item.value)
+        for item in result.resolved_numeric_filters
+    }
+    assert ("SAC.CLIENTES", "MEDIDA_TENSION", "=", "3") in filters
+    assert ("SAC.CLIENTES", "CLASE_SERVICIO", "<>", "90") in filters
+
+
 def test_procesos_codigo_cuenta_12345_uses_explicit_column():
     normalizer = SemanticNormalizer()
     result = normalizer.normalize("procesos con codigo cuenta 12345")

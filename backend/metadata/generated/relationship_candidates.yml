@@ -4,8 +4,7 @@ candidate_relationships:
   to_table: SAC.CLIENTES
   to_column: CLIENTE_ID
   source: sql_generation_blocked
-  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores
-    retirados
+  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores retirados
   blocked_reason: UNAPPROVED_JOIN_PATH
   approved: false
   evidence:
@@ -26,8 +25,7 @@ candidate_relationships:
   to_table: SAC.MUNICIPIOS
   to_column: MUNICIPIO
   source: sql_generation_blocked
-  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores
-    retirados
+  first_seen_question: cantidad de usuarios de armenia activos con mas de dos medidores retirados
   blocked_reason: UNAPPROVED_JOIN_PATH
   approved: false
   evidence:
@@ -48,10 +46,94 @@ candidate_relationships:
   to_table: SAC.PROCESOS
   to_column: CODIGO_CUENTA
   source: sql_generation_blocked
-  first_seen_question: Cuantos medidores instalados tienen un proceso de Conexion
-    del Servicio
+  first_seen_question: Cuantos medidores instalados tienen un proceso de Conexion del Servicio
   blocked_reason: UNAPPROVED_JOIN_PATH
   approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLIENTES
+  from_column: DEPTO
+  to_table: SAC.MUNICIPIOS
+  to_column: MUNICIPIO
+  source: sql_generation_blocked
+  first_seen_question: top 10 municipios por medidores iinstalados
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: CLIENTE_ID
+  to_table: SAC.CLIENTES
+  to_column: CLIENTE_ID
+  source: sql_generation_blocked
+  first_seen_question: dinero facturado para el mes de mayo del 2026 por descricipcion cocepto CONSUMO ACTIVA para clientes del municipio de Montenegro
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: COD_CONCEPTO
+  to_table: SAC.CODCA
+  to_column: COD_CONCEPTO
+  source: sql_generation_blocked
+  first_seen_question: dinero facturado para el mes de mayo del 2026 por descricipcion cocepto CONSUMO ACTIVA para clientes del municipio de Montenegro
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: false
+  evidence:
+    sampled: false
+    source_distinct_count: null
+    target_distinct_count: null
+    matched_distinct_count: null
+    reverse_matched_distinct_count: null
+    coverage_percent: null
+    reverse_coverage_percent: null
+    null_rate_from: null
+    null_rate_to: null
+    from_column_type: null
+    to_column_type: null
+    sample_matches: []
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: NUMERO_PROCESO
+  to_table: SAC.PROCESOS
+  to_column: NUMERO_PROCESO
+  source: sql_generation_blocked
+  first_seen_question: numero de proceso y procesos realizador por el cliente_id  142518
+  blocked_reason: UNAPPROVED_JOIN_PATH
+  approved: true
+  reviewer_notes: Relacion aprobada para consultar procesos asociados desde detalle de factura por NUMERO_PROCESO.
   evidence:
     sampled: false
     source_distinct_count: null

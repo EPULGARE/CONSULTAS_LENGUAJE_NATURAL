@@ -1,4 +1,14 @@
-relationships:
+﻿relationships:
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CODIGO_CONCEPTO
+  right_table: SAC.CODCA
+  right_column: CODIGO_CONCEPTO
+  description: Relacion aprobada de detalle de factura a catalogo de conceptos
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Relacion aprobada de detalle de factura a cliente
 - left_table: SAC.MEDIDORES
   left_column: CLIENTE_ID
   right_table: SAC.CLIENTES
@@ -9,3 +19,8 @@ relationships:
   right_table: SAC.MUNICIPIOS
   right_column: MUNICIPIO
   description: Relacion confirmada de cliente a municipio
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: NUMERO_PROCESO
+  right_table: SAC.PROCESOS
+  right_column: NUMERO_PROCESO
+  description: Relacion aprobada de detalle de factura a procesos por numero de proceso

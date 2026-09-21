@@ -82,9 +82,12 @@ def build_sql_user_prompt(
     detected_query_pattern: DetectedQueryPattern | None = None,
 ) -> str:
     tables_text = []
+    active_filter_lines = []
     for table in tables:
         columns = ", ".join(f"{c.name} ({c.type})" for c in table.columns)
         tables_text.append(f"Tabla: {table.full_name} | Descripcion: {table.description} | Columnas: {columns}")
+        if any(c.name.upper() == "FECHA_DESACTIVACION" for c in table.columns):
+            active_filter_lines.append(f"- {table.full_name}.FECHA_DESACTIVACION IS NULL")
 
     rel_text = "\n".join(relationships) if relationships else "Sin relaciones adicionales"
     join_lines = list(
@@ -110,6 +113,7 @@ def build_sql_user_prompt(
             "- Usa JOIN SAC.MEDIDORES -> SAC.CLIENTES -> SAC.MUNICIPIOS.\n"
             "- JOIN 1: SAC.MEDIDORES.CLIENTE_ID = SAC.CLIENTES.CLIENTE_ID.\n"
             "- JOIN 2: SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
+            "- No usar SAC.MEDIDORES.MUNICIPIO: esa columna no existe en Oracle para SAC.MEDIDORES.\n"
             "- Agrupa por M.DESCRIPCION y cuenta medidores con COUNT(MED.MEDIDOR_ID) o COUNT(*).\n"
             "- No usar MULTITABLA para esta pregunta.\n\n"
         )
@@ -149,6 +153,7 @@ def build_sql_user_prompt(
         else "Sin guardrails adicionales de intencion"
     )
     comments_text = "\n".join(f"- {line}" for line in auxiliary_semantic_context) if auxiliary_semantic_context else "Sin comentarios auxiliares"
+    active_filters_text = "\n".join(active_filter_lines) if active_filter_lines else "Sin filtros activos obligatorios"
     ex_text = "\n".join(examples) if examples else "Sin ejemplos"
     pattern_block = ""
     if detected_query_pattern and detected_query_pattern.sql_skeleton:
@@ -204,19 +209,45 @@ def build_sql_user_prompt(
         "  ) Q;\n"
         "- No devolver COUNT(...) agrupado directamente por CLIENTE_ID como resultado final.\n\n"
         "Regla de filtros textuales de negocio (obligatoria):\n"
-        "- Para comparaciones textuales funcionales usar comparacion case-insensitive y accent-insensitive en Oracle.\n"
+        "- Para comparaciones textuales funcionales exactas usar comparacion case-insensitive y accent-insensitive en Oracle.\n"
         "- Preferir: NLSSORT(TRIM(campo_textual), 'NLS_SORT=BINARY_AI') = NLSSORT(TRIM('valor'), 'NLS_SORT=BINARY_AI')\n"
         "- Solo si no aplica NLSSORT, usar como fallback: UPPER(TRIM(campo_textual)) = UPPER(TRIM('valor'))\n"
+        "- Para busquedas parciales como 'relacionados a', 'contiene', 'parecido a', 'que tengan consumo', usar UPPER(TRIM(campo_textual)) LIKE '%VALOR%'.\n"
+        "- Nunca usar NLSSORT(...) LIKE NLSSORT(...); NLSSORT es para igualdad exacta, no para LIKE.\n"
         "- Aplica a descripciones, nombres, municipios, estados y textos funcionales.\n"
         "- No aplicar UPPER/TRIM a columnas numericas, IDs, llaves tecnicas o fechas.\n"
         "- Ejemplo: para 'Clientes con estado activo' usar WHERE NLSSORT(TRIM(MT.DESCRIPCION), 'NLS_SORT=BINARY_AI') = NLSSORT(TRIM('Activo'), 'NLS_SORT=BINARY_AI').\n\n"
         "Regla de normalizacion de texto en literales (obligatoria):\n"
         "- Si el texto de entrada tiene tildes o caracteres Unicode, normaliza a ASCII en los literales SQL.\n"
         "- Ejemplo: usar 'Calarca' en lugar de variantes con tilde.\n\n"
+        "Regla de fechas numericas julianas en facturas (obligatoria):\n"
+        "- SAC.CLI_FAC_DETALLE.FECHA es NUMBER y almacena dia juliano Oracle, no DATE ni YYYYMMDD.\n"
+        "- Nunca usar TO_CHAR(SAC.CLI_FAC_DETALLE.FECHA, 'YYYYMM') ni TO_DATE(SAC.CLI_FAC_DETALLE.FECHA, ...).\n"
+        "- Para filtrar un mes completo, usa rango numerico juliano.\n"
+        "- Ejemplo mayo 2026: T1.FECHA BETWEEN TO_NUMBER(TO_CHAR(DATE '2026-05-01', 'J')) AND TO_NUMBER(TO_CHAR(DATE '2026-05-31', 'J')).\n"
+        "- Para otros meses, usa primer y ultimo dia calendario del mes pedido.\n\n"
+        "Regla de unidad de concepto en facturas (obligatoria):\n"
+        "- Cuando uses SAC.CODCA para describir conceptos de facturacion, incluye SAC.CODCA.UNIDAD en el SELECT si la consulta agrupa o detalla por concepto.\n"
+        "- Si seleccionas SAC.CODCA.DESCRIPCION junto con una agregacion, agrupa tambien por SAC.CODCA.UNIDAD.\n\n"
+        "Regla de registros activos por FECHA_DESACTIVACION (obligatoria):\n"
+        "- Si una tabla disponible tiene FECHA_DESACTIVACION, filtra por FECHA_DESACTIVACION IS NULL.\n"
+        "- Esto aplica por defecto a catalogos como SAC.CODCA y a cualquier tabla que tenga esa columna.\n"
+        "- Solo omite este filtro si el usuario pide explicitamente desactivados, historicos, vencidos o incluir desactivados.\n"
+        f"Filtros activos obligatorios detectados:\n{active_filters_text}\n\n"
+        "Regla de columnas reales de facturacion (obligatoria):\n"
+        "- Para dinero facturado en SAC.CLI_FAC_DETALLE usa VALOR_CONCEPTO; no existe VALOR_TOTAL.\n"
+        "- Para cantidad/consumo/energia facturada en SAC.CLI_FAC_DETALLE usa SUM(CANTIDAD), no SUM(VALOR_CONCEPTO).\n"
+        "- Para concepto en SAC.CLI_FAC_DETALLE y SAC.CODCA usa CODIGO_CONCEPTO; no usar COD_CONCEPTO.\n"
+        "- Si el usuario dice 'por descripcion concepto <texto>' o 'por descripcion cocepto <texto>', filtra por SAC.CODCA.DESCRIPCION = '<texto>' usando NLSSORT para igualdad exacta.\n"
+        "- 'por descripcion concepto <texto>' es un filtro exacto del concepto, no una instruccion de agrupar por todos los conceptos.\n"
+        "- En ese caso no devuelvas otros conceptos diferentes al texto pedido.\n"
+        "- No conviertas el texto de descripcion de concepto en un alias ni lo omitas del WHERE.\n"
+        "- Para filtrar facturas por municipio de cliente usa la cadena: SAC.CLI_FAC_DETALLE.CLIENTE_ID = SAC.CLIENTES.CLIENTE_ID y SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n\n"
         "Regla de municipio/ciudad (obligatoria):\n"
         "- Si la pregunta filtra por nombre de municipio/ciudad/localidad, usar SAC.MUNICIPIOS.DESCRIPCION con UPPER/TRIM.\n"
-        "- Unir por codigo: SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
-        "- No comparar texto contra SAC.CLIENTES.MUNICIPIO (es codigo numerico).\n\n"
+        "- Para preguntas de medidores, unir por codigo usando la cadena aprobada: SAC.MEDIDORES.CLIENTE_ID = SAC.CLIENTES.CLIENTE_ID y SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
+        "- Para preguntas de clientes, unir por codigo: SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
+        "- No comparar texto contra columnas MUNICIPIO de tablas transaccionales porque son codigos numericos.\n\n"
         "Politica de parametrizaciones:\n"
         "- Nunca usar SAC.MULTITABLA si no existe approved_parametric_mapping para la columna consultada.\n"
         "- Si no existe mapping aprobado, usar la columna base original (codigo/llave).\n"

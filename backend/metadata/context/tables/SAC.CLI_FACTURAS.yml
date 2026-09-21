@@ -1,0 +1,42 @@
+table: SAC.CLI_FACTURAS
+domain: facturas
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+display_column: ''
+columns:
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CONSECUTIVO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ETIQUETA_FE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TEXTO_SPOOL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ID_MAPEO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships: []
+approved_parametric_mappings: []

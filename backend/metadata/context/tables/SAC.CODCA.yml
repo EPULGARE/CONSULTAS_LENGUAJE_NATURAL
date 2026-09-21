@@ -1,0 +1,145 @@
+table: SAC.CODCA
+domain: facturas
+business_description: 'TODO: describir tabla en lenguaje de negocio'
+display_column: DESCRIPCION
+columns:
+- name: CODIGO_CONCEPTO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: DESCRIPCION
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: UNIDAD
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FACTURAC_MANUAL
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_DESACTIVACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NIVEL_AMORTIZACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: GRUPO_AMORTIZACION
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_SALDO
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_INTERESES
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: GRUPO_CONTABLE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: TIPO_CONTADOR
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_RECIBO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ORDEN_RECIBO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: GRUPO_RECAUDO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_AJUSTE
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: GRUPO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: COMENTARIOS
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: CODIGO_AJUSTE_CONSUMO
+  type: NUMBER
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: IND_AJUSTE
+  type: VARCHAR2
+  business_description: 'TODO: describir uso de negocio'
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- left_table: SAC.CLI_FAC_DETALLE
+  left_column: CODIGO_CONCEPTO
+  right_table: SAC.CODCA
+  right_column: CODIGO_CONCEPTO
+  description: Relacion aprobada de detalle de factura a catalogo de conceptos
+approved_parametric_mappings: []

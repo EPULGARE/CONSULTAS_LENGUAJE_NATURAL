@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import re
 import unicodedata
 
-from sqlglot import exp, parse
+from sqlglot import exp, parse, parse_one
 from sqlglot.errors import ParseError
 
 from app.core.config import settings
@@ -73,6 +73,8 @@ class SQLValidator:
         resolved_lookup_values: list[ResolvedLookupValue] | None = None,
         resolved_numeric_filters: list[ResolvedNumericFilter] | None = None,
         detected_query_pattern: DetectedQueryPattern | None = None,
+        required_null_filters: dict[str, list[str]] | None = None,
+        required_text_filters: list[dict[str, str]] | None = None,
     ) -> ValidationResult:
         clean = sql.strip().strip("`")
         if not clean:
@@ -99,6 +101,8 @@ class SQLValidator:
 
         if not self.allow_union and any(isinstance(node, exp.Union) for node in statement.walk()):
             raise ValueError("UNION no permitido")
+
+        self._validate_text_search_patterns(statement)
 
         if approved_relationships is not None:
             alias_map, _ = self._extract_alias_map(statement)
@@ -136,8 +140,111 @@ class SQLValidator:
         if detected_query_pattern:
             self._validate_pattern_structure(statement, detected_query_pattern)
 
+        if required_null_filters:
+            statement = self._apply_required_null_filters(statement, required_null_filters)
+            clean = statement.sql(dialect=self.dialect.value)
+        if required_text_filters:
+            statement = self._apply_required_text_filters(statement, required_text_filters)
+            clean = statement.sql(dialect=self.dialect.value)
+
         sql_limited, limited = ensure_row_limit(clean, dialect=self.dialect, max_rows=self.max_rows)
         return ValidationResult(sql=sql_limited, used_tables=tables_in_query, limited=limited)
+
+    def _apply_required_null_filters(
+        self,
+        statement: exp.Select,
+        required_null_filters: dict[str, list[str]],
+    ) -> exp.Select:
+        filters = {
+            self._normalize_table_name(table): {column.upper() for column in columns}
+            for table, columns in required_null_filters.items()
+            if columns
+        }
+        if not filters:
+            return statement
+
+        alias_map, _ = self._extract_alias_map(statement)
+        existing_sql = (statement.args.get("where").sql(dialect=self.dialect.value).upper() if statement.args.get("where") else "")
+        additions: list[exp.Expression] = []
+
+        for table_node in statement.find_all(exp.Table):
+            table_name = self._normalize_table_name(self._table_expression_to_name(table_node))
+            columns = filters.get(table_name)
+            if not columns:
+                continue
+            qualifier = (table_node.alias_or_name or table_name.split(".")[-1]).upper()
+            resolved_table = alias_map.get(qualifier, table_name)
+            if resolved_table != table_name:
+                qualifier = table_name.split(".")[-1]
+            for column in columns:
+                marker = f"{qualifier}.{column}"
+                if marker in existing_sql or f"{table_name}.{column}" in existing_sql:
+                    continue
+                additions.append(
+                    exp.Is(
+                        this=exp.column(column, table=qualifier),
+                        expression=exp.Null(),
+                    )
+                )
+
+        if not additions:
+            return statement
+
+        combined = additions[0]
+        for addition in additions[1:]:
+            combined = exp.and_(combined, addition)
+
+        where = statement.args.get("where")
+        if where is None or where.this is None:
+            statement.set("where", exp.Where(this=combined))
+        else:
+            where.set("this", exp.and_(where.this, combined))
+        return statement
+
+    def _apply_required_text_filters(
+        self,
+        statement: exp.Select,
+        required_text_filters: list[dict[str, str]],
+    ) -> exp.Select:
+        alias_map, _ = self._extract_alias_map(statement)
+        existing_sql = (statement.args.get("where").sql(dialect=self.dialect.value).upper() if statement.args.get("where") else "")
+        additions: list[exp.Expression] = []
+
+        for item in required_text_filters:
+            table_name = self._normalize_table_name(item.get("table", ""))
+            column = item.get("column", "").upper()
+            value = item.get("value", "").strip()
+            if not table_name or not column or not value:
+                continue
+            if value.upper().replace("'", "''") in existing_sql and column in existing_sql:
+                continue
+            table_short_name = table_name.split(".")[-1]
+            aliases = [
+                alias
+                for alias, table in alias_map.items()
+                if table == table_name and "." not in alias and alias != table_short_name
+            ]
+            qualifier = aliases[0] if aliases else table_short_name
+            literal = value.replace("'", "''")
+            condition_sql = (
+                f"NLSSORT(TRIM({qualifier}.{column}), 'NLS_SORT=BINARY_AI') = "
+                f"NLSSORT(TRIM('{literal}'), 'NLS_SORT=BINARY_AI')"
+            )
+            additions.append(parse_one(condition_sql, read=self.dialect.value))
+
+        if not additions:
+            return statement
+
+        combined = additions[0]
+        for addition in additions[1:]:
+            combined = exp.and_(combined, addition)
+
+        where = statement.args.get("where")
+        if where is None or where.this is None:
+            statement.set("where", exp.Where(this=combined))
+        else:
+            where.set("this", exp.and_(where.this, combined))
+        return statement
 
     def _validate_pattern_structure(self, statement: exp.Select, pattern: DetectedQueryPattern) -> None:
         try:
@@ -162,6 +269,13 @@ class SQLValidator:
         except ValueError:
             raise
         raise ValueError("INVALID_PATTERN_STRUCTURE")
+
+    def _validate_text_search_patterns(self, statement: exp.Select) -> None:
+        for like_node in statement.find_all(exp.Like):
+            left_sql = like_node.left.sql(dialect=self.dialect.value).upper()
+            right_sql = like_node.right.sql(dialect=self.dialect.value).upper()
+            if "NLSSORT(" in left_sql or "NLSSORT(" in right_sql:
+                raise ValueError("INVALID_TEXT_LIKE_WITH_NLSSORT")
 
     def _validate_entity_count_cardinality(self, statement: exp.Select, pattern: DetectedQueryPattern) -> None:
         has_outer_count_star = False
@@ -279,8 +393,9 @@ class SQLValidator:
     def _validate_grouped_aggregation(self, statement: exp.Select) -> None:
         if statement.args.get("group") is None:
             raise ValueError("INVALID_PATTERN_STRUCTURE")
-        has_count = any(isinstance(node, exp.Count) for node in statement.walk())
-        if not has_count:
+        aggregate_types = (exp.Count, exp.Sum, exp.Avg, exp.Min, exp.Max)
+        has_aggregate = any(isinstance(node, aggregate_types) for node in statement.walk())
+        if not has_aggregate:
             raise ValueError("INVALID_PATTERN_STRUCTURE")
 
     def _validate_municipality_filter(self, statement: exp.Select) -> None:
@@ -527,29 +642,32 @@ class SQLValidator:
 
     def _validate_resolved_numeric_filters(self, statement: exp.Select, resolved_numeric_filters: list[ResolvedNumericFilter]) -> None:
         alias_map, query_tables = self._extract_alias_map(statement)
-        comparisons: list[tuple[str, str, exp.Literal]] = []
-        for eq_node in statement.find_all(exp.EQ):
-            if isinstance(eq_node.left, exp.Column) and isinstance(eq_node.right, exp.Literal):
-                left_table = alias_map.get((eq_node.left.table or "").upper(), (eq_node.left.table or "").upper())
+        comparisons: list[tuple[str, str, exp.Literal, str]] = []
+        for comparison in [*statement.find_all(exp.EQ), *statement.find_all(exp.NEQ)]:
+            operator = "=" if isinstance(comparison, exp.EQ) else "<>"
+            if isinstance(comparison.left, exp.Column) and isinstance(comparison.right, exp.Literal):
+                left_table = alias_map.get((comparison.left.table or "").upper(), (comparison.left.table or "").upper())
                 if not left_table and len(query_tables) == 1:
                     left_table = next(iter(query_tables))
-                comparisons.append((self._normalize_table_name(left_table), (eq_node.left.name or "").upper(), eq_node.right))
-            elif isinstance(eq_node.right, exp.Column) and isinstance(eq_node.left, exp.Literal):
-                right_table = alias_map.get((eq_node.right.table or "").upper(), (eq_node.right.table or "").upper())
+                comparisons.append((self._normalize_table_name(left_table), (comparison.left.name or "").upper(), comparison.right, operator))
+            elif isinstance(comparison.right, exp.Column) and isinstance(comparison.left, exp.Literal):
+                right_table = alias_map.get((comparison.right.table or "").upper(), (comparison.right.table or "").upper())
                 if not right_table and len(query_tables) == 1:
                     right_table = next(iter(query_tables))
-                comparisons.append((self._normalize_table_name(right_table), (eq_node.right.name or "").upper(), eq_node.left))
+                comparisons.append((self._normalize_table_name(right_table), (comparison.right.name or "").upper(), comparison.left, operator))
 
         for resolved in resolved_numeric_filters:
             source_table = self._normalize_table_name(resolved.source_table)
             source_column = resolved.source_column.upper()
             expected_value = str(resolved.value)
             matched_expected = False
-            for table_name, column_name, literal in comparisons:
+            for table_name, column_name, literal, operator in comparisons:
                 literal_value = str(literal.this)
                 if table_name == source_table and column_name in {c.upper() for c in resolved.forbidden_columns} and literal_value == expected_value:
                     raise ValueError("INVALID_NUMERIC_ENTITY_COLUMN")
                 if table_name != source_table or column_name != source_column:
+                    continue
+                if operator != resolved.operator:
                     continue
                 if resolved.value_type.lower() == "string" and not literal.is_string:
                     continue

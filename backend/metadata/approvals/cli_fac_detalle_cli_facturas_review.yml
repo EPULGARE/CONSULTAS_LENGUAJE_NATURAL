@@ -1,0 +1,106 @@
+source_file: C:\Desarollo2\Generacion SQL SAC\CONSULTAS_LENGUAJE_NATURAL\backend\metadata\generated\cli_fac_detalle_cli_facturas.yml
+generated_at: '2026-06-12T13:57:20.263807+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.CLI_FAC_DETALLE
+  approved: true
+  allowed_for_query: true
+  domain: facturas
+  business_description: ''
+  columns:
+  - name: CLIENTE_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_CONCEPTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: VALOR_CONCEPTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_PAGO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CANTIDAD
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ANTERIOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_PROCESO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_ACTUAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONS_NRO_FAC
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships:
+  - approved: false
+    references_table: SAC.CLI_FACTURACION
+    column_mappings:
+    - source_column: CLIENTE_ID
+      target_column: CLIENTE_ID
+    - source_column: CONSECUTIVO
+      target_column: CONSECUTIVO
+- full_name: SAC.CLI_FACTURAS
+  approved: true
+  allowed_for_query: true
+  domain: facturas
+  business_description: ''
+  columns:
+  - name: CLIENTE_ID
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ETIQUETA_FE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TEXTO_SPOOL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ID_MAPEO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships: []

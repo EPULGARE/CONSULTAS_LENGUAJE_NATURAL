@@ -117,3 +117,21 @@ def test_sqlite_multiple_conversation_isolation(tmp_path):
     storage.save_state(ConversationState(conversation_id="sqlite-2", user_id="u2", original_question="q2", enhanced_question="q2"))
     assert [item.conversation_id for item in storage.list_pending_for_user("u1")] == ["sqlite-1"]
     assert [item.conversation_id for item in storage.list_pending_for_user("u2")] == ["sqlite-2"]
+
+
+def test_sqlite_conversation_state_recovers_corrupt_local_file(tmp_path):
+    db_path = tmp_path / "conversation_state.sqlite3"
+    db_path.write_text("not a sqlite database", encoding="utf-8")
+
+    storage = SQLiteConversationStorage(db_path=db_path, ttl_minutes=30)
+    storage.save_state(
+        ConversationState(
+            conversation_id="recovered-sqlite",
+            user_id="u1",
+            original_question="q",
+            enhanced_question="q",
+        )
+    )
+
+    assert storage.get_state("recovered-sqlite") is not None
+    assert storage.db_path.exists()

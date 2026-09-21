@@ -1,4 +1,23 @@
 relationships:
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: CODIGO_CONCEPTO
+  to_table: SAC.CODCA
+  to_column: CODIGO_CONCEPTO
+  description: Relacion aprobada de detalle de factura a catalogo de conceptos
+  approved: true
+  join_type: inner
+  domains:
+  - facturas
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: CLIENTE_ID
+  to_table: SAC.CLIENTES
+  to_column: CLIENTE_ID
+  description: Relacion aprobada de detalle de factura a cliente
+  approved: true
+  join_type: inner
+  domains:
+  - clientes
+  - facturas
 - from_table: SAC.MEDIDORES
   from_column: CLIENTE_ID
   to_table: SAC.CLIENTES
@@ -18,6 +37,16 @@ relationships:
   join_type: inner
   domains:
   - clientes
+- from_table: SAC.CLI_FAC_DETALLE
+  from_column: NUMERO_PROCESO
+  to_table: SAC.PROCESOS
+  to_column: NUMERO_PROCESO
+  description: Relacion aprobada de detalle de factura a procesos por numero de proceso
+  approved: true
+  join_type: inner
+  domains:
+  - facturas
+  - procesos
 - from_table: SAC.CLIENTES
   from_column: ESTADO_CLIENTE
   to_table: SAC.MULTITABLA

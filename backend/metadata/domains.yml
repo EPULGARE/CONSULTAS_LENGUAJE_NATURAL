@@ -16,3 +16,12 @@ domains:
 - name: procesos
   description: ''
   keywords: []
+- name: facturas
+  description: Consultas de facturacion, facturas y detalle de conceptos facturados
+  keywords:
+  - factura
+  - facturas
+  - facturacion
+  - facturado
+  - detalle factura
+  - conceptos facturados

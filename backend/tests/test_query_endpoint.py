@@ -2,7 +2,7 @@
 import pytest
 
 from app.main import app
-from app.semantic_catalog.models import ColumnMetadata, DomainCatalog, TableMetadata
+from app.semantic_catalog.models import ColumnMetadata, DomainCatalog, RelationshipMetadata, TableMetadata
 
 
 @pytest.fixture(autouse=True)
@@ -283,7 +283,23 @@ def test_clarification_answer_clientes_continues_and_preserves_cardinality_sql(m
             TableMetadata(schema="SAC", name="MULTITABLA", description="t", domain="medidores", columns=[ColumnMetadata(name="CODIGO_NUM", type="number"), ColumnMetadata(name="TABLA", type="varchar"), ColumnMetadata(name="DESCRIPCION", type="varchar")]),
         ],
     )
-    monkeypatch.setattr("app.api.routes_query.SemanticCatalogLoader.load_relationships", lambda self: [])
+    monkeypatch.setattr(
+        "app.api.routes_query.SemanticCatalogLoader.load_relationships",
+        lambda self: [
+            RelationshipMetadata(
+                left_table="SAC.MEDIDORES",
+                left_column="CLIENTE_ID",
+                right_table="SAC.CLIENTES",
+                right_column="CLIENTE_ID",
+            ),
+            RelationshipMetadata(
+                left_table="SAC.CLIENTES",
+                left_column="MUNICIPIO",
+                right_table="SAC.MUNICIPIOS",
+                right_column="MUNICIPIO",
+            ),
+        ],
+    )
     monkeypatch.setattr("app.api.routes_query.SemanticCatalogLoader.load_examples", lambda self: {"medidores": []})
     monkeypatch.setattr("app.api.routes_query.settings.enable_intent_enhancer", True)
 

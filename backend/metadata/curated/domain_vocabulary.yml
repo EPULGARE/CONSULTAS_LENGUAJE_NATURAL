@@ -1,4 +1,4 @@
-﻿domains:
+domains:
   clientes:
     canonical_terms:
       - cliente
@@ -34,3 +34,50 @@
       - estado medidor
     tables:
       - SAC.MEDIDORES
+  facturas:
+    canonical_terms:
+      - factura
+      - facturas
+      - facturacion
+      - facturado
+      - dinero facturado
+      - valor facturado
+    synonyms:
+      - concepto
+      - conceptos
+      - codigo concepto
+      - descripcion concepto
+      - consumo activa
+    related_terms:
+      - valor concepto
+      - saldo actual
+      - saldo anterior
+      - mes facturado
+      - periodo facturado
+      - municipio de clientes facturados
+    tables:
+      - SAC.CLI_FAC_DETALLE
+      - SAC.CLI_FACTURAS
+      - SAC.CODCA
+  procesos:
+    canonical_terms:
+      - proceso
+      - procesos
+      - tramite
+      - tramites
+      - pqr
+      - pqrs
+    synonyms:
+      - solicitud
+      - solicitudes
+      - numero de proceso
+      - procesos realizados
+      - proceso realizado
+    related_terms:
+      - cliente_id
+      - codigo cuenta
+      - numero proceso
+      - fecha solicitud
+      - estado proceso
+    tables:
+      - SAC.PROCESOS

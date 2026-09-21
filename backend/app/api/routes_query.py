@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 
 from fastapi import APIRouter, HTTPException
 
@@ -314,6 +315,8 @@ async def _process_query(
             resolved_lookup_values=retrieval.resolved_lookup_values,
             resolved_numeric_filters=retrieval.resolved_numeric_filters,
             detected_query_pattern=retrieval.detected_query_pattern,
+            required_null_filters=_required_active_record_filters(payload.question, retrieval.tables),
+            required_text_filters=_required_text_filters(payload.question, retrieval.tables),
         )
         validated_sql = validated.sql
 
@@ -514,6 +517,65 @@ def _is_development_environment() -> bool:
 def _build_debug_prompt(question: str, retrieved_tables: list[str]) -> str:
     table_list = ", ".join(retrieved_tables) if retrieved_tables else "<none>"
     return f"question={question}\nretrieved_tables={table_list}\noutput=sql_only"
+
+
+def _required_active_record_filters(question: str, tables: list[object]) -> dict[str, list[str]]:
+    if _asks_for_inactive_records(question):
+        return {}
+    output: dict[str, list[str]] = {}
+    for table in tables:
+        full_name = getattr(table, "full_name", "")
+        columns = getattr(table, "columns", [])
+        column_names = {getattr(column, "name", "").upper() for column in columns}
+        if "FECHA_DESACTIVACION" in column_names:
+            output[full_name] = ["FECHA_DESACTIVACION"]
+    return output
+
+
+def _asks_for_inactive_records(question: str) -> bool:
+    normalized = normalize_question(question).lower()
+    explicit_terms = (
+        "desactivad",
+        "inactiv",
+        "histor",
+        "vencid",
+        "incluye desactiv",
+        "incluir desactiv",
+        "con fecha desactivacion",
+        "fecha_desactivacion",
+    )
+    return any(term in normalized for term in explicit_terms)
+
+
+def _required_text_filters(question: str, tables: list[object]) -> list[dict[str, str]]:
+    table_names = {getattr(table, "full_name", "").upper() for table in tables}
+    if "SAC.CODCA" not in table_names:
+        return []
+    concept_description = _extract_concept_description_filter(question)
+    if not concept_description:
+        return []
+    return [
+        {
+            "table": "SAC.CODCA",
+            "column": "DESCRIPCION",
+            "value": concept_description,
+        }
+    ]
+
+
+def _extract_concept_description_filter(question: str) -> str | None:
+    normalized = normalize_question(question)
+    match = re.search(
+        r"\b(?:descripcion|descricipcion)\s+(?:concepto|cocepto)\s+(.+?)(?="
+        r"\s+del\s+cliente|\s+del\s+cliente_id|\s+para\s+cliente|\s+para\s+clientes|"
+        r"\s+del\s+municipio|\s+de\s+municipio|\s+en\s+municipio|\s+para\s+el\s+municipio|$)",
+        normalized,
+        flags=re.IGNORECASE,
+    )
+    if not match:
+        return None
+    value = " ".join(match.group(1).strip().split())
+    return value or None
 
 
 def _default_intent_result(question: str) -> EnhancedIntentResult:

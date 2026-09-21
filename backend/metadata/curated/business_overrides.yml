@@ -77,6 +77,34 @@ manual_relationships:
   right_column: MUNICIPIO
   description: Relacion de cliente a catalogo municipal
   fixed_filter: ''
+tables:
+  SAC.PROCESOS:
+    business_description: Procesos, tramites, solicitudes y PQR asociados a clientes.
+    synonyms:
+      - proceso
+      - procesos
+      - tramite
+      - tramites
+      - pqr
+      - solicitud
+      - solicitudes
+      - procesos realizados
+      - proceso realizado
+      - numero de proceso
+    domain: procesos
+    example_questions:
+      - numero de proceso y proceso realizado por cliente_id
+      - procesos realizados por el cliente_id 142518
+      - numero de proceso por cliente
+    columns:
+      NUMERO_PROCESO:
+        business_description: Identificador unico del proceso o tramite.
+      PROCESO:
+        business_description: Codigo del tipo de proceso realizado.
+      CLIENTE_ID:
+        business_description: Identificador del cliente asociado directamente al proceso.
+      CODIGO_CUENTA:
+        business_description: Codigo de cuenta del proceso; no usar como cliente_id salvo que el usuario pida codigo cuenta.
 approved_parametric_mappings:
 - source_table: SAC.CLIENTES
   source_column: ESTADO_CLIENTE
@@ -150,6 +178,12 @@ approved_parametric_mappings:
   lookup_key: CODIGO_CAR
   lookup_description: DESCRIPCION
   fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_SERVICIO'
+- source_table: SAC.CLIENTES
+  source_column: CLASE_SERVICIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLASE_SERVICIO'
 - source_table: SAC.PROCESOS
   source_column: PROCESO
   lookup_table: SAC.MULTITABLA

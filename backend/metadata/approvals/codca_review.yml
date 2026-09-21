@@ -1,0 +1,107 @@
+source_file: C:\Desarollo2\Generacion SQL SAC\CONSULTAS_LENGUAJE_NATURAL\backend\metadata\generated\codca.yml
+generated_at: '2026-06-12T14:04:19.702439+00:00'
+reviewer: ''
+status: pending
+tables:
+- full_name: SAC.CODCA
+  approved: true
+  allowed_for_query: true
+  domain: facturas
+  business_description: ''
+  columns:
+  - name: CODIGO_CONCEPTO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: DESCRIPCION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: UNIDAD
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FACTURAC_MANUAL
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_DESACTIVACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: NIVEL_AMORTIZACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_AMORTIZACION
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SALDO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_INTERESES
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CONTABLE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_CONTADOR
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_RECIBO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: ORDEN_RECIBO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_RECAUDO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AJUSTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: COMENTARIOS
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AJUSTE_CONSUMO
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  - name: IND_AJUSTE
+    approved: true
+    business_description: ''
+    sensitive: false
+    allowed_for_select: true
+  relationships: []

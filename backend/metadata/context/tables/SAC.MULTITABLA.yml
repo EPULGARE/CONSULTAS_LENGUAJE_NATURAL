@@ -111,6 +111,18 @@ approved_parametric_mappings:
   lookup_key: CODIGO_CAR
   lookup_description: DESCRIPCION
   fixed_filter: SAC.MULTITABLA.TABLA = 'TIPO_SERVICIO'
+- source_table: SAC.CLIENTES
+  source_column: CLASE_SERVICIO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'CLASE_SERVICIO'
+- source_table: SAC.PROCESOS
+  source_column: PROCESO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_CAR
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'PED_SOLSRV_PRO'
 - source_table: SAC.PROCESOS
   source_column: DEPENDENCIA
   lookup_table: SAC.MULTITABLA

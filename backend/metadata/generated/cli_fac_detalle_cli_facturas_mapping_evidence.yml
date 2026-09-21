@@ -1,0 +1,13 @@
+mappings:
+- source_table: SAC.CLI_FAC_DETALLE
+  source_column: CODIGO_CONCEPTO
+  lookup_table: SAC.MULTITABLA
+  lookup_key: CODIGO_NUM
+  lookup_description: DESCRIPCION
+  fixed_filter: SAC.MULTITABLA.TABLA = 'V_CODCA'
+  multitabla_count: 0
+  source_distinct_values: 1180
+  matched_distinct_values: 0
+  coverage: 0.0
+  confidence: low
+  auto_approved: false

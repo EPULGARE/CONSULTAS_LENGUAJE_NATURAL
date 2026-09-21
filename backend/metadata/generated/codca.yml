@@ -1,0 +1,143 @@
+generated_at_utc: '2026-06-12T14:04:19.632016+00:00'
+schema: SAC
+tables:
+- full_name: SAC.CODCA
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain_suggested: 'TODO: asignar dominio'
+  synonyms: []
+  columns:
+  - name: CODIGO_CONCEPTO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: DESCRIPCION
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 30
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: UNIDAD
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 4
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FACTURAC_MANUAL
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: FECHA_DESACTIVACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: NIVEL_AMORTIZACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GRUPO_AMORTIZACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_SALDO
+    data_type: VARCHAR2
+    nullable: N
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_INTERESES
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GRUPO_CONTABLE
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: TIPO_CONTADOR
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_RECIBO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: ORDEN_RECIBO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GRUPO_RECAUDO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_AJUSTE
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: GRUPO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: COMENTARIOS
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 255
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  - name: CODIGO_AJUSTE_CONSUMO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    business_description: 'TODO: describir uso de negocio'
+  - name: IND_AJUSTE
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    business_description: 'TODO: describir uso de negocio'
+  primary_keys: []
+  foreign_keys: []

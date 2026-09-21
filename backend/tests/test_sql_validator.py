@@ -455,6 +455,24 @@ def test_accepts_resolved_numeric_filter_on_governed_column():
     assert result.sql
 
 
+def test_accepts_resolved_numeric_filter_with_not_equal_operator():
+    resolved = ResolvedNumericFilter(
+        source_table="TEST_SCHEMA.TEST_TABLE",
+        source_column="CLASE_SERVICIO",
+        operator="<>",
+        value="90",
+        value_type="number",
+        entity="clientes",
+        matched_text="clase de servicio diferente a 90",
+    )
+    result = _validator().validate(
+        "SELECT COUNT(*) FROM TEST_SCHEMA.TEST_TABLE T WHERE T.CLASE_SERVICIO <> 90",
+        allowed_tables=ALLOWED,
+        resolved_numeric_filters=[resolved],
+    )
+    assert result.sql
+
+
 def test_blocks_forbidden_numeric_entity_column():
     resolved = ResolvedNumericFilter(
         source_table="TEST_SCHEMA.TEST_TABLE",
