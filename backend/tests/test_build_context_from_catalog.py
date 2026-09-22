@@ -34,7 +34,10 @@ def _seed_metadata(root: Path) -> None:
                         "description": "Tabla demo",
                         "allowed_for_query": True,
                         "synonyms": ["demo"],
-                        "columns": [{"name": "ID", "type": "NUMBER", "allowed_for_select": True, "sensitive": False}],
+                        "columns": [
+                            {"name": "ID", "type": "NUMBER", "allowed_for_select": True, "sensitive": False},
+                            {"name": "SECRET_COL", "type": "VARCHAR2", "allowed_for_select": True, "sensitive": False},
+                        ],
                     }
                 ]
             },
@@ -60,7 +63,18 @@ def _seed_metadata(root: Path) -> None:
         encoding="utf-8",
     )
     (metadata / "curated" / "business_overrides.yml").write_text(
-        yaml.safe_dump({"approved_parametric_mappings": []}, sort_keys=False),
+        yaml.safe_dump(
+            {
+                "tables": {
+                    "TEST_SCHEMA.TEST_TABLE": {
+                        "sensitive_columns": ["SECRET_COL"],
+                        "columns": {"SECRET_COL": {"allowed_for_select": False}},
+                    }
+                },
+                "approved_parametric_mappings": [],
+            },
+            sort_keys=False,
+        ),
         encoding="utf-8",
     )
     (metadata / "generated" / "oracle_comments.yml").write_text(
@@ -85,6 +99,9 @@ def test_build_context_script_generates_directory_and_table_files():
         )
         assert table_context["table"] == "TEST_SCHEMA.TEST_TABLE"
         assert table_context["columns"][0]["name"] == "ID"
+        secret = next(column for column in table_context["columns"] if column["name"] == "SECRET_COL")
+        assert secret["sensitive"] is True
+        assert secret["selectable"] is False
         rel_index = yaml.safe_load((root / "metadata" / "context" / "relationship_index.yml").read_text(encoding="utf-8"))
         assert rel_index["relationships"][0]["from_table"] == "TEST_SCHEMA.TEST_TABLE"
         assert rel_index["relationships"][0]["approved"] is True
