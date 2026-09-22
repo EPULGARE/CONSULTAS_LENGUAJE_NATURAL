@@ -26,6 +26,7 @@ def validate_catalog_ready(domains: list[DomainCatalog], tables: list[TableMetad
             duplicate_tables.add(full_name)
         seen_tables.add(full_name)
         _collect_duplicate_columns(table, errors)
+        _collect_sensitive_selectability_errors(table, errors)
 
     if duplicate_tables:
         errors.append(f"Duplicate tables found: {', '.join(sorted(duplicate_tables))}")
@@ -56,6 +57,23 @@ def _collect_duplicate_columns(table: TableMetadata, errors: list[str]) -> None:
     if duplicate_columns:
         errors.append(
             f"Duplicate columns found in table {table.full_name}: {', '.join(sorted(duplicate_columns))}"
+        )
+
+
+def _collect_sensitive_selectability_errors(table: TableMetadata, errors: list[str]) -> None:
+    sensitive_names = {name.upper() for name in table.sensitive_columns}
+    conflicting_columns = sorted(
+        {
+            column.name.upper()
+            for column in table.columns
+            if column.allowed_for_select
+            and (column.sensitive or column.name.upper() in sensitive_names)
+        }
+    )
+    if conflicting_columns:
+        errors.append(
+            f"Sensitive columns cannot be selectable in table {table.full_name}: "
+            f"{', '.join(conflicting_columns)}"
         )
 
 
