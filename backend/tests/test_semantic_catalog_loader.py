@@ -221,3 +221,28 @@ approved_lookup_values:
         assert entries[0].values[0].code == "4106"
     finally:
         shutil.rmtree(metadata_path.parent, ignore_errors=True)
+
+def test_a2_approved_sensitivity_classification_is_exact():
+    loader = SemanticCatalogLoader(Path("metadata"))
+    tables = {table.full_name: table for table in loader.load_tables()}
+
+    medidores = tables["SAC.MEDIDORES"]
+    columns = {column.name: column for column in medidores.columns}
+
+    approved_sensitive = {"IP", "IMEI", "CODIGO_AUTENTICACION"}
+    reviewed_non_sensitive = {"NRO_TELEFONICO", "APN"}
+
+    assert set(medidores.sensitive_columns) == approved_sensitive
+    for name in approved_sensitive:
+        assert columns[name].sensitive is True
+        assert columns[name].allowed_for_select is False
+    for name in reviewed_non_sensitive:
+        assert columns[name].sensitive is False
+        assert columns[name].allowed_for_select is True
+
+    procesos = tables["SAC.PROCESOS"]
+    process_columns = {column.name: column for column in procesos.columns}
+    for name in {"CEDULA_SOL", "CLIENTE_ID", "OBSERVACION", "USER_SISTEMA"}:
+        assert process_columns[name].sensitive is False
+        assert process_columns[name].allowed_for_select is True
+
