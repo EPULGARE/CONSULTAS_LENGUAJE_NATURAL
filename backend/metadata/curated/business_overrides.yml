@@ -134,6 +134,20 @@ tables:
       parametrizados aprobados, como SAC.MULTITABLA y SAC.MUNICIPIOS. Cuando una
       consulta se refiera al NIU, debe interpretarse como CLIENTE_ID.
   SAC.MEDIDORES:
+    business_description: >-
+      SAC.MEDIDORES representa los equipos de medida asociados a una cuenta o NIU.
+      Cada registro corresponde a un medidor y se relaciona con SAC.CLIENTES mediante
+      CLIENTE_ID, que identifica la cuenta a la cual esta asociado el equipo.
+      NUMERO_MEDIDOR corresponde al numero o serial fisico utilizado para identificar
+      el medidor en el negocio, mientras que MEDIDOR_ID es el identificador interno
+      del medidor dentro del sistema. La tabla concentra informacion tecnica,
+      operativa y de configuracion del equipo, incluyendo tipo y caracteristicas del
+      medidor, marca y modelo, numero de fases e hilos, tension y frecuencia nominal,
+      relaciones de corriente, clase de exactitud, factor de multiplicacion,
+      propiedad, estado y funcionamiento, fechas de instalacion, entrada en
+      operacion, calibracion y retiro, caracteristicas de memoria, capacidades de
+      lectura local y remota, canales de medicion, informacion de comunicaciones y
+      modem, asi como datos tecnicos, metrologicos y normativos asociados al equipo.
     sensitive_columns:
     - IP
     - IMEI
