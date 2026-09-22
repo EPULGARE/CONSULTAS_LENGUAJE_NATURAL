@@ -19,7 +19,7 @@ def test_resolve_output_path_blocks_outside_outputs():
 
 def test_resolve_output_path_inside_outputs():
     path = dbg.resolve_output_path("outputs/manual_query_debug.json")
-    assert str(path).lower().endswith("outputs\\manual_query_debug.json")
+    assert path.parts[-2:] == ("outputs", "manual_query_debug.json")
 
 
 def test_sanitize_hides_secrets(monkeypatch):

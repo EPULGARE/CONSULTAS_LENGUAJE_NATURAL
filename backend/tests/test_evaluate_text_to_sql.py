@@ -244,7 +244,7 @@ def test_output_outside_outputs_is_blocked():
 
 def test_output_inside_outputs_is_allowed():
     output = resolve_output_path("outputs/text_to_sql_evaluation.json")
-    assert str(output).lower().endswith("outputs\\text_to_sql_evaluation.json")
+    assert output.parts[-2:] == ("outputs", "text_to_sql_evaluation.json")
 
 
 def test_evaluator_does_not_call_intent_enhancer_when_disabled(monkeypatch):

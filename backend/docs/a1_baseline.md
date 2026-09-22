@@ -58,7 +58,7 @@ La documentacion solicitada esta en `backend/docs/`, no en `docs/` de la raiz.
 
 | Validacion | Comando desde su directorio | Resultado | Exit |
 | --- | --- | --- | --- |
-| Backend | `python -m pytest -q tests` | 319 passed, 2 warnings, 214.61 s; revalidacion del 2026-09-22 | 0 |
+| Backend | `python -m pytest -q tests` | 319 passed, 2 warnings, 201.74 s; tras corregir las dos assertions de CI | 0 |
 | Frontend | `npm ci` y `npm run build` | Instalacion limpia y compilacion/TypeScript correctas | 0 / 0 |
 | Readiness | `python -m scripts.project_readiness_check` | OK=20, WARNING=0, ERROR=0; tambien con valores ficticios de CI | 0 |
 | Text-to-SQL | `python -m scripts.evaluate_text_to_sql --questions metadata/evaluation/questions.yml --output outputs/text_to_sql_evaluation.json --fail-on-error` | 5/5, failed=0, skipped=0, pass_rate=100 | 0 |
@@ -113,6 +113,20 @@ Se consultaron los workflow runs del HEAD `2f312f1`: lista vacia. Falta ejecutar
 y observar CI verde sobre el commit final que incluya el estado certificado.
 Ese es el criterio externo pendiente; no se declara validado ni se marca el
 cierre integral de A1 hasta contar con dicha evidencia.
+
+## Primer CI remoto y correccion de portabilidad
+
+El commit `e265ba2aa74a752471da2cd60053fe146c4199e0` fue enviado por push normal
+a `origin/main`. [Run 35731615088](https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL/actions/runs/35731615088)
+fallo exclusivamente en dos assertions de rutas: `test_evaluate_text_to_sql.py:247`
+y `test_manual_query_debug.py:22` exigian el separador de Windows. Resultado:
+317 passed, 2 failed; readiness OK=20/WARNING=0/ERROR=0, frontend correcto y
+Text-to-SQL 5/5 con artifact generado. El runner usa Python 3.12.14; local, 3.12.12.
+
+Se reprodujo la diferencia con PurePosixPath y PureWindowsPath. La correccion
+compara los dos componentes finales de Path (outputs y nombre exacto del JSON),
+sin cambiar la implementacion, eliminar tests ni debilitar el control de salida.
+Son los unicos dos archivos de tests adicionales modificados durante este cierre.
 
 ## Control de cambios
 
