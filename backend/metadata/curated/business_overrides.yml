@@ -273,9 +273,16 @@ tables:
           \ a una agrupaci\xF3n"
         allowed_for_select: true
   SAC.V_AC_PROCESOS:
-    business_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
-      identifica al trabajador que termino la accion; no al cliente. Un proceso puede
-      tener varias acciones: para contar procesos usar COUNT(DISTINCT NUMERO_PROCESO). Para contar acciones de esta vista usar COUNT(*), no contar procesos distintos.'
+    business_description: >-
+      SAC.V_AC_PROCESOS es una vista que contiene las acciones individuales realizadas
+      dentro de los procesos. Cada registro representa una accion asociada a un proceso
+      mediante NUMERO_PROCESO, por lo que un mismo proceso puede aparecer en multiples
+      filas al tener varias acciones. D_ACCION describe la accion realizada, ESTADO
+      identifica su estado, FECHA_SISTEMA registra la fecha de sistema de la accion y
+      USER_SISTEMA identifica al trabajador que termino la accion, no al cliente ni al
+      responsable asignado. Para contar procesos debe utilizarse
+      COUNT(DISTINCT NUMERO_PROCESO); para contar acciones individuales de esta vista
+      debe utilizarse COUNT(*).
     synonyms:
     - acciones
     - accion
@@ -308,8 +315,138 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.CODCA:
+    business_description: >-
+      SAC.CODCA es el catalogo de conceptos utilizados en la facturacion. Cada
+      registro representa un concepto de facturacion o cobro identificado por
+      CODIGO_CONCEPTO. DESCRIPCION contiene el nombre legible del concepto que debe
+      utilizarse para presentar su significado al usuario. Los conceptos registrados
+      en esta tabla son referenciados desde SAC.CLI_FAC_DETALLE.CODIGO_CONCEPTO para
+      identificar que concepto o cargo corresponde a cada detalle facturado. La tabla
+      contiene ademas atributos relacionados con la configuracion contable, recaudo,
+      amortizacion, intereses, ajustes y comportamiento del concepto dentro de la
+      facturacion.
+  SAC.CLI_FACTURAS:
+    business_description: >-
+      SAC.CLI_FACTURAS contiene registros tecnicos de campos etiquetados del spool
+      de facturacion asociados a un NIU/cuenta y a un consecutivo de facturacion.
+      Cada registro representa un campo tecnico individual y contiene una etiqueta
+      (ETIQUETA_FE), el texto asociado a dicha etiqueta (TEXTO_SPOOL) y un
+      identificador de mapeo de etiquetas XML (ID_MAPEO). Una misma cabecera de
+      facturacion, identificada por CLIENTE_ID + CONSECUTIVO, puede tener multiples
+      registros en esta tabla. En los datos actualmente verificados, todos los
+      registros corresponden a una cabecera existente en SAC.CLI_FACTURACION mediante
+      CLIENTE_ID y CONSECUTIVO, aunque no existe una clave foranea declarada entre
+      ambas tablas. Una fila de SAC.CLI_FACTURAS no debe interpretarse como una
+      factura completa, una cabecera de facturacion ni un concepto o cargo facturado.
+    columns:
+      CLIENTE_ID:
+        business_description: >-
+          NIU/cuenta al que pertenece el registro tecnico de facturacion.
+      CONSECUTIVO:
+        business_description: >-
+          Consecutivo de facturacion dentro del NIU. Junto con CLIENTE_ID corresponde
+          a la cabecera de SAC.CLI_FACTURACION y se repite en los distintos campos
+          tecnicos de esa cabecera.
+      ETIQUETA_FE:
+        business_description: >-
+          Etiqueta que identifica el campo o destino del texto dentro del registro
+          tecnico de facturacion. Oracle la documenta como la etiqueta de la nota a
+          la que va dirigido. El significado exacto de FE y de nota no cuenta con
+          evidencia suficiente.
+      TEXTO_SPOOL:
+        business_description: >-
+          Texto del spool asociado a la etiqueta para esa cuenta y consecutivo.
+          Puede ser nulo y no representa por si solo una factura completa.
+      ID_MAPEO:
+        business_description: >-
+          Identificador del mapeo de etiquetas XML segun el comentario de Oracle.
+          Puede compartirse entre multiples etiquetas y registros; no identifica una
+          fila de forma unica. La entidad exacta a la que referencia no cuenta con
+          evidencia suficiente.
+  SAC.CLI_FAC_DETALLE:
+    business_description: >-
+      SAC.CLI_FAC_DETALLE contiene el detalle de los conceptos o cargos facturados a
+      una cuenta o NIU. Cada registro representa un cargo o concepto individual dentro
+      de una facturacion. CLIENTE_ID identifica el NIU o cuenta y, junto con
+      CONSECUTIVO, identifica la cabecera de facturacion correspondiente en
+      SAC.CLI_FACTURACION; esta relacion esta respaldada por una clave foranea
+      declarada en Oracle y es de tipo cabecera-detalle 1:N. Por tanto, CONSECUTIVO
+      no identifica de forma individual cada cargo, sino la facturacion a la que
+      pertenece dentro del NIU. CODIGO_CONCEPTO identifica el concepto facturado y se
+      relaciona con SAC.CODCA.CODIGO_CONCEPTO, mientras que VALOR_CONCEPTO
+      corresponde al valor asociado al concepto. NUMERO_PROCESO permite relacionar el
+      detalle con un proceso cuando existe dicha asociacion. La tabla tambien conserva
+      informacion de cantidad, pago y saldos relacionados con el concepto facturado.
+      CONS_NRO_FAC es un campo adicional cuyo significado de negocio exacto no cuenta
+      actualmente con evidencia suficiente y no debe utilizarse como sustituto de
+      CLIENTE_ID + CONSECUTIVO para identificar la cabecera de facturacion.
+  SAC.MULTITABLA:
+    business_description: >-
+      SAC.MULTITABLA es un catalogo general de parametrizacion utilizado para
+      interpretar codigos funcionales almacenados en diferentes tablas del sistema.
+      La columna TABLA identifica el tipo o grupo de parametrizacion al que pertenece
+      cada registro; CODIGO_CAR almacena el codigo cuando su representacion es de tipo
+      caracter, CODIGO_NUM cuando el codigo es numerico, y DESCRIPCION contiene el
+      significado legible asociado al codigo. Esta tabla se utiliza como catalogo de
+      referencia para traducir codigos de negocio de entidades como clientes y
+      procesos, mediante relaciones y filtros de TABLA previamente aprobados. No debe
+      asumirse una relacion con SAC.MULTITABLA para una columna si dicha relacion o
+      parametrizacion no esta expresamente aprobada en el catalogo semantico.
+  SAC.CLIENTES:
+    business_description: >-
+      SAC.CLIENTES representa la cuenta del servicio, identificada principalmente por
+      CLIENTE_ID, que corresponde al NIU y constituye el identificador principal de la
+      cuenta dentro del sistema. La tabla concentra ademas la informacion asociada al
+      cliente y a las caracteristicas de su cuenta y servicio, incluyendo estados del
+      cliente, suministro y facturacion, ubicacion geografica, ciclo, tarifa, clase y
+      tipo de servicio, estrato, segmentacion y saldo actual. Varios de estos atributos
+      se almacenan mediante codigos que se interpretan utilizando los catalogos
+      parametrizados aprobados, como SAC.MULTITABLA y SAC.MUNICIPIOS. Cuando una
+      consulta se refiera al NIU, debe interpretarse como CLIENTE_ID.
+  SAC.MEDIDORES:
+    business_description: >-
+      SAC.MEDIDORES representa los equipos de medida asociados a una cuenta o NIU.
+      Cada registro corresponde a un medidor y se relaciona con SAC.CLIENTES mediante
+      CLIENTE_ID, que identifica la cuenta a la cual esta asociado el equipo.
+      NUMERO_MEDIDOR corresponde al numero o serial fisico utilizado para identificar
+      el medidor en el negocio, mientras que MEDIDOR_ID es el identificador interno
+      del medidor dentro del sistema. La tabla concentra informacion tecnica,
+      operativa y de configuracion del equipo, incluyendo tipo y caracteristicas del
+      medidor, marca y modelo, numero de fases e hilos, tension y frecuencia nominal,
+      relaciones de corriente, clase de exactitud, factor de multiplicacion,
+      propiedad, estado y funcionamiento, fechas de instalacion, entrada en
+      operacion, calibracion y retiro, caracteristicas de memoria, capacidades de
+      lectura local y remota, canales de medicion, informacion de comunicaciones y
+      modem, asi como datos tecnicos, metrologicos y normativos asociados al equipo.
+    sensitive_columns:
+    - IP
+    - IMEI
+    - CODIGO_AUTENTICACION
+    columns:
+      IP:
+        allowed_for_select: false
+      IMEI:
+        allowed_for_select: false
+      CODIGO_AUTENTICACION:
+        allowed_for_select: false
+      NRO_TELEFONICO:
+        allowed_for_select: true
+      APN:
+        allowed_for_select: true
   SAC.PROCESOS:
-    business_description: Procesos, tramites, solicitudes y PQR asociados a clientes. FECHA_SOL es la fecha de creacion del proceso; usarla para procesos creados hoy o en un periodo.
+    business_description: >-
+      SAC.PROCESOS contiene los procesos, tramites, solicitudes y PQR gestionados en
+      el sistema y asociados a una cuenta o cliente. Cada registro representa un
+      proceso identificado de forma unica por NUMERO_PROCESO. CLIENTE_ID identifica
+      el NIU o cuenta asociada al proceso. PROCESO corresponde al codigo del proceso
+      realizado, mientras que TIPO identifica el tipo de proceso. La tabla contiene
+      ademas informacion sobre creacion, estado, clasificacion, solicitante, medios de
+      solicitud y notificacion, dependencia, ubicacion, facturacion y cierre del
+      proceso. FECHA_SOL corresponde especificamente a la fecha de creacion del
+      proceso y debe utilizarse cuando se consulte por procesos creados o registrados
+      en una fecha o periodo. Un proceso puede tener multiples acciones registradas
+      posteriormente en SAC.V_AC_PROCESOS.
     synonyms:
       - proceso
       - procesos

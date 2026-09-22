@@ -74,7 +74,7 @@ def test_smoke_test_no_select_star_and_uses_where_zero(monkeypatch):
     assert "WHERE 1=0" in joined
 
 
-def test_table_without_non_sensitive_columns_reports_warning(monkeypatch):
+def test_sensitive_selectable_column_fails_catalog_smoke_test(monkeypatch):
     tables = [
         TableMetadata(
             schema="TEST_SCHEMA",
@@ -113,4 +113,4 @@ def test_table_without_non_sensitive_columns_reports_warning(monkeypatch):
 
     monkeypatch.setattr("scripts.oracle_catalog_smoke_test.oracledb.connect", lambda **kwargs: FakeConn())
     result = run_smoke_test()
-    assert result == 0
+    assert result == 1
