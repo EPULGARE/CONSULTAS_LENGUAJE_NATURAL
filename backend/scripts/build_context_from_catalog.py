@@ -42,14 +42,22 @@ def _apply_table_overrides(tables: list[dict[str, Any]], overrides: dict[str, An
             updated["domain"] = override.get("domain") or updated.get("domain", "")
         if "allowed_for_query" in override:
             updated["allowed_for_query"] = bool(override.get("allowed_for_query"))
+        if "sensitive_columns" in override:
+            updated["sensitive_columns"] = [
+                str(name).upper() for name in (override.get("sensitive_columns") or [])
+            ]
 
         column_overrides = override.get("columns", {}) if isinstance(override.get("columns"), dict) else {}
+        sensitive_set = {str(name).upper() for name in (updated.get("sensitive_columns") or [])}
         updated_columns = []
         for column in updated.get("columns", []):
             col = dict(column)
             col_override = column_overrides.get(col.get("name", ""), {})
             if isinstance(col_override, dict) and "business_description" in col_override:
                 col["description"] = col_override.get("business_description") or col.get("description", "")
+            if isinstance(col_override, dict) and "allowed_for_select" in col_override:
+                col["allowed_for_select"] = bool(col_override.get("allowed_for_select"))
+            col["sensitive"] = str(col.get("name", "")).upper() in sensitive_set
             updated_columns.append(col)
         updated["columns"] = updated_columns
         enriched.append(updated)
