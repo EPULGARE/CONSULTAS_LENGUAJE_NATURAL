@@ -86,6 +86,29 @@ manual_relationships:
   description: Relacion de cliente a catalogo municipal
   fixed_filter: ''
 tables:
+  SAC.MUNICIPIOS:
+    business_description: >-
+      SAC.MUNICIPIOS es el catalogo de municipios utilizado para interpretar la
+      ubicacion geografica asociada a las cuentas del sistema. Cada registro
+      representa un municipio. MUNICIPIO contiene el codigo del municipio y
+      DESCRIPCION su nombre legible. DEPTO identifica el departamento al que
+      pertenece el municipio. DIPOLA contiene el codigo conformado por el
+      departamento y el municipio. La tabla se utiliza como referencia para
+      traducir el codigo almacenado en SAC.CLIENTES.MUNICIPIO al nombre del municipio
+      correspondiente. El significado de negocio de MERCADO no cuenta actualmente
+      con evidencia suficiente y no debe utilizarse para inferir informacion
+      adicional.
+    columns:
+      DEPTO:
+        business_description: Codigo del departamento al que pertenece el municipio.
+      MUNICIPIO:
+        business_description: Codigo del municipio.
+      DESCRIPCION:
+        business_description: Nombre legible del municipio.
+      DIPOLA:
+        business_description: Codigo compuesto por departamento y municipio.
+      MERCADO:
+        business_description: SIN EVIDENCIA SUFICIENTE sobre su significado de negocio.
   SAC.V_AC_PROCESOS:
     business_description: >-
       SAC.V_AC_PROCESOS es una vista que contiene las acciones individuales realizadas
