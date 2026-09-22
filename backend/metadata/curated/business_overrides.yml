@@ -241,6 +241,62 @@ tables:
       se almacenan mediante codigos que se interpretan utilizando los catalogos
       parametrizados aprobados, como SAC.MULTITABLA y SAC.MUNICIPIOS. Cuando una
       consulta se refiera al NIU, debe interpretarse como CLIENTE_ID.
+    columns:
+      CLIENTE_ID:
+        business_description: >-
+          NIU o identificador principal de la cuenta del servicio. Es el
+          identificador principal de SAC.CLIENTES y se utiliza para relacionar la
+          cuenta con otras entidades del sistema.
+      ESTADO_CLIENTE:
+        business_description: >-
+          Codigo que representa el estado del cliente o cuenta. Su descripcion
+          legible se obtiene de SAC.MULTITABLA usando el catalogo CLI_ESTADO.
+      ESTADO_SUMINISTRO:
+        business_description: >-
+          Codigo que representa el estado del suministro asociado a la cuenta. Su
+          descripcion legible se obtiene de SAC.MULTITABLA mediante
+          CLI_SUMINISTRO.
+      ESTADO_FACTURACION:
+        business_description: >-
+          Codigo que representa el estado de facturacion de la cuenta. Su
+          descripcion legible se obtiene de SAC.MULTITABLA mediante FAC_ESTADO.
+      DEPTO:
+        business_description: >-
+          Codigo del departamento asociado a la cuenta. Su descripcion se
+          interpreta mediante el catalogo DEPTOS de SAC.MULTITABLA.
+      MUNICIPIO:
+        business_description: >-
+          Codigo del municipio asociado a la cuenta. Se relaciona con
+          SAC.MUNICIPIOS.MUNICIPIO para obtener el nombre legible del municipio.
+      BARRIO:
+        business_description: >-
+          Codigo del barrio asociado a la cuenta. Su descripcion se obtiene de
+          SAC.MULTITABLA mediante el catalogo BARRIOS.
+      CICLO:
+        business_description: >-
+          Codigo del ciclo asociado a la cuenta. Su descripcion se obtiene de
+          SAC.MULTITABLA mediante CICLOS.
+      TARIFA:
+        business_description: >-
+          Codigo de la tarifa asociada a la cuenta o servicio. Su descripcion se
+          obtiene de SAC.MULTITABLA mediante TARIFAS.
+      CLASE_SERVICIO:
+        business_description: >-
+          Codigo de la clase de servicio de la cuenta. Su descripcion se obtiene de
+          SAC.MULTITABLA mediante CLASE_SERVICIO.
+      ESTRATO:
+        business_description: >-
+          Codigo del estrato asociado a la cuenta. Su descripcion se obtiene de
+          SAC.MULTITABLA mediante ESTRATOS.
+      SEGMENTO_MERCADO:
+        business_description: >-
+          Codigo del segmento de mercado asociado a la cuenta. Su descripcion se
+          obtiene mediante SAC.MULTITABLA, catalogo CLI_SEGMENTOS.
+      TIPO_SERVICIO:
+        business_description: >-
+          Codigo del tipo de servicio asociado a la cuenta. Su descripcion se
+          obtiene de SAC.MULTITABLA mediante TIPO_SERVICIO.
+
   SAC.MEDIDORES:
     business_description: >-
       SAC.MEDIDORES representa los equipos de medida asociados a una cuenta o NIU.
