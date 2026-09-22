@@ -122,6 +122,22 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.MEDIDORES:
+    sensitive_columns:
+    - IP
+    - IMEI
+    - CODIGO_AUTENTICACION
+    columns:
+      IP:
+        allowed_for_select: false
+      IMEI:
+        allowed_for_select: false
+      CODIGO_AUTENTICACION:
+        allowed_for_select: false
+      NRO_TELEFONICO:
+        allowed_for_select: true
+      APN:
+        allowed_for_select: true
   SAC.PROCESOS:
     business_description: Procesos, tramites, solicitudes y PQR asociados a clientes. FECHA_SOL es la fecha de creacion del proceso; usarla para procesos creados hoy o en un periodo.
     synonyms:
