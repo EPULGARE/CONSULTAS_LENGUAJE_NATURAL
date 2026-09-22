@@ -1,0 +1,565 @@
+schema: SAC
+evidence_date: '2026-09-22'
+source: Metadata Oracle inspeccionada mediante SELECT en esta conversacion; sin filas
+  de negocio.
+tables:
+- full_name: SAC.CLI_FACTURACION
+  description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una fila representa
+    una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero de factura,
+    fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El detalle referencia
+    ambas columnas mediante FK declarada; esa union compuesta aun no esta habilitada
+    en el catalogo de relaciones. No sustituir CONSECUTIVO por CONS_NRO_FAC. Las fechas
+    NUMBER conservan su valor numerico: su codificacion no se ha validado. No sumar
+    TOTAL_FACTURADO despues de multiplicar cabeceras por detalles.'
+  domain_suggested: facturas
+  synonyms:
+  - cabecera de facturacion
+  - cabeceras de facturacion
+  - numero de factura
+  - total facturado
+  - vencimiento de factura
+  example_questions:
+  - cuantas cabeceras de facturacion existen
+  - numero de factura y total facturado por cuenta
+  columns:
+  - name: CLIENTE_ID
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    oracle_comment: Codigo que identifica el cliente en el sistema
+    business_description: NIU / cuenta de la cabecera de facturacion. Parte de la
+      clave primaria junto con CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    data_type: NUMBER
+    nullable: N
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    oracle_comment: Consecutivo de facturacion
+    business_description: Consecutivo de facturacion dentro del NIU/cuenta. Junto
+      con CLIENTE_ID identifica una cabecera; no es unico globalmente ni identifica
+      un cargo individual.
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 14
+    data_precision: null
+    data_scale: null
+    oracle_comment: Numero de Factura
+    business_description: Numero de factura segun Oracle. Admite NULL; no tiene unicidad
+      declarada y no sustituye la clave CLIENTE_ID + CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_LECTURA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Fecha de Lectura
+    business_description: Fecha de Lectura Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FACTURACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Fecha de Facturacion
+    business_description: Fecha de Facturacion Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_VENCIMIENTO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Fecha de Vencimiento
+    business_description: Fecha de Vencimiento Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_APLICACION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Fecha de Aplicacion
+    business_description: Fecha de Aplicacion Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    data_type: DATE
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    oracle_comment: Fecha de Sistema
+    business_description: Fecha de Sistema
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Ciclo
+    business_description: Ciclo
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    oracle_comment: Municipio del cliente
+    business_description: Municipio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POBLADO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Centro Poblado del cliente [V_CENPOB]
+    business_description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AREA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    oracle_comment: Codigo de Area del cliente
+    business_description: Codigo de Area del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SERVICIO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    oracle_comment: Clase de Servicio del cliente
+    business_description: Clase de Servicio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    oracle_comment: Estrato del cliente
+    business_description: Estrato del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIDA_TENSION
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    oracle_comment: Medida de Tension
+    business_description: Medida de Tension
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CU
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Grupo Cu aplicado en la liquidacion
+    business_description: Grupo Cu aplicado en la liquidacion
+    sensitive: false
+    allowed_for_select: true
+  - name: TARIFA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Tarifa con que se factura el cliente
+    business_description: Tarifa con que se factura el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: NIT_TMP
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    oracle_comment: Nit del cliente
+    business_description: Nit del cliente
+    sensitive: true
+    allowed_for_select: false
+  - name: TRANSFORMADOR_ID
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 6
+    data_scale: 0
+    oracle_comment: Numero que identifica el Transformador al que esta asociado el
+      cliente
+    business_description: Numero que identifica el Transformador al que esta asociado
+      el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_ENTIDAD
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 6
+    data_precision: null
+    data_scale: null
+    oracle_comment: Codigo de Entidad
+    business_description: Codigo de Entidad
+    sensitive: false
+    allowed_for_select: true
+  - name: MODIFICADA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    oracle_comment: Indica si la factura ha sido (S) o no (N) modificada desde su
+      creacion (ajustes)
+    business_description: Indica si la factura ha sido (S) o no (N) modificada desde
+      su creacion (ajustes)
+    sensitive: false
+    allowed_for_select: true
+  - name: DIAS_FACTURADOS
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Dias liquidados con la factura
+    business_description: Dias liquidados con la factura
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIGUEDAD_SALDO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Antiguedad de Saldo del cliente al momento de liquidar
+    business_description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: OBS_LECTURA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    oracle_comment: Observacion de Lectura
+    business_description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_FACTURADO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 11
+    data_scale: 0
+    oracle_comment: Valor Total Facturado
+    business_description: Valor Total Facturado
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_INTERESES
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    oracle_comment: Valor de los Intereses facturados
+    business_description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_REACTIVO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo leido por energia Reactiva
+    business_description: Consumo leido por energia Reactiva
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo liquidado por energia Activa y Baja
+    business_description: Consumo liquidado por energia Activa y Baja
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAHP
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo liquidado por energia Activa horas Pico
+    business_description: Consumo liquidado por energia Activa horas Pico
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAOH
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo liquidado por energia Activa horas Restantes
+    business_description: Consumo liquidado por energia Activa horas Restantes
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ADICIONAL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo Adicional calculado fuera del medidor
+    business_description: Consumo Adicional calculado fuera del medidor
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_COMUN
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 8
+    data_scale: 0
+    oracle_comment: Consumo de area Comun distribuida al cliente si es Hija o Descontada
+      si es Padre
+    business_description: Consumo de area Comun distribuida al cliente si es Hija
+      o Descontada si es Padre
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_FINANCIADO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 0
+    oracle_comment: Saldo de las Financiaciones pendiente por facturar en cuotas
+    business_description: Saldo de las Financiaciones pendiente por facturar en cuotas
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIG_SALDO
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Antiguedad de Saldo del cliente al momento de liquidar
+    business_description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: TOT_INTERESES
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    oracle_comment: Valor de los Intereses facturados
+    business_description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POB
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 3
+    data_scale: 0
+    oracle_comment: Centro Poblado del cliente [V_CENPOB]
+    business_description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CLAVE_LECTURA
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 2
+    data_precision: null
+    data_scale: null
+    oracle_comment: Observacion de Lectura
+    business_description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SERVICIO
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    oracle_comment: Servicio relacionado al cliente. [TIPO_SERVICIO]
+    business_description: Servicio relacionado al cliente. [TIPO_SERVICIO]
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_FACTURACION
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 1
+    data_precision: null
+    data_scale: null
+    oracle_comment: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+    business_description: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+    sensitive: false
+    allowed_for_select: true
+  - name: OPERADOR_RED
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 4
+    data_scale: 0
+    oracle_comment: Operador de red que cubre el area donde se ubica el transformador
+    business_description: Operador de red que cubre el area donde se ubica el transformador
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA_CAR
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 14
+    data_precision: null
+    data_scale: null
+    oracle_comment: null
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: PERIODICIDAD
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 1
+    data_scale: 0
+    oracle_comment: "Indica la periodicidad de lectura utilizada al momento de la\
+      \ liquidaci\xF3n del cliente"
+    business_description: "Indica la periodicidad de lectura utilizada al momento\
+      \ de la liquidaci\xF3n del cliente"
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PRELIQUIDACION
+    data_type: DATE
+    nullable: Y
+    data_length: 7
+    data_precision: null
+    data_scale: null
+    oracle_comment: Fecha en la que se pre-liquida un ciclo de FENS
+    business_description: Fecha en la que se pre-liquida un ciclo de FENS
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID_AGRUPA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 10
+    data_scale: 0
+    oracle_comment: "Identificador de agrupaci\xF3n de clientes en el sistema"
+    business_description: "Identificador de agrupaci\xF3n de clientes en el sistema"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO_AGRUPA
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 5
+    data_scale: 0
+    oracle_comment: "Consecutivo de agrupaci\xF3n de facturacion"
+    business_description: "Consecutivo de agrupaci\xF3n de facturacion"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONDICION_ESPECIAL
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 2
+    data_scale: 0
+    oracle_comment: null
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: NIT
+    data_type: VARCHAR2
+    nullable: Y
+    data_length: 20
+    data_precision: null
+    data_scale: null
+    oracle_comment: null
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: true
+    allowed_for_select: false
+  - name: FACTOR_COMUN
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 9
+    data_scale: 6
+    oracle_comment: "Factor asociado al cliente que pertenece a una agrupaci\xF3n"
+    business_description: "Factor asociado al cliente que pertenece a una agrupaci\xF3\
+      n"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_EXP_COMUN
+    data_type: NUMBER
+    nullable: Y
+    data_length: 22
+    data_precision: 12
+    data_scale: 4
+    oracle_comment: "Consumo exportado que le corresponde al cliente que pertenece\
+      \ a una agrupaci\xF3n"
+    business_description: "Consumo exportado que le corresponde al cliente que pertenece\
+      \ a una agrupaci\xF3n"
+    sensitive: false
+    allowed_for_select: true
+  primary_keys:
+  - constraint_name: C_CLIFAC_CLID_CNS_PK
+    columns:
+    - CLIENTE_ID
+    - CONSECUTIVO
+    status: ENABLED
+    validated: VALIDATED
+  foreign_keys:
+  - constraint_name: C_CLI_FACTURACION_CLI_FK
+    references_table: SAC.CLIENTES
+    column_mappings:
+    - source_column: CLIENTE_ID
+      target_column: CLIENTE_ID
+    status: ENABLED
+    validated: NOT VALIDATED
+confirmed_detail_relationship:
+  source_table: SAC.CLI_FAC_DETALLE
+  target_table: SAC.CLI_FACTURACION
+  constraint_name: C_CLIFACDET_CLIFAC_FK
+  column_mappings:
+  - source_column: CLIENTE_ID
+    target_column: CLIENTE_ID
+  - source_column: CONSECUTIVO
+    target_column: CONSECUTIVO
+  cardinality: N:1
+  evaluated_details: 193123662
+  matched_details: 193123662
+  unmatched_details: 0
+  ambiguous_details: 0
+  runtime_enabled: false
+  reason: El validador actual no exige conjuntamente las dos columnas de una relacion
+    compuesta.

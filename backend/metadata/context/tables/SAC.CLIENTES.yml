@@ -152,6 +152,12 @@ relationships:
   right_table: SAC.MUNICIPIOS
   right_column: MUNICIPIO
   description: Relacion confirmada de cliente a municipio
+- left_table: SAC.CLI_FACTURACION
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Cabecera de facturacion de la cuenta; FK Oracle C_CLI_FACTURACION_CLI_FK
+    ENABLED, NOT VALIDATED.
 - left_table: SAC.CLIENTES
   left_column: ESTADO_CLIENTE
   right_table: SAC.MULTITABLA

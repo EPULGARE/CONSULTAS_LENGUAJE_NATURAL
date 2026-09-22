@@ -1,0 +1,290 @@
+source_file: C:\Desarollo2\Generacion SQL SAC\CONSULTAS_LENGUAJE_NATURAL\backend\metadata\generated\cli_facturacion.yml
+generated_at: '2026-09-22T15:48:18.318521+00:00'
+reviewer: 'Autorizacion explicita del usuario: quiero que incluyas cli_facturacion
+  en los catalogos. Revision tecnica basada en evidencia Oracle de la conversacion.'
+status: approved_with_restrictions
+tables:
+- full_name: SAC.CLI_FACTURACION
+  approved: true
+  allowed_for_query: true
+  domain: facturas
+  business_description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una
+    fila representa una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero
+    de factura, fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El
+    detalle referencia ambas columnas mediante FK declarada; esa union compuesta aun
+    no esta habilitada en el catalogo de relaciones. No sustituir CONSECUTIVO por
+    CONS_NRO_FAC. Las fechas NUMBER conservan su valor numerico: su codificacion no
+    se ha validado. No sumar TOTAL_FACTURADO despues de multiplicar cabeceras por
+    detalles.'
+  columns:
+  - name: CLIENTE_ID
+    approved: true
+    business_description: NIU / cuenta de la cabecera de facturacion. Parte de la
+      clave primaria junto con CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    approved: true
+    business_description: Consecutivo de facturacion dentro del NIU/cuenta. Junto
+      con CLIENTE_ID identifica una cabecera; no es unico globalmente ni identifica
+      un cargo individual.
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA
+    approved: true
+    business_description: Numero de factura segun Oracle. Admite NULL; no tiene unicidad
+      declarada y no sustituye la clave CLIENTE_ID + CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_LECTURA
+    approved: true
+    business_description: Fecha de Lectura Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FACTURACION
+    approved: true
+    business_description: Fecha de Facturacion Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_VENCIMIENTO
+    approved: true
+    business_description: Fecha de Vencimiento Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_APLICACION
+    approved: true
+    business_description: Fecha de Aplicacion Almacenada como NUMBER(8,0); codificacion
+      SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    approved: true
+    business_description: Fecha de Sistema
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO
+    approved: true
+    business_description: Ciclo
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    approved: true
+    business_description: Municipio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POBLADO
+    approved: true
+    business_description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AREA
+    approved: true
+    business_description: Codigo de Area del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SERVICIO
+    approved: true
+    business_description: Clase de Servicio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO
+    approved: true
+    business_description: Estrato del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIDA_TENSION
+    approved: true
+    business_description: Medida de Tension
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CU
+    approved: true
+    business_description: Grupo Cu aplicado en la liquidacion
+    sensitive: false
+    allowed_for_select: true
+  - name: TARIFA
+    approved: true
+    business_description: Tarifa con que se factura el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: NIT_TMP
+    approved: true
+    business_description: Nit del cliente
+    sensitive: true
+    allowed_for_select: false
+  - name: TRANSFORMADOR_ID
+    approved: true
+    business_description: Numero que identifica el Transformador al que esta asociado
+      el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_ENTIDAD
+    approved: true
+    business_description: Codigo de Entidad
+    sensitive: false
+    allowed_for_select: true
+  - name: MODIFICADA
+    approved: true
+    business_description: Indica si la factura ha sido (S) o no (N) modificada desde
+      su creacion (ajustes)
+    sensitive: false
+    allowed_for_select: true
+  - name: DIAS_FACTURADOS
+    approved: true
+    business_description: Dias liquidados con la factura
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIGUEDAD_SALDO
+    approved: true
+    business_description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: OBS_LECTURA
+    approved: true
+    business_description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_FACTURADO
+    approved: true
+    business_description: Valor Total Facturado
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_INTERESES
+    approved: true
+    business_description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_REACTIVO
+    approved: true
+    business_description: Consumo leido por energia Reactiva
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVA
+    approved: true
+    business_description: Consumo liquidado por energia Activa y Baja
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAHP
+    approved: true
+    business_description: Consumo liquidado por energia Activa horas Pico
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAOH
+    approved: true
+    business_description: Consumo liquidado por energia Activa horas Restantes
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ADICIONAL
+    approved: true
+    business_description: Consumo Adicional calculado fuera del medidor
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_COMUN
+    approved: true
+    business_description: Consumo de area Comun distribuida al cliente si es Hija
+      o Descontada si es Padre
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_FINANCIADO
+    approved: true
+    business_description: Saldo de las Financiaciones pendiente por facturar en cuotas
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIG_SALDO
+    approved: true
+    business_description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: TOT_INTERESES
+    approved: true
+    business_description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POB
+    approved: true
+    business_description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CLAVE_LECTURA
+    approved: true
+    business_description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SERVICIO
+    approved: true
+    business_description: Servicio relacionado al cliente. [TIPO_SERVICIO]
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_FACTURACION
+    approved: true
+    business_description: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+    sensitive: false
+    allowed_for_select: true
+  - name: OPERADOR_RED
+    approved: true
+    business_description: Operador de red que cubre el area donde se ubica el transformador
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA_CAR
+    approved: true
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: PERIODICIDAD
+    approved: true
+    business_description: "Indica la periodicidad de lectura utilizada al momento\
+      \ de la liquidaci\xF3n del cliente"
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PRELIQUIDACION
+    approved: true
+    business_description: Fecha en la que se pre-liquida un ciclo de FENS
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID_AGRUPA
+    approved: true
+    business_description: "Identificador de agrupaci\xF3n de clientes en el sistema"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO_AGRUPA
+    approved: true
+    business_description: "Consecutivo de agrupaci\xF3n de facturacion"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONDICION_ESPECIAL
+    approved: true
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: NIT
+    approved: true
+    business_description: SIN EVIDENCIA SUFICIENTE
+    sensitive: true
+    allowed_for_select: false
+  - name: FACTOR_COMUN
+    approved: true
+    business_description: "Factor asociado al cliente que pertenece a una agrupaci\xF3\
+      n"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_EXP_COMUN
+    approved: true
+    business_description: "Consumo exportado que le corresponde al cliente que pertenece\
+      \ a una agrupaci\xF3n"
+    sensitive: false
+    allowed_for_select: true
+  relationships:
+  - approved: true
+    references_table: SAC.CLIENTES
+    column_mappings:
+    - source_column: CLIENTE_ID
+      target_column: CLIENTE_ID
+review_notes:
+- 49 columnas inventariadas; NIT, NIT_TMP, NUMERO_FACTURA_CAR y CONDICION_ESPECIAL
+  no seleccionables.
+- La FK compuesta desde CLI_FAC_DETALLE esta documentada pero no se promueve como
+  relaciones simples.
+- No se habilita ninguna relacion con CLI_FACTURAS ni se atribuye semantica a CONS_NRO_FAC.

@@ -58,6 +58,7 @@ domains:
     tables:
       - SAC.CLI_FAC_DETALLE
       - SAC.CLI_FACTURAS
+      - SAC.CLI_FACTURACION
       - SAC.CODCA
   procesos:
     canonical_terms:

@@ -47,6 +47,17 @@ relationships:
   domains:
   - facturas
   - procesos
+- from_table: SAC.CLI_FACTURACION
+  from_column: CLIENTE_ID
+  to_table: SAC.CLIENTES
+  to_column: CLIENTE_ID
+  description: Cabecera de facturacion de la cuenta; FK Oracle C_CLI_FACTURACION_CLI_FK
+    ENABLED, NOT VALIDATED.
+  approved: true
+  join_type: inner
+  domains:
+  - clientes
+  - facturas
 - from_table: SAC.V_AC_PROCESOS
   from_column: NUMERO_PROCESO
   to_table: SAC.PROCESOS

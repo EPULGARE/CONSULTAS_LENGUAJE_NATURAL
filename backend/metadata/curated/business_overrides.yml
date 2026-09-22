@@ -86,6 +86,192 @@ manual_relationships:
   description: Relacion de cliente a catalogo municipal
   fixed_filter: ''
 tables:
+  SAC.CLI_FACTURACION:
+    business_description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una
+      fila representa una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero
+      de factura, fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El
+      detalle referencia ambas columnas mediante FK declarada; esa union compuesta aun
+      no esta habilitada en el catalogo de relaciones. No sustituir CONSECUTIVO por
+      CONS_NRO_FAC. Las fechas NUMBER conservan su valor numerico: su codificacion no
+      se ha validado. No sumar TOTAL_FACTURADO despues de multiplicar cabeceras por
+      detalles.'
+    domain: facturas
+    allowed_for_query: true
+    synonyms:
+    - cabecera de facturacion
+    - cabeceras de facturacion
+    - numero de factura
+    - total facturado
+    - vencimiento de factura
+    example_questions:
+    - cuantas cabeceras de facturacion existen
+    - numero de factura y total facturado por cuenta
+    sensitive_columns:
+    - NIT_TMP
+    - NIT
+    columns:
+      CLIENTE_ID:
+        business_description: NIU / cuenta de la cabecera de facturacion. Parte de la
+          clave primaria junto con CONSECUTIVO.
+        allowed_for_select: true
+      CONSECUTIVO:
+        business_description: Consecutivo de facturacion dentro del NIU/cuenta. Junto
+          con CLIENTE_ID identifica una cabecera; no es unico globalmente ni identifica
+          un cargo individual.
+        allowed_for_select: true
+      NUMERO_FACTURA:
+        business_description: Numero de factura segun Oracle. Admite NULL; no tiene
+          unicidad declarada y no sustituye la clave CLIENTE_ID + CONSECUTIVO.
+        allowed_for_select: true
+      FECHA_LECTURA:
+        business_description: Fecha de Lectura Almacenada como NUMBER(8,0); codificacion
+          SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+        allowed_for_select: true
+      FECHA_FACTURACION:
+        business_description: Fecha de Facturacion Almacenada como NUMBER(8,0); codificacion
+          SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+        allowed_for_select: true
+      FECHA_VENCIMIENTO:
+        business_description: Fecha de Vencimiento Almacenada como NUMBER(8,0); codificacion
+          SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+        allowed_for_select: true
+      FECHA_APLICACION:
+        business_description: Fecha de Aplicacion Almacenada como NUMBER(8,0); codificacion
+          SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+        allowed_for_select: true
+      FECHA_SISTEMA:
+        business_description: Fecha de Sistema
+        allowed_for_select: true
+      CICLO:
+        business_description: Ciclo
+        allowed_for_select: true
+      MUNICIPIO:
+        business_description: Municipio del cliente
+        allowed_for_select: true
+      CENTRO_POBLADO:
+        business_description: Centro Poblado del cliente [V_CENPOB]
+        allowed_for_select: true
+      CODIGO_AREA:
+        business_description: Codigo de Area del cliente
+        allowed_for_select: true
+      CLASE_SERVICIO:
+        business_description: Clase de Servicio del cliente
+        allowed_for_select: true
+      ESTRATO:
+        business_description: Estrato del cliente
+        allowed_for_select: true
+      MEDIDA_TENSION:
+        business_description: Medida de Tension
+        allowed_for_select: true
+      GRUPO_CU:
+        business_description: Grupo Cu aplicado en la liquidacion
+        allowed_for_select: true
+      TARIFA:
+        business_description: Tarifa con que se factura el cliente
+        allowed_for_select: true
+      NIT_TMP:
+        business_description: Nit del cliente
+        allowed_for_select: false
+      TRANSFORMADOR_ID:
+        business_description: Numero que identifica el Transformador al que esta asociado
+          el cliente
+        allowed_for_select: true
+      CODIGO_ENTIDAD:
+        business_description: Codigo de Entidad
+        allowed_for_select: true
+      MODIFICADA:
+        business_description: Indica si la factura ha sido (S) o no (N) modificada desde
+          su creacion (ajustes)
+        allowed_for_select: true
+      DIAS_FACTURADOS:
+        business_description: Dias liquidados con la factura
+        allowed_for_select: true
+      ANTIGUEDAD_SALDO:
+        business_description: Antiguedad de Saldo del cliente al momento de liquidar
+        allowed_for_select: true
+      OBS_LECTURA:
+        business_description: Observacion de Lectura
+        allowed_for_select: true
+      TOTAL_FACTURADO:
+        business_description: Valor Total Facturado
+        allowed_for_select: true
+      TOTAL_INTERESES:
+        business_description: Valor de los Intereses facturados
+        allowed_for_select: true
+      CONSUMO_REACTIVO:
+        business_description: Consumo leido por energia Reactiva
+        allowed_for_select: true
+      CONSUMO_ACTIVA:
+        business_description: Consumo liquidado por energia Activa y Baja
+        allowed_for_select: true
+      CONSUMO_ACTIVAHP:
+        business_description: Consumo liquidado por energia Activa horas Pico
+        allowed_for_select: true
+      CONSUMO_ACTIVAOH:
+        business_description: Consumo liquidado por energia Activa horas Restantes
+        allowed_for_select: true
+      CONSUMO_ADICIONAL:
+        business_description: Consumo Adicional calculado fuera del medidor
+        allowed_for_select: true
+      CONSUMO_COMUN:
+        business_description: Consumo de area Comun distribuida al cliente si es Hija
+          o Descontada si es Padre
+        allowed_for_select: true
+      SALDO_FINANCIADO:
+        business_description: Saldo de las Financiaciones pendiente por facturar en
+          cuotas
+        allowed_for_select: true
+      ANTIG_SALDO:
+        business_description: Antiguedad de Saldo del cliente al momento de liquidar
+        allowed_for_select: true
+      TOT_INTERESES:
+        business_description: Valor de los Intereses facturados
+        allowed_for_select: true
+      CENTRO_POB:
+        business_description: Centro Poblado del cliente [V_CENPOB]
+        allowed_for_select: true
+      CLAVE_LECTURA:
+        business_description: Observacion de Lectura
+        allowed_for_select: true
+      TIPO_SERVICIO:
+        business_description: Servicio relacionado al cliente. [TIPO_SERVICIO]
+        allowed_for_select: true
+      TIPO_FACTURACION:
+        business_description: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+        allowed_for_select: true
+      OPERADOR_RED:
+        business_description: Operador de red que cubre el area donde se ubica el transformador
+        allowed_for_select: true
+      NUMERO_FACTURA_CAR:
+        business_description: SIN EVIDENCIA SUFICIENTE
+        allowed_for_select: false
+      PERIODICIDAD:
+        business_description: "Indica la periodicidad de lectura utilizada al momento\
+          \ de la liquidaci\xF3n del cliente"
+        allowed_for_select: true
+      FECHA_PRELIQUIDACION:
+        business_description: Fecha en la que se pre-liquida un ciclo de FENS
+        allowed_for_select: true
+      CLIENTE_ID_AGRUPA:
+        business_description: "Identificador de agrupaci\xF3n de clientes en el sistema"
+        allowed_for_select: true
+      CONSECUTIVO_AGRUPA:
+        business_description: "Consecutivo de agrupaci\xF3n de facturacion"
+        allowed_for_select: true
+      CONDICION_ESPECIAL:
+        business_description: SIN EVIDENCIA SUFICIENTE
+        allowed_for_select: false
+      NIT:
+        business_description: SIN EVIDENCIA SUFICIENTE
+        allowed_for_select: false
+      FACTOR_COMUN:
+        business_description: "Factor asociado al cliente que pertenece a una agrupaci\xF3\
+          n"
+        allowed_for_select: true
+      CONSUMO_EXP_COMUN:
+        business_description: "Consumo exportado que le corresponde al cliente que pertenece\
+          \ a una agrupaci\xF3n"
+        allowed_for_select: true
   SAC.V_AC_PROCESOS:
     business_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
       identifica al trabajador que termino la accion; no al cliente. Un proceso puede

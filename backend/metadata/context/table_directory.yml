@@ -6,6 +6,27 @@ tables:
   business_terms: []
   allowed_for_query: true
   context_path: metadata/context/tables/SAC.CLIENTES.yml
+- table: SAC.CLI_FACTURACION
+  domain: facturas
+  short_description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una fila
+    representa una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero
+    de factura, fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El
+    detalle referencia ambas columnas mediante FK declarada; esa union compuesta aun
+    no esta habilitada en el catalogo de relaciones. No sustituir CONSECUTIVO por
+    CONS_NRO_FAC. Las fechas NUMBER conservan su valor numerico: su codificacion no
+    se ha validado. No sumar TOTAL_FACTURADO despues de multiplicar cabeceras por
+    detalles.'
+  keywords:
+  - cabecera de facturacion
+  - cabeceras de facturacion
+  - numero de factura
+  - total facturado
+  - vencimiento de factura
+  business_terms:
+  - cuantas cabeceras de facturacion existen
+  - numero de factura y total facturado por cuenta
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.CLI_FACTURACION.yml
 - table: SAC.CLI_FACTURAS
   domain: facturas
   short_description: 'TODO: describir tabla en lenguaje de negocio'

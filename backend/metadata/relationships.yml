@@ -24,3 +24,8 @@
   right_table: SAC.PROCESOS
   right_column: NUMERO_PROCESO
   description: Relacion aprobada de detalle de factura a procesos por numero de proceso
+- left_table: SAC.CLI_FACTURACION
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Cabecera de facturacion de la cuenta; FK Oracle C_CLI_FACTURACION_CLI_FK ENABLED, NOT VALIDATED.

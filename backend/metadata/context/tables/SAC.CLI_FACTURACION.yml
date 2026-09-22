@@ -1,0 +1,382 @@
+table: SAC.CLI_FACTURACION
+domain: facturas
+business_description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una fila
+  representa una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero de
+  factura, fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El detalle
+  referencia ambas columnas mediante FK declarada; esa union compuesta aun no esta
+  habilitada en el catalogo de relaciones. No sustituir CONSECUTIVO por CONS_NRO_FAC.
+  Las fechas NUMBER conservan su valor numerico: su codificacion no se ha validado.
+  No sumar TOTAL_FACTURADO despues de multiplicar cabeceras por detalles.'
+display_column: ''
+columns:
+- name: CLIENTE_ID
+  type: NUMBER
+  business_description: NIU / cuenta de la cabecera de facturacion. Parte de la clave
+    primaria junto con CONSECUTIVO.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Codigo que identifica el cliente en el sistema
+- name: CONSECUTIVO
+  type: NUMBER
+  business_description: Consecutivo de facturacion dentro del NIU/cuenta. Junto con
+    CLIENTE_ID identifica una cabecera; no es unico globalmente ni identifica un cargo
+    individual.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consecutivo de facturacion
+- name: NUMERO_FACTURA
+  type: VARCHAR2
+  business_description: Numero de factura segun Oracle. Admite NULL; no tiene unicidad
+    declarada y no sustituye la clave CLIENTE_ID + CONSECUTIVO.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Numero de Factura
+- name: FECHA_LECTURA
+  type: NUMBER
+  business_description: Fecha de Lectura Almacenada como NUMBER(8,0); codificacion
+    SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de Lectura
+- name: FECHA_FACTURACION
+  type: NUMBER
+  business_description: Fecha de Facturacion Almacenada como NUMBER(8,0); codificacion
+    SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de Facturacion
+- name: FECHA_VENCIMIENTO
+  type: NUMBER
+  business_description: Fecha de Vencimiento Almacenada como NUMBER(8,0); codificacion
+    SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de Vencimiento
+- name: FECHA_APLICACION
+  type: NUMBER
+  business_description: Fecha de Aplicacion Almacenada como NUMBER(8,0); codificacion
+    SIN EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de Aplicacion
+- name: FECHA_SISTEMA
+  type: DATE
+  business_description: Fecha de Sistema
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha de Sistema
+- name: CICLO
+  type: NUMBER
+  business_description: Ciclo
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Ciclo
+- name: MUNICIPIO
+  type: NUMBER
+  business_description: Municipio del cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Municipio del cliente
+- name: CENTRO_POBLADO
+  type: NUMBER
+  business_description: Centro Poblado del cliente [V_CENPOB]
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Centro Poblado del cliente [V_CENPOB]
+- name: CODIGO_AREA
+  type: NUMBER
+  business_description: Codigo de Area del cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Codigo de Area del cliente
+- name: CLASE_SERVICIO
+  type: NUMBER
+  business_description: Clase de Servicio del cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Clase de Servicio del cliente
+- name: ESTRATO
+  type: NUMBER
+  business_description: Estrato del cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Estrato del cliente
+- name: MEDIDA_TENSION
+  type: NUMBER
+  business_description: Medida de Tension
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Medida de Tension
+- name: GRUPO_CU
+  type: NUMBER
+  business_description: Grupo Cu aplicado en la liquidacion
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Grupo Cu aplicado en la liquidacion
+- name: TARIFA
+  type: NUMBER
+  business_description: Tarifa con que se factura el cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Tarifa con que se factura el cliente
+- name: NIT_TMP
+  type: NUMBER
+  business_description: Nit del cliente
+  selectable: false
+  sensitive: true
+  synonyms: []
+  comments_auxiliary: Nit del cliente
+- name: TRANSFORMADOR_ID
+  type: NUMBER
+  business_description: Numero que identifica el Transformador al que esta asociado
+    el cliente
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Numero que identifica el Transformador al que esta asociado
+    el cliente
+- name: CODIGO_ENTIDAD
+  type: VARCHAR2
+  business_description: Codigo de Entidad
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Codigo de Entidad
+- name: MODIFICADA
+  type: VARCHAR2
+  business_description: Indica si la factura ha sido (S) o no (N) modificada desde
+    su creacion (ajustes)
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Indica si la factura ha sido (S) o no (N) modificada desde su
+    creacion (ajustes)
+- name: DIAS_FACTURADOS
+  type: NUMBER
+  business_description: Dias liquidados con la factura
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Dias liquidados con la factura
+- name: ANTIGUEDAD_SALDO
+  type: NUMBER
+  business_description: Antiguedad de Saldo del cliente al momento de liquidar
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Antiguedad de Saldo del cliente al momento de liquidar
+- name: OBS_LECTURA
+  type: VARCHAR2
+  business_description: Observacion de Lectura
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Observacion de Lectura
+- name: TOTAL_FACTURADO
+  type: NUMBER
+  business_description: Valor Total Facturado
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Valor Total Facturado
+- name: TOTAL_INTERESES
+  type: NUMBER
+  business_description: Valor de los Intereses facturados
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Valor de los Intereses facturados
+- name: CONSUMO_REACTIVO
+  type: NUMBER
+  business_description: Consumo leido por energia Reactiva
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo leido por energia Reactiva
+- name: CONSUMO_ACTIVA
+  type: NUMBER
+  business_description: Consumo liquidado por energia Activa y Baja
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo liquidado por energia Activa y Baja
+- name: CONSUMO_ACTIVAHP
+  type: NUMBER
+  business_description: Consumo liquidado por energia Activa horas Pico
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo liquidado por energia Activa horas Pico
+- name: CONSUMO_ACTIVAOH
+  type: NUMBER
+  business_description: Consumo liquidado por energia Activa horas Restantes
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo liquidado por energia Activa horas Restantes
+- name: CONSUMO_ADICIONAL
+  type: NUMBER
+  business_description: Consumo Adicional calculado fuera del medidor
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo Adicional calculado fuera del medidor
+- name: CONSUMO_COMUN
+  type: NUMBER
+  business_description: Consumo de area Comun distribuida al cliente si es Hija o
+    Descontada si es Padre
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Consumo de area Comun distribuida al cliente si es Hija o Descontada
+    si es Padre
+- name: SALDO_FINANCIADO
+  type: NUMBER
+  business_description: Saldo de las Financiaciones pendiente por facturar en cuotas
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Saldo de las Financiaciones pendiente por facturar en cuotas
+- name: ANTIG_SALDO
+  type: NUMBER
+  business_description: Antiguedad de Saldo del cliente al momento de liquidar
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Antiguedad de Saldo del cliente al momento de liquidar
+- name: TOT_INTERESES
+  type: NUMBER
+  business_description: Valor de los Intereses facturados
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Valor de los Intereses facturados
+- name: CENTRO_POB
+  type: NUMBER
+  business_description: Centro Poblado del cliente [V_CENPOB]
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Centro Poblado del cliente [V_CENPOB]
+- name: CLAVE_LECTURA
+  type: VARCHAR2
+  business_description: Observacion de Lectura
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Observacion de Lectura
+- name: TIPO_SERVICIO
+  type: VARCHAR2
+  business_description: Servicio relacionado al cliente. [TIPO_SERVICIO]
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Servicio relacionado al cliente. [TIPO_SERVICIO]
+- name: TIPO_FACTURACION
+  type: VARCHAR2
+  business_description: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+- name: OPERADOR_RED
+  type: NUMBER
+  business_description: Operador de red que cubre el area donde se ubica el transformador
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Operador de red que cubre el area donde se ubica el transformador
+- name: NUMERO_FACTURA_CAR
+  type: VARCHAR2
+  business_description: SIN EVIDENCIA SUFICIENTE
+  selectable: false
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: PERIODICIDAD
+  type: NUMBER
+  business_description: "Indica la periodicidad de lectura utilizada al momento de\
+    \ la liquidaci\xF3n del cliente"
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Indica la periodicidad de lectura utilizada al momento de la\
+    \ liquidaci\xF3n del cliente"
+- name: FECHA_PRELIQUIDACION
+  type: DATE
+  business_description: Fecha en la que se pre-liquida un ciclo de FENS
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: Fecha en la que se pre-liquida un ciclo de FENS
+- name: CLIENTE_ID_AGRUPA
+  type: NUMBER
+  business_description: "Identificador de agrupaci\xF3n de clientes en el sistema"
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Identificador de agrupaci\xF3n de clientes en el sistema"
+- name: CONSECUTIVO_AGRUPA
+  type: NUMBER
+  business_description: "Consecutivo de agrupaci\xF3n de facturacion"
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Consecutivo de agrupaci\xF3n de facturacion"
+- name: CONDICION_ESPECIAL
+  type: NUMBER
+  business_description: SIN EVIDENCIA SUFICIENTE
+  selectable: false
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: NIT
+  type: VARCHAR2
+  business_description: SIN EVIDENCIA SUFICIENTE
+  selectable: false
+  sensitive: true
+  synonyms: []
+  comments_auxiliary: ''
+- name: FACTOR_COMUN
+  type: NUMBER
+  business_description: "Factor asociado al cliente que pertenece a una agrupaci\xF3\
+    n"
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Factor asociado al cliente que pertenece a una agrupaci\xF3\
+    n"
+- name: CONSUMO_EXP_COMUN
+  type: NUMBER
+  business_description: "Consumo exportado que le corresponde al cliente que pertenece\
+    \ a una agrupaci\xF3n"
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: "Consumo exportado que le corresponde al cliente que pertenece\
+    \ a una agrupaci\xF3n"
+relationships:
+- left_table: SAC.CLI_FACTURACION
+  left_column: CLIENTE_ID
+  right_table: SAC.CLIENTES
+  right_column: CLIENTE_ID
+  description: Cabecera de facturacion de la cuenta; FK Oracle C_CLI_FACTURACION_CLI_FK
+    ENABLED, NOT VALIDATED.
+approved_parametric_mappings: []

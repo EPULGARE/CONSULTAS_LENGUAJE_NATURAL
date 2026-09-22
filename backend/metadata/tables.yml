@@ -1047,3 +1047,284 @@ tables:
     description: 'TODO: describir uso de negocio'
     sensitive: false
     allowed_for_select: true
+- schema: SAC
+  name: CLI_FACTURACION
+  description: 'Cabecera de facturacion por NIU/cuenta y consecutivo. Una fila representa
+    una cabecera; su clave es CLIENTE_ID y CONSECUTIVO. Contiene numero de factura,
+    fechas, totales y consumos. Para contar cabeceras usar COUNT(*). El detalle referencia
+    ambas columnas mediante FK declarada; esa union compuesta aun no esta habilitada
+    en el catalogo de relaciones. No sustituir CONSECUTIVO por CONS_NRO_FAC. Las fechas
+    NUMBER conservan su valor numerico: su codificacion no se ha validado. No sumar
+    TOTAL_FACTURADO despues de multiplicar cabeceras por detalles.'
+  domain: facturas
+  synonyms:
+  - cabecera de facturacion
+  - cabeceras de facturacion
+  - numero de factura
+  - total facturado
+  - vencimiento de factura
+  allowed_for_query: true
+  sensitive_columns:
+  - NIT_TMP
+  - NIT
+  default_filters: []
+  example_questions:
+  - cuantas cabeceras de facturacion existen
+  - numero de factura y total facturado por cuenta
+  columns:
+  - name: CLIENTE_ID
+    type: NUMBER
+    description: NIU / cuenta de la cabecera de facturacion. Parte de la clave primaria
+      junto con CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO
+    type: NUMBER
+    description: Consecutivo de facturacion dentro del NIU/cuenta. Junto con CLIENTE_ID
+      identifica una cabecera; no es unico globalmente ni identifica un cargo individual.
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA
+    type: VARCHAR2
+    description: Numero de factura segun Oracle. Admite NULL; no tiene unicidad declarada
+      y no sustituye la clave CLIENTE_ID + CONSECUTIVO.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_LECTURA
+    type: NUMBER
+    description: Fecha de Lectura Almacenada como NUMBER(8,0); codificacion SIN EVIDENCIA
+      SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_FACTURACION
+    type: NUMBER
+    description: Fecha de Facturacion Almacenada como NUMBER(8,0); codificacion SIN
+      EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_VENCIMIENTO
+    type: NUMBER
+    description: Fecha de Vencimiento Almacenada como NUMBER(8,0); codificacion SIN
+      EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_APLICACION
+    type: NUMBER
+    description: Fecha de Aplicacion Almacenada como NUMBER(8,0); codificacion SIN
+      EVIDENCIA SUFICIENTE. No asumir DATE, YYYYMMDD ni dia juliano.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    type: DATE
+    description: Fecha de Sistema
+    sensitive: false
+    allowed_for_select: true
+  - name: CICLO
+    type: NUMBER
+    description: Ciclo
+    sensitive: false
+    allowed_for_select: true
+  - name: MUNICIPIO
+    type: NUMBER
+    description: Municipio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POBLADO
+    type: NUMBER
+    description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_AREA
+    type: NUMBER
+    description: Codigo de Area del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CLASE_SERVICIO
+    type: NUMBER
+    description: Clase de Servicio del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTRATO
+    type: NUMBER
+    description: Estrato del cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: MEDIDA_TENSION
+    type: NUMBER
+    description: Medida de Tension
+    sensitive: false
+    allowed_for_select: true
+  - name: GRUPO_CU
+    type: NUMBER
+    description: Grupo Cu aplicado en la liquidacion
+    sensitive: false
+    allowed_for_select: true
+  - name: TARIFA
+    type: NUMBER
+    description: Tarifa con que se factura el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: NIT_TMP
+    type: NUMBER
+    description: Nit del cliente
+    sensitive: true
+    allowed_for_select: false
+  - name: TRANSFORMADOR_ID
+    type: NUMBER
+    description: Numero que identifica el Transformador al que esta asociado el cliente
+    sensitive: false
+    allowed_for_select: true
+  - name: CODIGO_ENTIDAD
+    type: VARCHAR2
+    description: Codigo de Entidad
+    sensitive: false
+    allowed_for_select: true
+  - name: MODIFICADA
+    type: VARCHAR2
+    description: Indica si la factura ha sido (S) o no (N) modificada desde su creacion
+      (ajustes)
+    sensitive: false
+    allowed_for_select: true
+  - name: DIAS_FACTURADOS
+    type: NUMBER
+    description: Dias liquidados con la factura
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIGUEDAD_SALDO
+    type: NUMBER
+    description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: OBS_LECTURA
+    type: VARCHAR2
+    description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_FACTURADO
+    type: NUMBER
+    description: Valor Total Facturado
+    sensitive: false
+    allowed_for_select: true
+  - name: TOTAL_INTERESES
+    type: NUMBER
+    description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_REACTIVO
+    type: NUMBER
+    description: Consumo leido por energia Reactiva
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVA
+    type: NUMBER
+    description: Consumo liquidado por energia Activa y Baja
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAHP
+    type: NUMBER
+    description: Consumo liquidado por energia Activa horas Pico
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ACTIVAOH
+    type: NUMBER
+    description: Consumo liquidado por energia Activa horas Restantes
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_ADICIONAL
+    type: NUMBER
+    description: Consumo Adicional calculado fuera del medidor
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_COMUN
+    type: NUMBER
+    description: Consumo de area Comun distribuida al cliente si es Hija o Descontada
+      si es Padre
+    sensitive: false
+    allowed_for_select: true
+  - name: SALDO_FINANCIADO
+    type: NUMBER
+    description: Saldo de las Financiaciones pendiente por facturar en cuotas
+    sensitive: false
+    allowed_for_select: true
+  - name: ANTIG_SALDO
+    type: NUMBER
+    description: Antiguedad de Saldo del cliente al momento de liquidar
+    sensitive: false
+    allowed_for_select: true
+  - name: TOT_INTERESES
+    type: NUMBER
+    description: Valor de los Intereses facturados
+    sensitive: false
+    allowed_for_select: true
+  - name: CENTRO_POB
+    type: NUMBER
+    description: Centro Poblado del cliente [V_CENPOB]
+    sensitive: false
+    allowed_for_select: true
+  - name: CLAVE_LECTURA
+    type: VARCHAR2
+    description: Observacion de Lectura
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_SERVICIO
+    type: VARCHAR2
+    description: Servicio relacionado al cliente. [TIPO_SERVICIO]
+    sensitive: false
+    allowed_for_select: true
+  - name: TIPO_FACTURACION
+    type: VARCHAR2
+    description: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+    sensitive: false
+    allowed_for_select: true
+  - name: OPERADOR_RED
+    type: NUMBER
+    description: Operador de red que cubre el area donde se ubica el transformador
+    sensitive: false
+    allowed_for_select: true
+  - name: NUMERO_FACTURA_CAR
+    type: VARCHAR2
+    description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: PERIODICIDAD
+    type: NUMBER
+    description: "Indica la periodicidad de lectura utilizada al momento de la liquidaci\xF3\
+      n del cliente"
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_PRELIQUIDACION
+    type: DATE
+    description: Fecha en la que se pre-liquida un ciclo de FENS
+    sensitive: false
+    allowed_for_select: true
+  - name: CLIENTE_ID_AGRUPA
+    type: NUMBER
+    description: "Identificador de agrupaci\xF3n de clientes en el sistema"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSECUTIVO_AGRUPA
+    type: NUMBER
+    description: "Consecutivo de agrupaci\xF3n de facturacion"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONDICION_ESPECIAL
+    type: NUMBER
+    description: SIN EVIDENCIA SUFICIENTE
+    sensitive: false
+    allowed_for_select: false
+  - name: NIT
+    type: VARCHAR2
+    description: SIN EVIDENCIA SUFICIENTE
+    sensitive: true
+    allowed_for_select: false
+  - name: FACTOR_COMUN
+    type: NUMBER
+    description: "Factor asociado al cliente que pertenece a una agrupaci\xF3n"
+    sensitive: false
+    allowed_for_select: true
+  - name: CONSUMO_EXP_COMUN
+    type: NUMBER
+    description: "Consumo exportado que le corresponde al cliente que pertenece a\
+      \ una agrupaci\xF3n"
+    sensitive: false
+    allowed_for_select: true

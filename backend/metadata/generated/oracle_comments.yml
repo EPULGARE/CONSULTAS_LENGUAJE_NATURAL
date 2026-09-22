@@ -1,4 +1,207 @@
 tables:
+  SAC.CLI_FACTURACION:
+    table_comment: ''
+    columns:
+      CLIENTE_ID:
+        comment: Codigo que identifica el cliente en el sistema
+        detected_parametric_hint: null
+        confidence: high
+      CONSECUTIVO:
+        comment: Consecutivo de facturacion
+        detected_parametric_hint: null
+        confidence: high
+      NUMERO_FACTURA:
+        comment: Numero de Factura
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_LECTURA:
+        comment: Fecha de Lectura
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_FACTURACION:
+        comment: Fecha de Facturacion
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_VENCIMIENTO:
+        comment: Fecha de Vencimiento
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_APLICACION:
+        comment: Fecha de Aplicacion
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_SISTEMA:
+        comment: Fecha de Sistema
+        detected_parametric_hint: null
+        confidence: high
+      CICLO:
+        comment: Ciclo
+        detected_parametric_hint: null
+        confidence: high
+      MUNICIPIO:
+        comment: Municipio del cliente
+        detected_parametric_hint: null
+        confidence: high
+      CENTRO_POBLADO:
+        comment: Centro Poblado del cliente [V_CENPOB]
+        detected_parametric_hint: null
+        confidence: high
+      CODIGO_AREA:
+        comment: Codigo de Area del cliente
+        detected_parametric_hint: null
+        confidence: high
+      CLASE_SERVICIO:
+        comment: Clase de Servicio del cliente
+        detected_parametric_hint: null
+        confidence: high
+      ESTRATO:
+        comment: Estrato del cliente
+        detected_parametric_hint: null
+        confidence: high
+      MEDIDA_TENSION:
+        comment: Medida de Tension
+        detected_parametric_hint: null
+        confidence: high
+      GRUPO_CU:
+        comment: Grupo Cu aplicado en la liquidacion
+        detected_parametric_hint: null
+        confidence: high
+      TARIFA:
+        comment: Tarifa con que se factura el cliente
+        detected_parametric_hint: null
+        confidence: high
+      NIT_TMP:
+        comment: Nit del cliente
+        detected_parametric_hint: null
+        confidence: high
+      TRANSFORMADOR_ID:
+        comment: Numero que identifica el Transformador al que esta asociado el cliente
+        detected_parametric_hint: null
+        confidence: high
+      CODIGO_ENTIDAD:
+        comment: Codigo de Entidad
+        detected_parametric_hint: null
+        confidence: high
+      MODIFICADA:
+        comment: Indica si la factura ha sido (S) o no (N) modificada desde su creacion
+          (ajustes)
+        detected_parametric_hint: null
+        confidence: high
+      DIAS_FACTURADOS:
+        comment: Dias liquidados con la factura
+        detected_parametric_hint: null
+        confidence: high
+      ANTIGUEDAD_SALDO:
+        comment: Antiguedad de Saldo del cliente al momento de liquidar
+        detected_parametric_hint: null
+        confidence: high
+      OBS_LECTURA:
+        comment: Observacion de Lectura
+        detected_parametric_hint: null
+        confidence: high
+      TOTAL_FACTURADO:
+        comment: Valor Total Facturado
+        detected_parametric_hint: null
+        confidence: high
+      TOTAL_INTERESES:
+        comment: Valor de los Intereses facturados
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_REACTIVO:
+        comment: Consumo leido por energia Reactiva
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_ACTIVA:
+        comment: Consumo liquidado por energia Activa y Baja
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_ACTIVAHP:
+        comment: Consumo liquidado por energia Activa horas Pico
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_ACTIVAOH:
+        comment: Consumo liquidado por energia Activa horas Restantes
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_ADICIONAL:
+        comment: Consumo Adicional calculado fuera del medidor
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_COMUN:
+        comment: Consumo de area Comun distribuida al cliente si es Hija o Descontada
+          si es Padre
+        detected_parametric_hint: null
+        confidence: high
+      SALDO_FINANCIADO:
+        comment: Saldo de las Financiaciones pendiente por facturar en cuotas
+        detected_parametric_hint: null
+        confidence: high
+      ANTIG_SALDO:
+        comment: Antiguedad de Saldo del cliente al momento de liquidar
+        detected_parametric_hint: null
+        confidence: high
+      TOT_INTERESES:
+        comment: Valor de los Intereses facturados
+        detected_parametric_hint: null
+        confidence: high
+      CENTRO_POB:
+        comment: Centro Poblado del cliente [V_CENPOB]
+        detected_parametric_hint: null
+        confidence: high
+      CLAVE_LECTURA:
+        comment: Observacion de Lectura
+        detected_parametric_hint: null
+        confidence: high
+      TIPO_SERVICIO:
+        comment: Servicio relacionado al cliente. [TIPO_SERVICIO]
+        detected_parametric_hint: null
+        confidence: high
+      TIPO_FACTURACION:
+        comment: "Tipo de Facturaci\xF3n. S-Sitio, O-Oficina."
+        detected_parametric_hint: null
+        confidence: high
+      OPERADOR_RED:
+        comment: Operador de red que cubre el area donde se ubica el transformador
+        detected_parametric_hint: null
+        confidence: high
+      NUMERO_FACTURA_CAR:
+        comment: ''
+        detected_parametric_hint: null
+        confidence: low
+      PERIODICIDAD:
+        comment: "Indica la periodicidad de lectura utilizada al momento de la liquidaci\xF3\
+          n del cliente"
+        detected_parametric_hint: null
+        confidence: high
+      FECHA_PRELIQUIDACION:
+        comment: Fecha en la que se pre-liquida un ciclo de FENS
+        detected_parametric_hint: null
+        confidence: high
+      CLIENTE_ID_AGRUPA:
+        comment: "Identificador de agrupaci\xF3n de clientes en el sistema"
+        detected_parametric_hint: null
+        confidence: high
+      CONSECUTIVO_AGRUPA:
+        comment: "Consecutivo de agrupaci\xF3n de facturacion"
+        detected_parametric_hint: null
+        confidence: high
+      CONDICION_ESPECIAL:
+        comment: ''
+        detected_parametric_hint: null
+        confidence: low
+      NIT:
+        comment: ''
+        detected_parametric_hint: null
+        confidence: low
+      FACTOR_COMUN:
+        comment: "Factor asociado al cliente que pertenece a una agrupaci\xF3n"
+        detected_parametric_hint: null
+        confidence: high
+      CONSUMO_EXP_COMUN:
+        comment: "Consumo exportado que le corresponde al cliente que pertenece a una\
+          \ agrupaci\xF3n"
+        detected_parametric_hint: null
+        confidence: high
   SAC.CODCA:
     table_comment: ''
     columns:
