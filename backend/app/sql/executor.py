@@ -59,6 +59,7 @@ class SQLExecutor:
                 tcp_connect_timeout=self.timeout_seconds,
             )
             cursor = connection.cursor()
+            cursor.execute("ALTER SESSION SET NLS_DATE_LANGUAGE = 'SPANISH'")
             cursor.execute(sql)
             columns = [d[0] for d in (cursor.description or [])]
             fetched = cursor.fetchall()

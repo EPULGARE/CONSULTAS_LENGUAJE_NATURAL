@@ -564,7 +564,7 @@ tables:
     allowed_for_select: true
   - name: FECHA_SOL
     type: DATE
-    description: 'TODO: describir uso de negocio'
+    description: Fecha de creacion del proceso. Confirmado por el usuario el 2026-09-21; usar para procesos creados en una fecha o periodo.
     sensitive: false
     allowed_for_select: true
   - name: FECHA_FIN
@@ -1008,6 +1008,41 @@ tables:
     sensitive: false
     allowed_for_select: true
   - name: IND_AJUSTE
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+- schema: SAC
+  name: V_AC_PROCESOS
+  description: 'TODO: describir tabla en lenguaje de negocio'
+  domain: procesos
+  synonyms: []
+  allowed_for_query: true
+  sensitive_columns: []
+  default_filters: []
+  example_questions: []
+  columns:
+  - name: NUMERO_PROCESO
+    type: NUMBER
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: D_ACCION
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: ESTADO
+    type: VARCHAR2
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_SISTEMA
+    type: DATE
+    description: 'TODO: describir uso de negocio'
+    sensitive: false
+    allowed_for_select: true
+  - name: USER_SISTEMA
     type: VARCHAR2
     description: 'TODO: describir uso de negocio'
     sensitive: false

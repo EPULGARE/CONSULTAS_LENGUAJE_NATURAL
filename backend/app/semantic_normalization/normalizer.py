@@ -577,6 +577,7 @@ class SemanticNormalizer:
         entity_mapping: NumericEntityMapping,
         approved_map: dict[tuple[str, str], ParametricMapping],
     ) -> bool:
+        found = False
         for explicit_rule in entity_mapping.explicit_column_terms:
             for term in explicit_rule.terms:
                 match = re.search(
@@ -608,8 +609,9 @@ class SemanticNormalizer:
                     resolved=resolved,
                     approved_map=approved_map,
                 )
-                return True
-        return False
+                found = True
+                break
+        return found
 
     @staticmethod
     def _resolve_numeric_operator(raw_operator: str) -> str:

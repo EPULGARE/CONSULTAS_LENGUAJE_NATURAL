@@ -1,0 +1,60 @@
+table: SAC.V_AC_PROCESOS
+domain: procesos
+business_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
+  identifica al trabajador que termino la accion; no al cliente. Un proceso puede
+  tener varias acciones: para contar procesos usar COUNT(DISTINCT NUMERO_PROCESO).
+  Para contar acciones de esta vista usar COUNT(*), no contar procesos distintos.'
+display_column: ''
+columns:
+- name: NUMERO_PROCESO
+  type: NUMBER
+  business_description: Numero del proceso al que pertenece la accion; se une con
+    SAC.PROCESOS.NUMERO_PROCESO. Puede repetirse para distintas acciones.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: D_ACCION
+  type: VARCHAR2
+  business_description: Descripcion de la accion individual; el ejemplo busca descripciones
+    que contienen Respuesta.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: ESTADO
+  type: VARCHAR2
+  business_description: Codigo de estado de la accion. El SQL aportado filtra F. El
+    usuario confirma que F significa accion cerrada. Aplicar este filtro solo cuando
+    se soliciten acciones cerradas.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: FECHA_SISTEMA
+  type: DATE
+  business_description: Fecha de sistema de la accion; el SQL aportado la utiliza
+    para agrupar por mes. El usuario confirma esta columna para filtrar el periodo
+    de acciones cerradas; no usar FECHA_FIN.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+- name: USER_SISTEMA
+  type: VARCHAR2
+  business_description: Usuario del sistema del trabajador que termino la accion,
+    segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  selectable: true
+  sensitive: false
+  synonyms: []
+  comments_auxiliary: ''
+relationships:
+- approved: true
+  left_table: SAC.V_AC_PROCESOS
+  left_column: NUMERO_PROCESO
+  right_table: SAC.PROCESOS
+  right_column: NUMERO_PROCESO
+  description: Acciones individuales de un proceso; un proceso puede tener varias
+    acciones. Relacion confirmada por el usuario, no FK declarada en Oracle.
+  fixed_filter: ''
+approved_parametric_mappings: []

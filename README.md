@@ -96,6 +96,23 @@ cd frontend
 npm run build
 ```
 
+## Descargar resultados en Excel
+
+El limite automatico de filas esta desactivado con `DB_MAX_ROWS=0` en el backend.
+Reiniciar el backend despues de cambiar este valor. Los limites pedidos explicitamente
+en una consulta, como un top 10, se conservan.
+
+Despues de ejecutar una consulta con resultados, usar `Descargar Excel` sobre la tabla.
+La pagina muestra solo las primeras 10 filas; la descarga incluye todas las filas recibidas.
+El archivo `.xlsx` incluye las columnas y filas recibidas, encabezados con filtros y
+la primera fila fija. Respeta el limite de filas del backend; no ejecuta otra consulta.
+Los codigos de texto conservan sus ceros iniciales, y numeros y booleanos conservan su tipo.
+Las fechas ISO completas se exportan como fechas reales de Excel, con formato
+`dd/mm/yyyy` o `dd/mm/yyyy hh:mm:ss`, para usar filtros de fecha. Se conserva la
+hora recibida sin convertirla a la zona horaria del navegador.
+Las sesiones Oracle usan espanol para los nombres de dias y meses.
+La descarga no se ofrece en vista previa ni cuando el resultado tiene cero filas.
+
 ## Documentacion relacionada
 
 - `backend/docs/demo_guide.md`

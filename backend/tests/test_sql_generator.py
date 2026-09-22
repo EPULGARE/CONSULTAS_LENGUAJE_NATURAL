@@ -1,5 +1,7 @@
 ﻿import asyncio
 
+import pytest
+
 from app.llm.sql_generator import SQLGenerator, _extract_select_sql
 from app.semantic_catalog.models import ParametricMapping, RelationshipMetadata, ResolvedLookupValue, RetrievalResult, TableMetadata
 
@@ -36,6 +38,20 @@ class CapturingClient:
     async def chat_completion(self, **kwargs):
         self.last_user_prompt = kwargs["user_prompt"]
         return "SELECT 1 FROM DUAL"
+
+
+@pytest.mark.parametrize("question", [
+    "Clientes por estrato",
+    "Clientes por tipo servicio",
+    "Clientes por estado de facturacion",
+])
+def test_grouping_prompt_preserves_base_code_unless_description_requested(question):
+    client = CapturingClient()
+    retrieval = RetrievalResult(domain="clientes", tables=[], relationships=[], examples=[])
+    asyncio.run(SQLGenerator(client=client).generate(question, retrieval))
+    assert "Si la pregunta pide agrupar por un campo parametrizado sin pedir descripcion" in client.last_user_prompt
+    assert "selecciona y agrupa por el codigo base, sin JOIN al lookup para sustituir esa dimension" in client.last_user_prompt
+    assert "Solo devolver codigo base cuando" not in client.last_user_prompt
 
 
 def test_sql_prompt_includes_fixed_filter_relationship_hint():
@@ -125,7 +141,7 @@ def test_prompt_contains_municipio_rule_and_no_text_on_numeric_code():
     assert "JOIN SAC.MUNICIPIOS" in sql
     assert "UPPER(TRIM(M.DESCRIPCION))" in sql
     assert "UPPER(TRIM(C.MUNICIPIO))" not in sql
-    assert "No comparar texto contra SAC.CLIENTES.MUNICIPIO" in client.last_user_prompt
+    assert "No comparar texto contra columnas MUNICIPIO de tablas transaccionales porque son codigos numericos." in client.last_user_prompt
 
 
 def test_generated_sql_matches_extracted_trace():

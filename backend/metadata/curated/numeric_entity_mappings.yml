@@ -19,6 +19,17 @@ numeric_entity_mappings:
       - NUMERO_PROCESO
       - TIPO_TRAMITE
     explicit_column_terms:
+      - source_column: TIPO
+        code_type: string
+        terms:
+          - procesos tipo
+          - proceso tipo
+          - procesos de tipo
+          - proceso de tipo
+          - tipo de proceso
+          - tipo de procesos
+          - tipo proceso
+          - tipo procesos
       - source_column: CODIGO_CUENTA
         code_type: number
         terms:

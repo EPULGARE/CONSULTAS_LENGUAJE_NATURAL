@@ -40,7 +40,8 @@ class Settings(BaseSettings):
     db_user: str = "readonly_user"
     db_password: str = "change_me"
     db_timeout_seconds: int = 30
-    db_max_rows: int = Field(default=500, ge=1, le=10000)
+    # Zero disables the automatic row limit; explicit query limits still apply.
+    db_max_rows: int = Field(default=0, ge=0, le=10000)
     db_read_only: bool = True
 
     db_url: str = f"sqlite:///{(project_root / 'data' / 'local.db').as_posix()}"

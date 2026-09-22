@@ -47,6 +47,16 @@ relationships:
   domains:
   - facturas
   - procesos
+- from_table: SAC.V_AC_PROCESOS
+  from_column: NUMERO_PROCESO
+  to_table: SAC.PROCESOS
+  to_column: NUMERO_PROCESO
+  description: Acciones individuales de un proceso; un proceso puede tener varias
+    acciones. Relacion confirmada por el usuario, no FK declarada en Oracle.
+  approved: true
+  join_type: inner
+  domains:
+  - procesos
 - from_table: SAC.CLIENTES
   from_column: ESTADO_CLIENTE
   to_table: SAC.MULTITABLA

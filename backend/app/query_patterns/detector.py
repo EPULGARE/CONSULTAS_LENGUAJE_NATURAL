@@ -113,7 +113,15 @@ def detect_query_pattern(question: str) -> DetectedQueryPattern | None:
     if has_ranking_intent:
         return attach_skeleton(DetectedQueryPattern(type="ranking_top_n", top_n=top_n or 1))
 
-    if has_count_intent and " por " in q:
+    # "cerradas por los usuarios X" identifies an actor, not a GROUP BY.
+    # Keep any other "por" (e.g. "por mes") as an aggregation dimension.
+    grouping_question = re.sub(
+        r"\b(?:cerrad[oa]s?|terminad[oa]s?|finalizad[oa]s?|realizad[oa]s?|"
+        r"ejecutad[oa]s?|atendid[oa]s?|respondid[oa]s?)\s+por\b",
+        " ",
+        q,
+    )
+    if has_count_intent and " por " in grouping_question:
         return attach_skeleton(DetectedQueryPattern(type="grouped_aggregation"))
 
     if any(token in q for token in (" municipio ", " ciudad ", " armenia ", " calarca ", " calarcÃ¡ ")):

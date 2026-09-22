@@ -119,7 +119,9 @@ def test_query_does_not_call_openrouter_when_catalog_not_ready(monkeypatch):
 
 
 
-def test_query_dry_run_true_does_not_call_executor(monkeypatch):
+@pytest.mark.parametrize("max_rows", [0, 500])
+def test_query_dry_run_true_does_not_call_executor(monkeypatch, max_rows):
+    monkeypatch.setattr("app.api.routes_query.settings.db_max_rows", max_rows)
     async def fake_generate(self, question, retrieval):
         return "SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE"
 
@@ -140,7 +142,10 @@ def test_query_dry_run_true_does_not_call_executor(monkeypatch):
     assert body["execution_skipped"] is True
     assert body["execution_skip_reason"] == "dry_run=true"
     assert body["generated_sql"].lower().startswith("select")
-    assert body["validated_sql"].upper().endswith("FETCH FIRST 500 ROWS ONLY")
+    expected = "SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE"
+    if max_rows:
+        expected += " FETCH FIRST 500 ROWS ONLY"
+    assert body["validated_sql"].upper() == expected
 
 
 
@@ -221,7 +226,9 @@ def test_prompt_exposed_only_in_development(monkeypatch):
     assert response_prod.json()["debug_prompt"] is None
 
 
-def test_pipeline_unchanged_when_intent_enhancer_disabled(monkeypatch):
+@pytest.mark.parametrize("max_rows", [0, 500])
+def test_pipeline_unchanged_when_intent_enhancer_disabled(monkeypatch, max_rows):
+    monkeypatch.setattr("app.api.routes_query.settings.db_max_rows", max_rows)
     async def fake_generate(self, question, retrieval):
         return "SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE"
 
@@ -235,7 +242,10 @@ def test_pipeline_unchanged_when_intent_enhancer_disabled(monkeypatch):
     client = TestClient(app)
     response = client.post("/query", json={"question": "estado actual", "user_id": "u1", "dry_run": True})
     assert response.status_code == 200
-    assert response.json()["validated_sql"].upper().endswith("FETCH FIRST 500 ROWS ONLY")
+    expected = "SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE"
+    if max_rows:
+        expected += " FETCH FIRST 500 ROWS ONLY"
+    assert response.json()["validated_sql"].upper() == expected
 
 
 def test_invalid_clarification_answer_keeps_requires_confirmation(monkeypatch):

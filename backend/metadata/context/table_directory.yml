@@ -58,7 +58,9 @@ tables:
   context_path: metadata/context/tables/SAC.MUNICIPIOS.yml
 - table: SAC.PROCESOS
   domain: procesos
-  short_description: Procesos, tramites, solicitudes y PQR asociados a clientes.
+  short_description: Procesos, tramites, solicitudes y PQR asociados a clientes. FECHA_SOL
+    es la fecha de creacion del proceso; usarla para procesos creados hoy o en un
+    periodo.
   keywords:
   - proceso
   - procesos
@@ -74,5 +76,29 @@ tables:
   - numero de proceso y proceso realizado por cliente_id
   - procesos realizados por el cliente_id 142518
   - numero de proceso por cliente
+  - cantidad de procesos con codigo de proceso 4601 que se crearon hoy
   allowed_for_query: true
   context_path: metadata/context/tables/SAC.PROCESOS.yml
+- table: SAC.V_AC_PROCESOS
+  domain: procesos
+  short_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
+    identifica al trabajador que termino la accion; no al cliente. Un proceso puede
+    tener varias acciones: para contar procesos usar COUNT(DISTINCT NUMERO_PROCESO).
+    Para contar acciones de esta vista usar COUNT(*), no contar procesos distintos.'
+  keywords:
+  - acciones
+  - accion
+  - acciones individuales
+  - acciones de procesos
+  - trabajador
+  - trabajadores
+  - usuario del sistema
+  - user_sistema
+  - respuesta
+  - respuestas
+  business_terms:
+  - acciones de procesos por trabajador y mes
+  - respuestas de procesos por usuario del sistema
+  - numero de proceso y acciones realizadas por trabajador
+  allowed_for_query: true
+  context_path: metadata/context/tables/SAC.V_AC_PROCESOS.yml

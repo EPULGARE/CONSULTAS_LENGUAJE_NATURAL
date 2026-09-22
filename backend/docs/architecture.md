@@ -26,3 +26,10 @@
 - Contexto minimo al LLM usando solo metadata relevante.
 - El frontend no modifica el pipeline Text-to-SQL ni la gobernanza SQL.
 - La ejecucion real depende exclusivamente de la configuracion segura del backend.
+
+## Certificacion A1
+El workflow `.github/workflows/a1-baseline.yml`, relativo a la raiz del repositorio,
+ejecuta pruebas backend, readiness, instalacion/build frontend y evaluacion Text-to-SQL
+en PRs y pushes a `main`. La evaluacion usa OpenRouter en dry-run y publica su informe
+JSON; no conecta a Oracle ni ejecuta SQL. Ver `docs/decisions.md` para runtimes,
+configuracion segura y dependencia del secret de OpenRouter.

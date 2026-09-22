@@ -37,8 +37,12 @@ def ensure_row_limit(sql: str, *, dialect: SQLDialect, max_rows: int) -> tuple[s
                 count=1,
             )
             return normalized, False
+        if max_rows == 0:
+            return stripped, False
         return f"{stripped} FETCH FIRST {max_rows} ROWS ONLY", True
 
     if _LIMIT_RE.search(stripped):
+        return stripped, False
+    if max_rows == 0:
         return stripped, False
     return f"{stripped} LIMIT {max_rows}", True

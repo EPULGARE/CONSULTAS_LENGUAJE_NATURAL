@@ -112,7 +112,7 @@ def test_procesos_codigo_cuenta_12345_uses_explicit_column():
 def test_descripcion_del_proceso_4106_marks_lookup_unavailable_without_approved_mapping(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="numeric-entity-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="numeric-entity-"))
     try:
         _write_numeric_metadata(temp_dir, with_process_lookup=False)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)
@@ -128,7 +128,7 @@ def test_descripcion_del_proceso_4106_marks_lookup_unavailable_without_approved_
 def test_descripcion_del_proceso_4106_marks_lookup_available_when_mapping_is_approved(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="numeric-entity-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="numeric-entity-"))
     try:
         _write_numeric_metadata(temp_dir, with_process_lookup=True)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)

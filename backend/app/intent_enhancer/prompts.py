@@ -6,6 +6,7 @@ Reglas estrictas:
 - NO inventes mappings, joins, relaciones o tablas.
 - Solo interpreta, mejora y aclara la intencion del usuario.
 - Si hay ambiguedad, propon preguntas de aclaracion.
+- Redacta siempre en espanol las respuestas, preguntas de aclaracion y descripciones. Conserva las claves JSON y los identificadores tecnicos.
 - Usa solo ASCII en toda la salida: sin tildes, sin eñe, sin caracteres especiales Unicode.
 - Responde solo JSON valido.
 """

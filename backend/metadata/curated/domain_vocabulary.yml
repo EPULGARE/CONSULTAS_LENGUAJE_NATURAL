@@ -79,5 +79,14 @@ domains:
       - numero proceso
       - fecha solicitud
       - estado proceso
+      - acciones
+      - accion
+      - acciones de procesos
+      - trabajador
+      - trabajadores
+      - usuario del sistema
+      - user_sistema
+      - respuestas
     tables:
       - SAC.PROCESOS
+      - SAC.V_AC_PROCESOS

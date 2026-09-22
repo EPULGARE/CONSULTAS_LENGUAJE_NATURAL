@@ -1,6 +1,26 @@
 from app.query_patterns.patterns import detect_query_pattern
 
 
+def test_closed_actions_by_named_workers_is_not_grouping():
+    assert detect_query_pattern(
+        r"cantidad de acciones de proceso cerrada por los usuarios EDEQ\AOSPINMA y AOSPINMA en el año 2026"
+    ) is None
+
+
+def test_actor_filter_preserves_explicit_month_grouping():
+    pattern = detect_query_pattern(
+        "cantidad de acciones cerradas por el trabajador AOSPINMA por mes"
+    )
+    assert pattern is not None
+    assert pattern.type == "grouped_aggregation"
+
+
+def test_actions_grouped_by_worker_still_requires_grouping():
+    pattern = detect_query_pattern("cantidad de acciones por usuario del sistema")
+    assert pattern is not None
+    assert pattern.type == "grouped_aggregation"
+
+
 def test_detect_cardinality_pattern_more_than_two():
     pattern = detect_query_pattern("cantidad de usuarios de armenia con mas de dos medidores retirados")
     assert pattern is not None

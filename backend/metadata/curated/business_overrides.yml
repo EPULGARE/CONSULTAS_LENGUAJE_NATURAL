@@ -65,6 +65,14 @@ manual_tables:
     sensitive: false
     allowed_for_select: true
 manual_relationships:
+- approved: true
+  left_table: SAC.V_AC_PROCESOS
+  left_column: NUMERO_PROCESO
+  right_table: SAC.PROCESOS
+  right_column: NUMERO_PROCESO
+  description: Acciones individuales de un proceso; un proceso puede tener varias
+    acciones. Relacion confirmada por el usuario, no FK declarada en Oracle.
+  fixed_filter: ''
 - left_table: SAC.CLIENTES
   left_column: ESTADO_CLIENTE
   right_table: SAC.MULTITABLA
@@ -78,8 +86,44 @@ manual_relationships:
   description: Relacion de cliente a catalogo municipal
   fixed_filter: ''
 tables:
+  SAC.V_AC_PROCESOS:
+    business_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
+      identifica al trabajador que termino la accion; no al cliente. Un proceso puede
+      tener varias acciones: para contar procesos usar COUNT(DISTINCT NUMERO_PROCESO). Para contar acciones de esta vista usar COUNT(*), no contar procesos distintos.'
+    synonyms:
+    - acciones
+    - accion
+    - acciones individuales
+    - acciones de procesos
+    - trabajador
+    - trabajadores
+    - usuario del sistema
+    - user_sistema
+    - respuesta
+    - respuestas
+    domain: procesos
+    example_questions:
+    - acciones de procesos por trabajador y mes
+    - respuestas de procesos por usuario del sistema
+    - numero de proceso y acciones realizadas por trabajador
+    columns:
+      NUMERO_PROCESO:
+        business_description: Numero del proceso al que pertenece la accion; se une
+          con SAC.PROCESOS.NUMERO_PROCESO. Puede repetirse para distintas acciones.
+      D_ACCION:
+        business_description: Descripcion de la accion individual; el ejemplo busca
+          descripciones que contienen Respuesta.
+      ESTADO:
+        business_description: Codigo de estado de la accion. El SQL aportado filtra
+          F. El usuario confirma que F significa accion cerrada. Aplicar este filtro solo cuando se soliciten acciones cerradas.
+      FECHA_SISTEMA:
+        business_description: Fecha de sistema de la accion; el SQL aportado la utiliza
+          para agrupar por mes. El usuario confirma esta columna para filtrar el periodo de acciones cerradas; no usar FECHA_FIN.
+      USER_SISTEMA:
+        business_description: Usuario del sistema del trabajador que termino la accion,
+          segun definicion del usuario. No representa al cliente ni al responsable asignado.
   SAC.PROCESOS:
-    business_description: Procesos, tramites, solicitudes y PQR asociados a clientes.
+    business_description: Procesos, tramites, solicitudes y PQR asociados a clientes. FECHA_SOL es la fecha de creacion del proceso; usarla para procesos creados hoy o en un periodo.
     synonyms:
       - proceso
       - procesos
@@ -96,11 +140,17 @@ tables:
       - numero de proceso y proceso realizado por cliente_id
       - procesos realizados por el cliente_id 142518
       - numero de proceso por cliente
+      - cantidad de procesos con codigo de proceso 4601 que se crearon hoy
     columns:
       NUMERO_PROCESO:
         business_description: Identificador unico del proceso o tramite.
+      FECHA_SOL:
+        # Significado confirmado expresamente por el usuario el 2026-09-21.
+        business_description: Fecha de creacion del proceso. Usar para creacion, procesos creados, registrados o que se crearon en una fecha o periodo. Para hoy usar FECHA_SOL >= TRUNC(SYSDATE) AND FECHA_SOL < TRUNC(SYSDATE) + 1. No sustituir por FECHA_SISTEMA ni inventar FECHA_CREACION.
       PROCESO:
-        business_description: Codigo del tipo de proceso realizado.
+        business_description: Codigo del proceso realizado. Usar para proceso 4601 o codigo de proceso; no usar para tipo de proceso, que corresponde a TIPO.
+      TIPO:
+        business_description: Tipo de proceso. Cuando el usuario solicita procesos tipo 46 o tipo de proceso 46, filtrar TIPO = '46', no PROCESO. Es VARCHAR2 y el codigo se expresa entre comillas.
       CLIENTE_ID:
         business_description: Identificador del cliente asociado directamente al proceso.
       CODIGO_CUENTA:
@@ -268,3 +318,14 @@ static_value_mappings:
       - retirada
       - retirado
       - fuera de servicio
+
+- table: SAC.V_AC_PROCESOS
+  column: ESTADO
+  values:
+    F:
+      label: Cerrada
+      synonyms:
+      - cerrada
+      - cerradas
+      - cerrado
+      - cerrados

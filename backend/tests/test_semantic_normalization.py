@@ -80,7 +80,7 @@ def test_procesos_4601_adds_resolved_numeric_filter():
 
 
 def test_procesos_conexion_del_servicio_resolves_from_generated_approved_lookup_values(monkeypatch):
-    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-"))
     try:
         (temp_dir / "curated").mkdir(parents=True, exist_ok=True)
         (temp_dir / "generated").mkdir(parents=True, exist_ok=True)
@@ -143,7 +143,7 @@ def test_procesos_conexion_del_servicio_resolves_from_generated_approved_lookup_
 
 
 def test_generated_approved_lookup_values_do_not_auto_resolve_cross_mapping_duplicates(monkeypatch):
-    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-"))
     try:
         (temp_dir / "curated").mkdir(parents=True, exist_ok=True)
         (temp_dir / "generated").mkdir(parents=True, exist_ok=True)
@@ -226,7 +226,7 @@ def test_generated_approved_lookup_values_do_not_auto_resolve_cross_mapping_dupl
 
 
 def test_generated_approved_lookup_values_do_not_override_clientes_activos(monkeypatch):
-    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookups-"))
     try:
         (temp_dir / "curated").mkdir(parents=True, exist_ok=True)
         (temp_dir / "generated").mkdir(parents=True, exist_ok=True)

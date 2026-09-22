@@ -344,6 +344,20 @@ pre {
   margin-bottom: 12px;
 }
 
+.result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.result-actions span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 table {
   width: 100%;
   min-width: 520px;

@@ -289,7 +289,7 @@ def _write_metadata_base(root: Path) -> None:
 def test_ambiguity_learning_updates_suggestions_without_editing_curated(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="ambiguity-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="ambiguity-test-"))
     try:
         _write_metadata_base(temp_dir)
         original_rules = (temp_dir / "curated" / "ambiguity_rules.yml").read_text(encoding="utf-8")
@@ -325,7 +325,7 @@ def test_ambiguity_learning_updates_suggestions_without_editing_curated(monkeypa
 def test_retirados_auto_resolves_and_usuarios_activos_resolve_by_proximity(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="ambiguity-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="ambiguity-test-"))
     try:
         _write_metadata_base(temp_dir)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)
@@ -353,7 +353,7 @@ def test_retirados_auto_resolves_and_usuarios_activos_resolve_by_proximity(monke
 def test_lookup_normalization_resolves_exact(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-"))
     try:
         _write_metadata_base(temp_dir)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)
@@ -380,7 +380,7 @@ def test_lookup_normalization_resolves_exact(monkeypatch):
 def test_lookup_normalization_resolves_tilde(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-"))
     try:
         _write_metadata_base(temp_dir)
         lookup_path = temp_dir / "curated" / "lookup_value_normalization.yml"
@@ -427,7 +427,7 @@ def test_lookup_normalization_resolves_tilde(monkeypatch):
 def test_lookup_normalization_resolves_lowercase(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-"))
     try:
         _write_metadata_base(temp_dir)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)
@@ -452,7 +452,7 @@ def test_lookup_normalization_resolves_lowercase(monkeypatch):
 def test_lookup_normalization_invalid_value_requests_confirmation(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-"))
     try:
         _write_metadata_base(temp_dir)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)
@@ -480,7 +480,7 @@ def test_lookup_normalization_invalid_value_requests_confirmation(monkeypatch):
 def test_lookup_normalization_does_not_override_static_mapping(monkeypatch):
     from app.core.config import settings
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="lookup-test-"))
     try:
         _write_metadata_base(temp_dir)
         monkeypatch.setattr(settings, "metadata_path", temp_dir)

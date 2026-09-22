@@ -124,7 +124,9 @@ class SemanticContextSelector:
         )
 
         selected_entries = [e for e in all_directory if e.table in final_selected]
-        selected_entries = self._enrich_with_parametric_requirements(question, selected_entries, all_directory, parametric_mappings)
+        selected_entries = self._enrich_with_parametric_requirements(
+            question, selected_entries, all_directory, parametric_mappings, resolved_lookup_values or []
+        )
 
         outputs: list[SelectedTableContext] = []
         for entry in selected_entries:
@@ -287,6 +289,7 @@ class SemanticContextSelector:
         selected: list[DirectoryEntry],
         directory: list[DirectoryEntry],
         parametric_mappings: list[ParametricMapping],
+        resolved_lookup_values: list[object],
     ) -> list[DirectoryEntry]:
         q = question.lower()
         asks_estado_suministro = "estado suministro" in q or "suministro" in q
@@ -294,10 +297,17 @@ class SemanticContextSelector:
         by_table = {e.table: e for e in directory}
         selected_by_table = {e.table: e for e in selected}
         for mapping in parametric_mappings:
+            resolved_hit = any(
+                getattr(value, "source_table", "").upper() == mapping.source_table.upper()
+                and getattr(value, "source_column", "").upper() == mapping.source_column.upper()
+                and getattr(value, "lookup_table", "").upper() == mapping.lookup_table.upper()
+                for value in resolved_lookup_values
+            )
             if (
                 mapping.source_table.upper() == "SAC.CLIENTES"
                 and mapping.source_column.upper() == "ESTADO_CLIENTE"
                 and (asks_estado_suministro or asks_estado_facturacion)
+                and not resolved_hit
             ):
                 continue
             source_phrase = mapping.source_column.lower().replace("_", " ")
@@ -316,7 +326,7 @@ class SemanticContextSelector:
                 and not any(term in q for term in ("descripcion", "descripción", "factibilidad", "tipo de proceso"))
             ):
                 continue
-            if phrase_hit or token_hit:
+            if phrase_hit or token_hit or resolved_hit:
                 if mapping.source_table in by_table:
                     selected_by_table[mapping.source_table] = by_table[mapping.source_table]
                 if mapping.lookup_table in by_table:

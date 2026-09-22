@@ -1,2 +1,9 @@
-﻿examples: {}
-# Empty by default. Populate only with metadata discovered from Oracle and curated by users.
+examples:
+  procesos:
+  - 'Pregunta: cantidad de acciones de proceso cerradas por los usuarios EDEQ\AOSPINMA
+    y AOSPINMA en el a?o 2026. SQL: SELECT COUNT(*) AS TOTAL_ACCIONES FROM SAC.V_AC_PROCESOS
+    ac WHERE ac.USER_SISTEMA IN (''EDEQ\AOSPINMA'', ''AOSPINMA'') AND ac.ESTADO =
+    ''F'' AND ac.FECHA_SISTEMA >= DATE ''2026-01-01'' AND ac.FECHA_SISTEMA < DATE
+    ''2027-01-01''. Los usuarios y el periodo son filtros de este ejemplo; adaptarlos
+    a la pregunta. Contar acciones, no procesos distintos. ''Cerradas por'' identifica
+    quien termino la accion y no solicita GROUP BY.'

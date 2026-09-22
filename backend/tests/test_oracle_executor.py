@@ -40,10 +40,12 @@ def test_does_not_expose_password_in_error(monkeypatch):
 
 
 def test_executor_is_mockable_without_real_connection(monkeypatch):
+    executed = []
     class FakeCursor:
         description = [("COL1",)]
 
         def execute(self, sql):
+            executed.append(sql)
             return None
 
         def fetchall(self):
@@ -64,3 +66,7 @@ def test_executor_is_mockable_without_real_connection(monkeypatch):
     result = executor.execute("SELECT COL1 FROM DUAL FETCH FIRST 2 ROWS ONLY")
     assert result["columns"] == ["COL1"]
     assert result["row_count"] == 2
+    assert executed == [
+        "ALTER SESSION SET NLS_DATE_LANGUAGE = 'SPANISH'",
+        "SELECT COL1 FROM DUAL FETCH FIRST 2 ROWS ONLY",
+    ]

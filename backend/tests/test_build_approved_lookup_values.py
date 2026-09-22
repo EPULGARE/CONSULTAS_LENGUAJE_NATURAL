@@ -8,7 +8,7 @@ from scripts import build_approved_lookup_values as script
 
 
 def test_load_approved_multitabla_mappings_filters_only_approved_multitabla_entries():
-    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookup-build-", dir="C:/tmp"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="approved-lookup-build-"))
     try:
         curated = temp_dir / "curated"
         curated.mkdir(parents=True, exist_ok=True)

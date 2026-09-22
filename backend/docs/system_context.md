@@ -3,7 +3,7 @@
 ## Repository Identity
 This repository implements a secure Text-to-SQL backend aimed at Oracle-backed business data. The system is designed to transform natural-language questions into validated `SELECT` queries using governed semantic metadata, while minimizing unsafe inference by the LLM.
 
-The real codebase is under `backend/`. The recovery pack now also lives inside `backend/` so a new Codex session can regain context without depending on root-level files.
+The backend codebase is under `backend/`; the Next.js frontend is under the sibling `frontend/` directory. The recovery pack lives inside `backend/docs/`. GitHub Actions configuration lives at repository root in `.github/workflows/`.
 
 ## Architectural Style
 The project follows a layered pipeline rather than a monolithic prompt wrapper:

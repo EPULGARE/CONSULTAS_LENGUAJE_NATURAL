@@ -26,6 +26,11 @@ Reglas estrictas:
 - No INSERT, UPDATE, DELETE, DROP, ALTER, TRUNCATE, EXEC.
 - Usa solo tablas y columnas permitidas.
 - No inventes tablas.
+- En agregaciones por un campo incluido en approved_parametric_mappings, usa su columna de codigo en SELECT y GROUP BY. Solo sustituye esa dimension por la descripcion del lookup si la pregunta pide descripcion explicitamente; un mapping aprobado autoriza el JOIN pero no obliga a usarlo. Esto no cambia las dimensiones geograficas como municipio, que usan su nombre en el catalogo geografico aprobado.
+- Los alias y textos generados para el usuario deben estar en espanol. Conserva los nombres tecnicos y valores originales de los datos.
+- En Oracle, para nombres de dias o meses usa TO_CHAR(fecha, 'FMDay', 'NLS_DATE_LANGUAGE=SPANISH') o 'FMMonth'. No generes nombres de calendario en ingles.
+- Devuelve las columnas de fecha como DATE o TIMESTAMP, no como texto TO_CHAR, salvo que el usuario pida expresamente un texto o periodo. Los nombres de dias y meses son columnas de texto adicionales.
+- No agregues limites de filas arbitrarios. Usa FETCH FIRST o LIMIT solo si la pregunta solicita un limite, ranking o top; el backend gestiona el limite automatico configurado.
 - Usa solo ASCII en toda la salida SQL: sin tildes, sin eñe, sin caracteres especiales Unicode.
 """
 
@@ -84,7 +89,10 @@ def build_sql_user_prompt(
     tables_text = []
     active_filter_lines = []
     for table in tables:
-        columns = ", ".join(f"{c.name} ({c.type})" for c in table.columns)
+        columns = ", ".join(
+            f"{c.name} ({c.type})" + (f": {c.description}" if c.description else "")
+            for c in table.columns
+        )
         tables_text.append(f"Tabla: {table.full_name} | Descripcion: {table.description} | Columnas: {columns}")
         if any(c.name.upper() == "FECHA_DESACTIVACION" for c in table.columns):
             active_filter_lines.append(f"- {table.full_name}.FECHA_DESACTIVACION IS NULL")
@@ -181,6 +189,8 @@ def build_sql_user_prompt(
         "- Si la pregunta sigue patrones como 'clientes por X', 'cantidad de clientes por X', "
         "'conteo de clientes por X' o 'numero de clientes por X', debes generar agregacion.\n"
         "- Usa SELECT X, COUNT(...) y GROUP BY X.\n"
+        "- Si X es un campo parametrizado, X es la columna base de la entidad; conserva su codigo en SELECT y GROUP BY.\n"
+        "- No sustituir X por lookup_description ni agregar su JOIN salvo que la pregunta pida descripcion explicitamente. Un alias con el nombre de X no conserva el codigo.\n"
         "- No listar filas individuales para ese tipo de pregunta.\n\n"
         "Regla de ranking/superlativo (obligatoria):\n"
         "- Para expresiones como 'con mas', 'mayor cantidad', 'top', 'mas medidores':\n"
@@ -244,6 +254,7 @@ def build_sql_user_prompt(
         "- No conviertas el texto de descripcion de concepto en un alias ni lo omitas del WHERE.\n"
         "- Para filtrar facturas por municipio de cliente usa la cadena: SAC.CLI_FAC_DETALLE.CLIENTE_ID = SAC.CLIENTES.CLIENTE_ID y SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n\n"
         "Regla de municipio/ciudad (obligatoria):\n"
+        "- Para agrupaciones por municipio/ciudad, seleccionar y agrupar por SAC.MUNICIPIOS.DESCRIPCION usando la relacion aprobada; no sustituir el nombre por el codigo de SAC.CLIENTES.MUNICIPIO.\n"
         "- Si la pregunta filtra por nombre de municipio/ciudad/localidad, usar SAC.MUNICIPIOS.DESCRIPCION con UPPER/TRIM.\n"
         "- Para preguntas de medidores, unir por codigo usando la cadena aprobada: SAC.MEDIDORES.CLIENTE_ID = SAC.CLIENTES.CLIENTE_ID y SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
         "- Para preguntas de clientes, unir por codigo: SAC.CLIENTES.MUNICIPIO = SAC.MUNICIPIOS.MUNICIPIO.\n"
@@ -286,12 +297,15 @@ def build_sql_user_prompt(
         "Regla de desambiguacion de estados (obligatoria):\n"
         "- 'estado cliente' => SAC.CLIENTES.ESTADO_CLIENTE (puede usar mapping aprobado a MULTITABLA).\n"
         "- 'estado suministro' => SAC.CLIENTES.ESTADO_SUMINISTRO (sin MULTITABLA si no hay mapping aprobado).\n"
-        "- 'estado facturacion' => SAC.CLIENTES.ESTADO_FACTURACION (sin MULTITABLA si no hay mapping aprobado).\n"
+        "- 'estado facturacion' => SAC.CLIENTES.ESTADO_FACTURACION. Para clientes por estado de facturacion, seleccionar y agrupar por C.ESTADO_FACTURACION, sin MULTITABLA, salvo solicitud explicita de descripcion y mapping aprobado.\n"
         "- Si la pregunta dice solo 'estado' y no especifica suministro/facturacion, priorizar ESTADO_CLIENTE.\n\n"
         "Regla de descripcion vs codigo en campos parametrizados (obligatoria):\n"
-        "- Si existe approved_parametric_mapping para la columna solicitada y el usuario pide tipos/descripciones/listado,\n"
-        "  devolver lookup_description (ejemplo: MT.DESCRIPCION) usando fixed_filter aprobado.\n"
-        "- Solo devolver codigo base cuando el usuario pida explicitamente codigo/llave/valor numerico/id.\n"
+        "- Si la pregunta pide agrupar por un campo parametrizado sin pedir descripcion,\n"
+        "  selecciona y agrupa por el codigo base, sin JOIN al lookup para sustituir esa dimension.\n"
+        "  Esta regla tiene prioridad aunque exista un mapping aprobado o el campo incluya la palabra 'tipo'.\n"
+        "- Si el usuario pide explicitamente descripcion, devolver lookup_description usando fixed_filter aprobado.\n"
+        "- En consultas sin agregacion, los listados de tipos pueden usar lookup_description si hay mapping aprobado.\n"
+        "- Devolver tambien codigo base cuando el usuario pida explicitamente codigo/llave/valor numerico/id.\n"
         "- Nunca usar MULTITABLA para columnas sin approved_parametric_mapping.\n\n"
         f"Approved parametric mappings:\n{mapping_text}\n\n"
         f"Static value mappings:\n{static_mapping_text}\n\n"

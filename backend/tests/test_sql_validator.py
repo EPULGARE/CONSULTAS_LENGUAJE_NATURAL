@@ -24,6 +24,39 @@ def test_accepts_valid_oracle_select():
     assert result.sql.endswith("FETCH FIRST 500 ROWS ONLY")
 
 
+@pytest.mark.parametrize('dialect', [SQLDialect.ORACLE, SQLDialect.SQLITE])
+def test_zero_max_rows_does_not_add_automatic_limit(dialect):
+    sql = 'SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE'
+    result = SQLValidator(max_rows=0, dialect=dialect).validate(sql, allowed_tables=ALLOWED)
+    assert result.sql == sql
+    assert result.limited is False
+
+
+def test_unlimited_queries_preserve_explicit_top_limit():
+    sql = 'SELECT STATUS_FLAG FROM TEST_SCHEMA.TEST_TABLE FETCH FIRST 10 ROWS ONLY'
+    result = SQLValidator(max_rows=0).validate(sql, allowed_tables=ALLOWED)
+    assert result.sql == sql
+
+
+def test_unlimited_queries_still_reject_writes():
+    with pytest.raises(ValueError):
+        SQLValidator(max_rows=0).validate('DELETE FROM TEST_SCHEMA.TEST_TABLE', allowed_tables=ALLOWED)
+
+
+def test_unlimited_sql_can_return_more_than_500_rows():
+    import sqlite3
+
+    connection = sqlite3.connect(':memory:')
+    try:
+        connection.execute('CREATE TABLE result_rows (id INTEGER)')
+        connection.executemany('INSERT INTO result_rows VALUES (?)', [(i,) for i in range(750)])
+        result = SQLValidator(max_rows=0, dialect=SQLDialect.SQLITE).validate(
+            'SELECT id FROM result_rows', allowed_tables={'result_rows'})
+        assert len(connection.execute(result.sql).fetchall()) == 750
+    finally:
+        connection.close()
+
+
 def test_detects_schema_table():
     result = _validator().validate(
         "SELECT * FROM TEST_SCHEMA.TEST_TABLE",

@@ -1,0 +1,158 @@
+source_file: C:\Desarollo2\Generacion SQL SAC\CONSULTAS_LENGUAJE_NATURAL\backend\metadata\generated\v_ac_procesos.yml
+generated_at: '2026-09-21T13:09:38.486209+00:00'
+reviewer: Solicitud explicita del usuario en la conversacion del 2026-09-21
+status: approved_partial
+tables:
+- full_name: SAC.V_AC_PROCESOS
+  approved: true
+  allowed_for_query: true
+  domain: procesos
+  business_description: Vista de acciones individuales de cada proceso.
+  columns:
+  - name: NUMERO_PROCESO
+    approved: true
+    business_description: Numero del proceso al que pertenece la accion; se une con
+      SAC.PROCESOS.NUMERO_PROCESO. Puede repetirse para distintas acciones.
+    sensitive: false
+    allowed_for_select: true
+  - name: PROCESO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: D_PROCESO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: ACCION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: D_ACCION
+    approved: true
+    business_description: Descripcion de la accion individual; el ejemplo busca descripciones
+      que contienen Respuesta.
+    sensitive: false
+    allowed_for_select: true
+  - name: PROGRAMA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: ESTADO
+    approved: true
+    business_description: Codigo de estado de la accion. El SQL aportado filtra F;
+      no se establece un filtro predeterminado ni se infieren otros estados.
+    sensitive: false
+    allowed_for_select: true
+  - name: ABREVIATURA
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: AUTOMATICO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: OBLIGATORIO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: RESPONSABLE
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: D_RESPONSABLE
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: TIPO_ACCION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: FECHA_INICIO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: FECHA_ACCION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: FECHA_SISTEMA
+    approved: true
+    business_description: Fecha de sistema de la accion; el SQL aportado la utiliza
+      para agrupar por mes. No se ha confirmado que sea la fecha efectiva de terminacion.
+    sensitive: false
+    allowed_for_select: true
+  - name: FECHA_VENCIMIENTO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: USER_SISTEMA
+    approved: true
+    business_description: Usuario del sistema del trabajador que termino la accion,
+      segun definicion del usuario. No representa al cliente ni al responsable asignado.
+    sensitive: false
+    allowed_for_select: true
+  - name: D_ESTADO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: OBSERVACION
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: TIPO_PERMISO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: CANTIDAD_ANEXOS
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: CLIENTE_ID
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: SIG_ESTADO
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  - name: ACCION_ID
+    approved: false
+    business_description: ''
+    sensitive: false
+    allowed_for_select: false
+  relationships: []
+evidence: Oracle confirma VIEW y tipos de columnas; el usuario aporta SQL, significado
+  de USER_SISTEMA y union por NUMERO_PROCESO.
+manual_relationships:
+- approved: true
+  left_table: SAC.V_AC_PROCESOS
+  left_column: NUMERO_PROCESO
+  right_table: SAC.PROCESOS
+  right_column: NUMERO_PROCESO
+  description: Acciones individuales de un proceso; un proceso puede tener varias
+    acciones. Relacion confirmada por el usuario, no FK declarada en Oracle.
+  evidence: JOIN sac.v_ac_procesos ac ON ac.numero_proceso = pr.numero_proceso; confirmado
+    por el usuario el 2026-09-21.
+confirmed_business_rules:
+  source: Confirmacion explicita del usuario el 2026-09-21
+  closed_action_filter: SAC.V_AC_PROCESOS.ESTADO = 'F'
+  closed_action_period_column: SAC.V_AC_PROCESOS.FECHA_SISTEMA

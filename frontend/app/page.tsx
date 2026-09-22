@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { downloadResultsExcel, getResultColumns, parseResultDate } from "../lib/exportExcel";
 
 type QueryMode = "preview" | "execute";
 
@@ -45,6 +46,13 @@ type ChatMessage = {
 };
 
 const USER_ID = "web_mvp_user";
+let messageSequence = 0;
+
+// Local React keys only; works on HTTP LAN addresses as well as localhost.
+function createMessageId() {
+  messageSequence += 1;
+  return `message-${Date.now()}-${messageSequence}`;
+}
 
 export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -74,7 +82,7 @@ export default function Home() {
     setIsLoading(true);
     setMessages((current) => [
       ...current,
-      { id: crypto.randomUUID(), role: "user", text, mode: activeMode }
+      { id: createMessageId(), role: "user", text, mode: activeMode }
     ]);
 
     const payload: Record<string, unknown> = {
@@ -116,7 +124,7 @@ export default function Home() {
       setMessages((current) => [
         ...current,
         {
-          id: crypto.randomUUID(),
+          id: createMessageId(),
           role: "assistant",
           text: buildAssistantText(queryResponse),
           mode: activeMode,
@@ -128,7 +136,7 @@ export default function Home() {
       setMessages((current) => [
         ...current,
         {
-          id: crypto.randomUUID(),
+          id: createMessageId(),
           role: "assistant",
           text: message,
           mode: activeMode,
@@ -241,11 +249,27 @@ export default function Home() {
 }
 
 function TracePanel({ response }: { response: QueryResponse }) {
+  const [isExporting, setIsExporting] = useState(false);
+  const [exportError, setExportError] = useState("");
   const rows = response.rows || [];
+  const visibleRows = rows.slice(0, 10);
   const sql = response.validated_sql || response.sql || response.generated_sql || "";
-  const columns = rows.length > 0 ? Object.keys(rows[0]) : [];
+  const columns = getResultColumns(rows);
   const warnings = response.warnings || [];
   const lookupValues = response.resolved_lookup_values || [];
+
+  async function exportResults() {
+    if (isExporting || rows.length === 0 || response.execution_skipped) return;
+    setIsExporting(true);
+    setExportError("");
+    try {
+      await downloadResultsExcel(rows);
+    } catch {
+      setExportError("No se pudo descargar el Excel. Intenta nuevamente.");
+    } finally {
+      setIsExporting(false);
+    }
+  }
 
   return (
     <div className="trace">
@@ -257,7 +281,7 @@ function TracePanel({ response }: { response: QueryResponse }) {
         />
         <Metric
           label="Estado"
-          value={response.validation_status || response.execution_skip_reason || "ejecutada"}
+          value={response.validation_status === "valid" ? "Válida" : response.validation_status || response.execution_skip_reason || "Ejecutada"}
         />
       </div>
 
@@ -277,6 +301,18 @@ function TracePanel({ response }: { response: QueryResponse }) {
         </details>
       ) : null}
 
+      {!response.execution_skipped && rows.length > 0 ? (
+        <div className="result-actions">
+          <span>
+            Mostrando {visibleRows.length} de {rows.length} filas. El Excel incluye las {rows.length} filas.
+          </span>
+          <button type="button" onClick={exportResults} disabled={isExporting}>
+            {isExporting ? "Preparando Excel..." : "Descargar Excel"}
+          </button>
+        </div>
+      ) : null}
+      {exportError ? <p className="error-text" role="alert">{exportError}</p> : null}
+
       {rows.length > 0 ? (
         <div className="table-wrap">
           <table>
@@ -288,7 +324,7 @@ function TracePanel({ response }: { response: QueryResponse }) {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, index) => (
+              {visibleRows.map((row, index) => (
                 <tr key={index}>
                   {columns.map((column) => (
                     <td key={column}>{formatCell(row[column])}</td>
@@ -303,8 +339,8 @@ function TracePanel({ response }: { response: QueryResponse }) {
       <div className="trace-grid">
         <InfoBlock title="Tablas recuperadas" items={response.retrieved_tables || []} />
         <InfoBlock
-          title="Warnings"
-          items={warnings.length > 0 ? warnings : ["Sin warnings"]}
+          title="Advertencias"
+          items={warnings.length > 0 ? warnings : ["Sin advertencias"]}
         />
         <InfoBlock
           title="Trazabilidad"
@@ -384,6 +420,15 @@ function readError(data: unknown) {
 function formatCell(value: unknown) {
   if (value === null || value === undefined) {
     return "";
+  }
+  const date = parseResultDate(value);
+  if (date) {
+    return new Intl.DateTimeFormat("es-CO", {
+      timeZone: "UTC", day: "2-digit", month: "2-digit", year: "numeric",
+      ...(typeof value === "string" && value.length === 10 ? {} : {
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+      })
+    }).format(date);
   }
   if (typeof value === "object") {
     return JSON.stringify(value);
