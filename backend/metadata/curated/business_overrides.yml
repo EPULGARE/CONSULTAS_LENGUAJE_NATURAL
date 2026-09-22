@@ -122,6 +122,17 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.CODCA:
+    business_description: >-
+      SAC.CODCA es el catalogo de conceptos utilizados en la facturacion. Cada
+      registro representa un concepto de facturacion o cobro identificado por
+      CODIGO_CONCEPTO. DESCRIPCION contiene el nombre legible del concepto que debe
+      utilizarse para presentar su significado al usuario. Los conceptos registrados
+      en esta tabla son referenciados desde SAC.CLI_FAC_DETALLE.CODIGO_CONCEPTO para
+      identificar que concepto o cargo corresponde a cada detalle facturado. La tabla
+      contiene ademas atributos relacionados con la configuracion contable, recaudo,
+      amortizacion, intereses, ajustes y comportamiento del concepto dentro de la
+      facturacion.
   SAC.CLI_FACTURAS:
     business_description: >-
       SAC.CLI_FACTURAS contiene registros tecnicos de campos etiquetados del spool
