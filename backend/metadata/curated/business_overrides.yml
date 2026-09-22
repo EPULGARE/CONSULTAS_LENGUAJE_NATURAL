@@ -87,9 +87,16 @@ manual_relationships:
   fixed_filter: ''
 tables:
   SAC.V_AC_PROCESOS:
-    business_description: 'Vista de acciones individuales de cada proceso. USER_SISTEMA
-      identifica al trabajador que termino la accion; no al cliente. Un proceso puede
-      tener varias acciones: para contar procesos usar COUNT(DISTINCT NUMERO_PROCESO). Para contar acciones de esta vista usar COUNT(*), no contar procesos distintos.'
+    business_description: >-
+      SAC.V_AC_PROCESOS es una vista que contiene las acciones individuales realizadas
+      dentro de los procesos. Cada registro representa una accion asociada a un proceso
+      mediante NUMERO_PROCESO, por lo que un mismo proceso puede aparecer en multiples
+      filas al tener varias acciones. D_ACCION describe la accion realizada, ESTADO
+      identifica su estado, FECHA_SISTEMA registra la fecha de sistema de la accion y
+      USER_SISTEMA identifica al trabajador que termino la accion, no al cliente ni al
+      responsable asignado. Para contar procesos debe utilizarse
+      COUNT(DISTINCT NUMERO_PROCESO); para contar acciones individuales de esta vista
+      debe utilizarse COUNT(*).
     synonyms:
     - acciones
     - accion
