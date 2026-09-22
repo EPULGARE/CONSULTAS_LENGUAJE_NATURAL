@@ -1,13 +1,39 @@
 # A1 — Baseline certificada
 
-Fecha: 2026-09-21.
+Fecha de certificacion: 2026-09-22.
 
-## Estado y alcance
+## Estado y evidencia de cierre
 
-Certificacion local implementada; cierre remoto pendiente. El HEAD de partida es
-`2f312f1` y el repositorio ya contenia cambios funcionales y archivos nuevos sin
-commit. Las validaciones cubren ese estado de trabajo mas las correcciones A1,
-no el HEAD sin esos cambios. No se hizo commit ni push de los cambios previos.
+A1: COMPLETO para la baseline funcional observada en CI. El commit documental
+que contiene esta acta debe pasar tambien el mismo workflow antes de finalizar
+la entrega; la evidencia de su SHA exacto se registra en el informe final.
+
+- Rama: `main`.
+- Remote: `origin`, https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL.git.
+- SHA funcional final: `aed5615d94b9d61aa5ec5dabe4c807e1412fbd0e`.
+- Workflow: `A1 baseline`, `.github/workflows/a1-baseline.yml`, evento `push`.
+- [Run 35732751822](https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL/actions/runs/35732751822): `completed / success` observado.
+- [JSON de evaluacion en Actions](https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL/actions/runs/35732751822/artifacts/10695832408).
+
+| Validacion | Local Windows | CI Linux | Exit / conclusion |
+| --- | --- | --- | --- |
+| Backend | 319 passed, 2 warnings, 201.74 s | 319 passed, 2 warnings, 31.13 s | 0 / success |
+| Frontend | npm ci + npm run build correctos | Ambos pasos correctos | 0 / success |
+| Readiness | OK=20/WARNING=0/ERROR=0 | OK=20/WARNING=0/ERROR=0 | 0 / success |
+| Text-to-SQL | 5/5, failed=0, skipped=0, JSON generado | 5/5, failed=0, skipped=0, artifact subido | 0 / success |
+
+El SHA final de entrega incluye este commit documental. Para obtenerlo desde
+el checkout de cierre: `git log -1 --format=%H -- backend/docs/a1_baseline.md`.
+No se inserta el hash de un commit dentro de su propio contenido: hacerlo
+cambiaria ese hash. La entrega debe comprobar que dicho SHA coincide con el
+`head_sha` del ultimo run verde, y proporcionar ambos valores en el informe final.
+El commit funcional anterior se conserva aqui como evidencia inmutable ya observada.
+
+El HEAD de partida era `2f312f1`; el primer commit A1 `e265ba2` incluyo los cambios
+previos legitimos y los ajustes locales de A1. Durante el cierre remoto solo se
+corrigieron dos assertions de rutas demostradas por CI y se actualizo esta acta,
+el changelog y las tareas pendientes. No hubo cambios de aplicacion, metadata,
+expectativas de evaluacion, dependencias ni workflow en esta fase.
 
 ## Continuacion de cierre — 2026-09-22
 
@@ -35,7 +61,7 @@ consulta de metadata HTTP 200). No se versiona ni se muestra su valor.
 Revalidacion local: backend 319 passed, 2 warnings, exit 0; readiness
 OK=20/WARNING=0/ERROR=0, exit 0; evaluacion real 5/5, exit 0 y JSON generado.
 Frontend: npm ci y npm run build, ambos exit 0 (Next 16.2.7).
-El cierre integral sigue pendiente hasta observar el SHA final verde en Actions.
+El run funcional final paso; el ultimo commit documental tambien debe verificarse en Actions.
 
 La documentacion solicitada esta en `backend/docs/`, no en `docs/` de la raiz.
 `decisions.md` no existia y se incorpora para las decisiones de CI y agrupacion.
@@ -98,7 +124,7 @@ por Git segun la politica existente. No se filtran dominios ni preguntas.
    de npm (`ENOTCACHED`). Las ejecuciones autorizadas fuera del sandbox resolvieron
    esas restricciones, sin excluir pruebas ni modificar codigo para ocultarlas.
 
-## CI y cierre pendiente
+## CI configurado
 
 `.github/workflows/a1-baseline.yml` reproduce las cuatro validaciones en
 `pull_request`, `push` a `main` y ejecucion manual. Se verificaron YAML, triggers,
@@ -109,10 +135,8 @@ La evaluacion necesita el secret `OPENROUTER_API_KEY` en GitHub. El secret fue c
 sin secrets fallaran la evaluacion en vez de omitirla. El readiness es una
 comprobacion estatica, no una prueba de conexion Oracle.
 
-Se consultaron los workflow runs del HEAD `2f312f1`: lista vacia. Falta ejecutar
-y observar CI verde sobre el commit final que incluya el estado certificado.
-Ese es el criterio externo pendiente; no se declara validado ni se marca el
-cierre integral de A1 hasta contar con dicha evidencia.
+El HEAD inicial `2f312f1` no tenia runs. El cierre funcional se observo en el
+run 35732751822 indicado arriba; no se usa un run anterior para certificar cambios posteriores.
 
 ## Primer CI remoto y correccion de portabilidad
 

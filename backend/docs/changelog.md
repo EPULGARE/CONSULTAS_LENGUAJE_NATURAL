@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-09-22
+- Cierre efectivo de A1: commit funcional `aed5615d94b9d61aa5ec5dabe4c807e1412fbd0e` en main con [Actions success](https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL/actions/runs/35732751822). Backend 319 passed, frontend install/build correctos, readiness ERROR=0 y Text-to-SQL 5/5 con artifact JSON.
+- Se configuro OPENROUTER_API_KEY como GitHub Secret con autorizacion explicita. El primer CI identifico dos assertions con separadores Windows; se corrigieron comparando componentes Path y se repitieron las cuatro validaciones locales.
+- Acta y pendientes actualizados; el commit documental final se somete tambien al mismo CI y su SHA/run se informa en la entrega. Vulnerabilidades npm y demas backlog permanecen fuera de A1.
+
 ## 2026-09-21
 - A1: cierre local de certificacion; cierre integral pendiente de CI remoto sobre el commit final. Baseline del estado de trabajo basada en HEAD `2f312f1`, con cambios previos del usuario conservados. Evidencia y comandos en `docs/a1_baseline.md`.
 - Se corrigieron la omision de lookups gobernados ya resueltos en el selector y el retorno prematuro que perdia el segundo filtro numerico explicito. Los tests existentes reprodujeron los fallos antes de las correcciones.

@@ -1,13 +1,14 @@
 # Pending Tasks
 
-## A1 — Certificacion local completa; cierre remoto pendiente
-- [x] Suite completa: 319 passed, exit 0, con Python 3.12 y dependencias declaradas.
-- [x] Frontend: `npm ci` y `npm run build`, exit 0, con TLS activado en la repeticion final.
-- [x] Readiness: exit 0, OK=20/WARNING=0/ERROR=0.
-- [x] Evaluacion real: cinco preguntas, 5 passed/0 failed/0 skipped, exit 0 y `outputs/text_to_sql_evaluation.json` generado.
-- [x] Workflow de las cuatro validaciones para PRs y `main`, sin ocultar fallos; documentacion y diff revisados.
-- [ ] Observar CI verde del commit final que incluya el estado certificado. El HEAD `2f312f1` no tiene runs registrados y los cambios A1 siguen locales. Comprobar/configurar `OPENROUTER_API_KEY` en GitHub antes de ejecutar la evaluacion remota. No marcar A1 integralmente completado hasta obtener ese resultado.
-- Evidencia, correcciones y limitaciones: `docs/a1_baseline.md`. Los cambios previos sin commit forman parte del estado validado; no se certifica el HEAD sin ellos.
+## A1 ? Completado; evidencia funcional remota observada 2026-09-22
+- [x] Backend: 319 passed, exit 0, tanto local como CI.
+- [x] Frontend: npm ci y npm run build, exit 0 local y CI.
+- [x] Readiness: OK=20/WARNING=0/ERROR=0, exit 0 local y CI.
+- [x] Text-to-SQL real: 5/5, cero fallos/omisiones, JSON local y artifact remoto.
+- [x] Secret OPENROUTER_API_KEY configurado con autorizacion explicita.
+- [x] Commit funcional `aed5615d94b9d61aa5ec5dabe4c807e1412fbd0e` enviado a main; [CI verde](https://github.com/EPULGARE/CONSULTAS_LENGUAJE_NATURAL/actions/runs/35732751822).
+- La entrega final verifica tambien el SHA del commit documental que contiene este cierre. Ver `docs/a1_baseline.md` y el informe final con su run exacto.
+- Se preservaron los cambios previos del usuario. Las unicas correcciones remotas fueron dos assertions de separadores Windows/Linux.
 
 ## Hallazgos fuera de A1 — 2026-09-21
 - `npm ci` y `npm audit --json` reportaron 7 paquetes vulnerables: 1 critico (`next`), 3 altos (`nanoid`, `postcss`, `sharp`) y 3 moderados (`baseline-browser-mapping`, `exceljs`, `uuid`). Revisar aplicabilidad y actualizar en una tarea de seguridad separada. El build no requiere upgrades; no se ejecuto `npm audit fix` ni se cambio el lockfile durante A1.
