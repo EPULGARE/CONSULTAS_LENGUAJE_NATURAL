@@ -122,6 +122,17 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.CLIENTES:
+    business_description: >-
+      SAC.CLIENTES representa la cuenta del servicio, identificada principalmente por
+      CLIENTE_ID, que corresponde al NIU y constituye el identificador principal de la
+      cuenta dentro del sistema. La tabla concentra ademas la informacion asociada al
+      cliente y a las caracteristicas de su cuenta y servicio, incluyendo estados del
+      cliente, suministro y facturacion, ubicacion geografica, ciclo, tarifa, clase y
+      tipo de servicio, estrato, segmentacion y saldo actual. Varios de estos atributos
+      se almacenan mediante codigos que se interpretan utilizando los catalogos
+      parametrizados aprobados, como SAC.MULTITABLA y SAC.MUNICIPIOS. Cuando una
+      consulta se refiera al NIU, debe interpretarse como CLIENTE_ID.
   SAC.MEDIDORES:
     sensitive_columns:
     - IP
