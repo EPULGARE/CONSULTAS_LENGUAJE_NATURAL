@@ -122,6 +122,44 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.CLI_FACTURAS:
+    business_description: >-
+      SAC.CLI_FACTURAS contiene registros tecnicos de campos etiquetados del spool
+      de facturacion asociados a un NIU/cuenta y a un consecutivo de facturacion.
+      Cada registro representa un campo tecnico individual y contiene una etiqueta
+      (ETIQUETA_FE), el texto asociado a dicha etiqueta (TEXTO_SPOOL) y un
+      identificador de mapeo de etiquetas XML (ID_MAPEO). Una misma cabecera de
+      facturacion, identificada por CLIENTE_ID + CONSECUTIVO, puede tener multiples
+      registros en esta tabla. En los datos actualmente verificados, todos los
+      registros corresponden a una cabecera existente en SAC.CLI_FACTURACION mediante
+      CLIENTE_ID y CONSECUTIVO, aunque no existe una clave foranea declarada entre
+      ambas tablas. Una fila de SAC.CLI_FACTURAS no debe interpretarse como una
+      factura completa, una cabecera de facturacion ni un concepto o cargo facturado.
+    columns:
+      CLIENTE_ID:
+        business_description: >-
+          NIU/cuenta al que pertenece el registro tecnico de facturacion.
+      CONSECUTIVO:
+        business_description: >-
+          Consecutivo de facturacion dentro del NIU. Junto con CLIENTE_ID corresponde
+          a la cabecera de SAC.CLI_FACTURACION y se repite en los distintos campos
+          tecnicos de esa cabecera.
+      ETIQUETA_FE:
+        business_description: >-
+          Etiqueta que identifica el campo o destino del texto dentro del registro
+          tecnico de facturacion. Oracle la documenta como la etiqueta de la nota a
+          la que va dirigido. El significado exacto de FE y de nota no cuenta con
+          evidencia suficiente.
+      TEXTO_SPOOL:
+        business_description: >-
+          Texto del spool asociado a la etiqueta para esa cuenta y consecutivo.
+          Puede ser nulo y no representa por si solo una factura completa.
+      ID_MAPEO:
+        business_description: >-
+          Identificador del mapeo de etiquetas XML segun el comentario de Oracle.
+          Puede compartirse entre multiples etiquetas y registros; no identifica una
+          fila de forma unica. La entidad exacta a la que referencia no cuenta con
+          evidencia suficiente.
   SAC.CLI_FAC_DETALLE:
     business_description: >-
       SAC.CLI_FAC_DETALLE contiene el detalle de los conceptos o cargos facturados a
