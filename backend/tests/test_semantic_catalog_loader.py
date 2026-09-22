@@ -55,6 +55,9 @@ tables:
     allowed_for_query: false
     sensitive_columns:
       - SECRET_COL
+    columns:
+      SECRET_COL:
+        allowed_for_select: false
 """.strip()
             + "\n",
             encoding="utf-8",
@@ -66,6 +69,9 @@ tables:
         assert tables[0].domain == "curated_domain"
         assert tables[0].allowed_for_query is False
         assert "SECRET_COL" in tables[0].sensitive_columns
+        secret = next(column for column in tables[0].columns if column.name == "SECRET_COL")
+        assert secret.sensitive is True
+        assert secret.allowed_for_select is False
     finally:
         shutil.rmtree(metadata_path.parent, ignore_errors=True)
 
