@@ -122,6 +122,18 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.MULTITABLA:
+    business_description: >-
+      SAC.MULTITABLA es un catalogo general de parametrizacion utilizado para
+      interpretar codigos funcionales almacenados en diferentes tablas del sistema.
+      La columna TABLA identifica el tipo o grupo de parametrizacion al que pertenece
+      cada registro; CODIGO_CAR almacena el codigo cuando su representacion es de tipo
+      caracter, CODIGO_NUM cuando el codigo es numerico, y DESCRIPCION contiene el
+      significado legible asociado al codigo. Esta tabla se utiliza como catalogo de
+      referencia para traducir codigos de negocio de entidades como clientes y
+      procesos, mediante relaciones y filtros de TABLA previamente aprobados. No debe
+      asumirse una relacion con SAC.MULTITABLA para una columna si dicha relacion o
+      parametrizacion no esta expresamente aprobada en el catalogo semantico.
   SAC.CLIENTES:
     business_description: >-
       SAC.CLIENTES representa la cuenta del servicio, identificada principalmente por
