@@ -122,6 +122,23 @@ tables:
       USER_SISTEMA:
         business_description: Usuario del sistema del trabajador que termino la accion,
           segun definicion del usuario. No representa al cliente ni al responsable asignado.
+  SAC.CLI_FAC_DETALLE:
+    business_description: >-
+      SAC.CLI_FAC_DETALLE contiene el detalle de los conceptos o cargos facturados a
+      una cuenta o NIU. Cada registro representa un cargo o concepto individual dentro
+      de una facturacion. CLIENTE_ID identifica el NIU o cuenta y, junto con
+      CONSECUTIVO, identifica la cabecera de facturacion correspondiente en
+      SAC.CLI_FACTURACION; esta relacion esta respaldada por una clave foranea
+      declarada en Oracle y es de tipo cabecera-detalle 1:N. Por tanto, CONSECUTIVO
+      no identifica de forma individual cada cargo, sino la facturacion a la que
+      pertenece dentro del NIU. CODIGO_CONCEPTO identifica el concepto facturado y se
+      relaciona con SAC.CODCA.CODIGO_CONCEPTO, mientras que VALOR_CONCEPTO
+      corresponde al valor asociado al concepto. NUMERO_PROCESO permite relacionar el
+      detalle con un proceso cuando existe dicha asociacion. La tabla tambien conserva
+      informacion de cantidad, pago y saldos relacionados con el concepto facturado.
+      CONS_NRO_FAC es un campo adicional cuyo significado de negocio exacto no cuenta
+      actualmente con evidencia suficiente y no debe utilizarse como sustituto de
+      CLIENTE_ID + CONSECUTIVO para identificar la cabecera de facturacion.
   SAC.MULTITABLA:
     business_description: >-
       SAC.MULTITABLA es un catalogo general de parametrizacion utilizado para
