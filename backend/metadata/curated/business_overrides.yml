@@ -176,7 +176,18 @@ tables:
       APN:
         allowed_for_select: true
   SAC.PROCESOS:
-    business_description: Procesos, tramites, solicitudes y PQR asociados a clientes. FECHA_SOL es la fecha de creacion del proceso; usarla para procesos creados hoy o en un periodo.
+    business_description: >-
+      SAC.PROCESOS contiene los procesos, tramites, solicitudes y PQR gestionados en
+      el sistema y asociados a una cuenta o cliente. Cada registro representa un
+      proceso identificado de forma unica por NUMERO_PROCESO. CLIENTE_ID identifica
+      el NIU o cuenta asociada al proceso. PROCESO corresponde al codigo del proceso
+      realizado, mientras que TIPO identifica el tipo de proceso. La tabla contiene
+      ademas informacion sobre creacion, estado, clasificacion, solicitante, medios de
+      solicitud y notificacion, dependencia, ubicacion, facturacion y cierre del
+      proceso. FECHA_SOL corresponde especificamente a la fecha de creacion del
+      proceso y debe utilizarse cuando se consulte por procesos creados o registrados
+      en una fecha o periodo. Un proceso puede tener multiples acciones registradas
+      posteriormente en SAC.V_AC_PROCESOS.
     synonyms:
       - proceso
       - procesos
