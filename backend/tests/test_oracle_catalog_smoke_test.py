@@ -68,7 +68,7 @@ def test_smoke_test_no_select_star_and_uses_where_zero(monkeypatch):
 
     monkeypatch.setattr("scripts.oracle_catalog_smoke_test.oracledb.connect", lambda **kwargs: FakeConn())
     result = run_smoke_test()
-    assert result == 1
+    assert result == 0
     joined = "\n".join(executed_sql).upper()
     assert "SELECT *" not in joined
     assert "WHERE 1=0" in joined
@@ -113,4 +113,4 @@ def test_sensitive_selectable_column_fails_catalog_smoke_test(monkeypatch):
 
     monkeypatch.setattr("scripts.oracle_catalog_smoke_test.oracledb.connect", lambda **kwargs: FakeConn())
     result = run_smoke_test()
-    assert result == 0
+    assert result == 1
